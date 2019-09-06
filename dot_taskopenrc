@@ -1,6 +1,7 @@
 
-#BROWSER='xdg-open $FILE &>/dev/null'
-#EDITOR='vim'
+# BROWSER='xdg-open $FILE &>/dev/null'
+BROWSER='firefox'
+EDITOR='nvim'
 #FILE_CMD='xdg-open'
 TASKBIN='task'
 

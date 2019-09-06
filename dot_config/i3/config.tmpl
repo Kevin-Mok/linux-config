@@ -79,8 +79,8 @@ bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xc
 bindsym Control+Print --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
-bindsym $mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Control+$mod+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+$mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+Shift+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ end }}
 
 #  ]]] app shortcuts # 
@@ -113,8 +113,8 @@ bindsym Shift+F0 exec xbacklight -set 100
 bindsym Control+$mod+plus exec xbacklight -inc 2
 bindsym Control+$mod+minus exec xbacklight -dec 2
 
-bindsym $mod+w exec sudo systemctl start netctl-auto@wlp3s0.service
-bindsym $mod+q exec sudo systemctl stop netctl-auto@wlp3s0.service
+bindsym Control+$mod+w exec sudo systemctl start netctl-auto@wlp3s0.service
+bindsym Control+$mod+q exec sudo systemctl stop netctl-auto@wlp3s0.service
 {{ end }}
 
 #  ]]] backlight # 
@@ -267,13 +267,16 @@ bindsym Control+$mod+a floating enable; resize set 400px 150px; move absolute po
 set $make_st_script "/home/kevin/st/make-st.sh"
 # test
 
+{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+bindsym Control+Shift+q exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/editing") && $make_st_script
+bindsym Control+Shift+w exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") && $make_st_script
+bindsym Control+$mod+z exec feh --bg-fill ~/Pictures/Backgrounds/dim/black.jpg
+{{ else }}
 bindsym Control+$mod+q exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/editing") && $make_st_script
 bindsym Control+$mod+w exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") && $make_st_script
+{{ end }}
 bindsym $mod+r exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/editing") && $make_st_script
 bindsym Control+$mod+y exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/non-editing") && $make_st_script
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
-bindsym Control+$mod+z exec feh --bg-fill ~/Pictures/Backgrounds/dim/black.jpg
-{{ end }}
 
 #  ]]] backgrounds # 
 
