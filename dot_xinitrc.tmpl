@@ -1,5 +1,6 @@
 xrandr --setprovideroutputsource modesetting NVIDIA-0
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 # xrandr --auto
 {{ if .ext_kb }}
 xmodmap ~/.Xmodmap

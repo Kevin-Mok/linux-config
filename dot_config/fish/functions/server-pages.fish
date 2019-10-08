@@ -1,8 +1,8 @@
 function server-pages
-    set sites git.ataraxy.tk khkm.tk cal.khkm.tk mnpd.gq/k-bg pste.gq smol.gq twem.tk
-    set titles "Kevin Mok's Gitea" "Kevin Mok" "BaÃ¯kal server" "k-bg" "hastebin" "Kevin's URL Shortener" "Index of /"
-    # set sites mnpd.gq/k-bg
-    # set titles "k-bg"
+    set sites kevin-mok.com git.kevin-mok.com cal.khkm.tk mnpd.gq/kbg pste.gq smol.gq twem.tk
+    set titles "Kevin Mok" "Kevin Mok's Gitea" "BaÃ¯kal server" "kbg" "hastebin" "Kevin's URL Shortener" "Twitch Emote Links"
+    # set sites twem.tk
+    # set titles "Twitch Emote Links"
 
     for i in (seq (count $sites))
         set title (wget -qO- "$sites[$i]" | perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si' | recode html)

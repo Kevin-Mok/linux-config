@@ -15,6 +15,7 @@
 #  }}} info # 
 
 data.location=~/.task
+# rc.debug=1
 
 # Color theme (uncomment one to use){{{
 #include /usr/share/doc/task/rc/light-16.theme
@@ -42,23 +43,26 @@ taskd.certificate=\/home\/kevin\/.task\/do.cert.pem
 taskd.key=\/home\/kevin\/.task\/do.key.pem
 taskd.ca=\/home\/kevin\/.task\/ca.cert.pem
 taskd.server=taskd.khkm.tk:53589
-taskd.credentials=Hevin\/Kevin\/e843c83c-b701-43e7-9509-70595333b419
+taskd.credentials=Hevin\/Kevin\/eb6225dc-80fb-4721-8b03-9114c6c4423d
 
 #  }}} server # 
 
 #  urgency {{{ # 
 
-urgency.user.project.mfs.coefficient=3
+urgency.user.project.ms.coefficient=3
+urgency.user.project.pey.coefficient=7
 urgency.user.project.sch.coefficient=5
-urgency.uda.priority.L.coefficient=-1
+urgency.uda.priority.H.coefficient=10
+urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1
+urgency.user.tag.nx.coefficient=15
 
 #  }}} urgency # 
 
 #  context {{{ # 
 
 # context.home=project.not:ieas project.not:out project.not:sch tag.not:amn
-context.home=project.not:ieas project.not:out tag.not:amn
+context.home=project.not:ieas project.not:out
 context.out=project:out 
 context.sch=project:sch
 

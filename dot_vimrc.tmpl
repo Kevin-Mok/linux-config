@@ -14,7 +14,7 @@ set expandtab
 " set foldmethod=indent
 set foldmethod=marker
 set hlsearch
-set ignorecase
+" set ignorecase
 set linebreak
 set linespace=5
 set mouse=a
@@ -58,12 +58,14 @@ autocmd CursorHold * if !bufexists("[Command Line]") | checktime | endif
 
 autocmd BufNewFile,BufRead .* set syntax=sh
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-autocmd FileType *css,gitcommit,htmldjango,html,javascript,json,lisp,markdown,tex,text,yaml set tabstop=2 shiftwidth=2
+autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,markdown,
+      \racket,tex,text,yaml set tabstop=2 shiftwidth=2
 " autocmd BufNewFile,BufRead *.md set filetype=markdown
 " autocmd Filetype markdown set textwidth=0
 " autocmd Filetype html set foldmarker=0
 autocmd BufNewFile,BufRead *.gd set expandtab!
 autocmd Filetype go set expandtab! sw=4
+autocmd FileType html,javascript,python,lua set fdm=indent
 " autocmd Filetype markdown set commentstring=<!---\ %s\ -->
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -87,10 +89,9 @@ autocmd Filetype markdown inoremap >> >
 " ]]] format options "
 " autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
 autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
-" autocmd FileType tex,text set spell spelllang=en_us formatoptions=acjMqtvw
-autocmd FileType python,lua set fdm=indent
 autocmd Filetype json nnoremap <leader>j :%!python -m json.tool<CR>
 autocmd Filetype json set foldmethod=marker
+autocmd Filetype racket set commentstring=;%s;
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
 autocmd Filetype taskdata set tw=0
 autocmd FileType tex set updatetime=1000 timeoutlen=300 tw=65
@@ -128,7 +129,7 @@ autocmd BufNewFile,BufRead key_* map <F1> :w<CR>:silent !sync-shortcuts<CR>
 
 " ]]] commands for specific files "
 
-" vim-plug [[[ 
+" vim-plug [[[
 " plug auto-install
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -257,7 +258,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'henrik/vim-indexed-search'
 Plug 'PotatoesMaster/i3-vim-syntax'
 " vim file explorer
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-multiple-cursors'
 	" let g:multi_cursor_select_all_word_key='<C-a>'
 	let g:multi_cursor_exit_from_visual_mode=0
@@ -275,7 +275,7 @@ Plug 'djoshea/vim-autoread'
 " Plug 'trapd00r/vim-syntax-vidir-ls'
 Plug 'calviken/vim-gdscript3'
 " display hex colors in Vim
-Plug 'RRethy/vim-hexokinase'
+" Plug 'RRethy/vim-hexokinase'
 Plug 'junegunn/goyo.vim'
 " prevent commands being executed through modelines "
 Plug 'ciaranm/securemodelines/'
@@ -288,11 +288,11 @@ Plug 'kana/vim-textobj-user'
 Plug 'rbonvall/vim-textobj-latex'
 " swap words
 Plug 'tommcdo/vim-exchange'
-Plug 'scrooloose/nerdtree'
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+" Plug 'scrooloose/nerdtree'
+    " let NERDTreeQuitOnOpen=1
+    " let NERDTreeShowHidden=1
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  " Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
     " mappings [[[ "
 
@@ -317,6 +317,9 @@ Plug 'junegunn/vim-easy-align'
   xmap ga <Plug>(EasyAlign)
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
+Plug 'wlangstroth/vim-racket'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'masukomi/vim-markdown-folding'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -409,6 +412,8 @@ nnoremap <leader>ll Vjgq
 nnoremap <leader>m :vert Man 
 " apply normal command to selection
 vnoremap <leader>n q:anorm 
+" turn off autoformat"
+nnoremap <leader>na :set spell spelllang=en_us formatoptions=cjMqtvw<CR>
 nnoremap <leader>nt :NERDTree<CR>
 " check if in neovim
 nnoremap <leader>nv :echo has('nvim')<CR>
@@ -553,12 +558,14 @@ autocmd Filetype c inoremap <localleader>uc unsigned char
 
 autocmd BufNewFile,BufRead *.h nnoremap <localleader>x 0iextern <Esc>f{hc$;<Esc>
 
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>d Gy3kGpf<Tab>hV3j<C-a>$rnj.j.j$.
+
 autocmd Filetype fish inoremap <localleader>1 $argv[1]
 autocmd Filetype fish inoremap <localleader>2 $argv[2]
 
 autocmd Filetype javascript inoremap <localleader>x process.exit()
 
-autocmd Filetype markdown inoremap <localleader>cb - [ ] 
+autocmd Filetype markdown inoremap <localleader>c - [ ] 
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
 

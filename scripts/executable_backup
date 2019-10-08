@@ -23,9 +23,9 @@ case $2 in
 
 		sudo tar -czpvf "$backup_file" --exclude-from="$exclude_dirs_list" --exclude=/home /
 		;;
-	full )
-		sudo rsync -PraAX --exclude-from="$exclude_dirs_list_full" / "$backup_dest/full"
-        ;;
+	# full )
+		# sudo rsync -PraAX --exclude-from="$exclude_dirs_list_full" / "$backup_dest/full"
+        # ;;
 	home )
 		sudo rsync -PraAX --exclude-from="$exclude_dirs_list_full" /home "$backup_dest/full"
 esac

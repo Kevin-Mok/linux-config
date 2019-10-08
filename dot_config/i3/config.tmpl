@@ -13,7 +13,8 @@ exec xbacklight -set 10
 # exec wal -i "$(/home/kevin/scripts/shuffler \"/home/kevin/Pictures/Backgrounds/dim/non-editing\")"
 exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing")
 {{ end }}
-# exec --no-startup-id i3-msg 'workspace $ws2; exec $term'
+# exec xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null
+exec --no-startup-id i3-msg 'workspace $ws2; exec $term'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 
 #  ]]] startup # 
@@ -51,6 +52,7 @@ bindsym Mod4+f exec firefox
 # bindsym Mod4+$mod+f exec printf 'Kevin@fosstodon.org' | xclip -selection clipboard
 bindsym Mod4+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
 # bindsym Mod4+m exec $term -e ~/scripts/vim-man
+bindsym Mod4+m exec $type_delay_cmd && xdotool type 'me@kevin-mok.com'
 # bindsym Mod4+$mod+m exec pass -c uoft/markus
 bindsym Mod4+n exec $term -e nvim
 bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
@@ -64,7 +66,7 @@ bindsym Mod4+q exec qdirstat
 bindsym Mod4+r exec $term -e ranger
 bindsym Mod4+$mod+r exec notify-send "watson restart" "$(watson restart)"
 bindsym Mod4+$mod+s exec $type_delay_cmd && xdotool type 'https://smol.gq/'
-bindsym Mod4+$mod+t exec xclip -selection clipboard ~/.password-store/social/trapbot && $type_delay_cmd && xdotool key 'Control_L+v'
+bindsym Mod4+t exec xclip -selection clipboard ~/.password-store/social/trapbot && $type_delay_cmd && xdotool key 'Control_L+v'
 # bindsym Mod4+u exec printf 'kevin.mok@mail.utoronto.ca' | xclip -selection clipboard
 bindsym Mod4+u exec $type_delay_cmd && xdotool type 'kevin.mok@mail.utoronto.ca'
 # bindsym Mod4+$mod+u exec pass -c uoft/acorn
@@ -75,12 +77,12 @@ bindsym Control+Mod4+w exec $term -e nvim /home/kevin/.config/watson/state.tmp
 bindsym Mod4+z exec cliqz
 {{ if .ext_kb }}
 bindsym Mod4+x exec ~/scripts/xmodmap-custom
-bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Control+Print --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Print --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+Print --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
-bindsym $mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Control+$mod+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym $mod+p --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+$mod+p --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ end }}
 
 #  ]]] app shortcuts # 
@@ -318,8 +320,8 @@ bindsym $mod+F5 workspace $ws5; exec $browser
 bindsym Mod4+g workspace $ws5; layout tabbed; exec gimp
 # bindsym Mod4+g workspace $ws5; exec mgba-qt
 bindsym Mod4+i workspace $ws5; exec idea
-bindsym Mod4+m workspace $ws5; layout tabbed; exec $term -e ~/.minetest/minetest/bin/minetest
-bindsym Mod4+t workspace $ws5; exec thunderbird
+# bindsym Mod4+m workspace $ws5; layout tabbed; exec $term -e ~/.minetest/minetest/bin/minetest
+bindsym Mod4+$mod+t workspace $ws5; exec thunderbird
 bindsym Mod4+5 workspace $ws5; exec godot
 bindsym Mod4+F5 workspace $ws5; exec cd ~/coding/ada-mario && godot -e
 # for_window [class="Move_mouse_with_head"] floating enable; move absolute position 0 0
