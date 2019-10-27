@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DELAY=200
+RATE=90
+
+{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+xmodmap ~/.Xmodmap-laptop &> /dev/null 
+{{ else }}
+xmodmap ~/.Xmodmap &> /dev/null 
+{{ end }}
+xset r rate $DELAY $RATE &> /dev/null 

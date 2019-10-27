@@ -1,7 +1,12 @@
 /* dpi [[[ */
 
+{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+! Xft.dpi: 240
+Xft.dpi: 230
+{{ else }}
 Xft.dpi: 135
 ! Xft.dpi: 170
+{{ end }}
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -14,7 +19,8 @@ Xft.rgba: rgb
 /* font [[[ */
 
 {{ if eq .chezmoi.fullHostname "x1-carbon" }}
-URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=11
+! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=11
+URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=11.5
 ! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=12
 {{ else }}
 ! URxvt.font: xft:DejaVuSansMono Nerd Font Mono:size=15

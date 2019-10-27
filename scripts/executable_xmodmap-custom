@@ -1,7 +1,0 @@
-#!/bin/bash
-
-DELAY=200
-RATE=90
-
-xmodmap ~/.Xmodmap &> /dev/null 
-xset r rate $DELAY $RATE &> /dev/null 

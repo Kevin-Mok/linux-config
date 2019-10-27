@@ -30,7 +30,9 @@ set -x CLASSPATH $CLASSPATH /home/kevin/java/*.jar
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x HASTE_SERVER https://pste.gq
+{{ if eq .chezmoi.fullHostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
+{{ end }}
 
 {{ if eq .linux_os "termux" }}
 # set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
@@ -49,7 +51,7 @@ xset r rate $XSET_DELAY $XSET_RATE
 {{ end }}
 
 # set -U BROWSER "chromium"
-set -U BROWSER "firefox"
+set -xU BROWSER "firefox"
 
 # ]]] universal var's #
 
