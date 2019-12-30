@@ -1,3 +1,6 @@
 function fzf-vim
-    fzf | xargs $EDITOR
+    set file (fzf)
+    if test ! -z "$file"
+        $EDITOR $file
+    end
 end
