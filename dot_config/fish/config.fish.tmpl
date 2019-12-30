@@ -17,14 +17,15 @@ set -x GPG_TTY (tty)
 
 set -U fish_greeting
 
-# spv
+# spv[[[
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 set -U spv_dir "/home/kevin/coding/spotify-lib-vis"
 set -U mfs_dir "/home/kevin/coding/mf-site"
 source /home/kevin/coding/spotify-lib-vis/src/scripts/api-keys-fish.sh
 abbr hum "cd $mfs_dir && hugo serve -D --disableFastRender"
-{{ end }}
+{{ end }}#]]]
 
+# system[[[
 set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
 set -x CLASSPATH $CLASSPATH /home/kevin/java/*.jar
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
@@ -32,26 +33,33 @@ set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x HASTE_SERVER https://pste.gq
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
+status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
+#]]]
 
-{{ if eq .linux_os "termux" }}
-# set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
+# space prompt[[[
+set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
+# set SPACEFISH_PROMPT_ORDER vi_mode dir git pyenv exec_time jobs exit_code line_sep char
 set SPACEFISH_DIR_PREFIX ''
-set SPACEFISH_PROMPT_ORDER vi_mode dir git pyenv exec_time jobs exit_code line_sep char
+set SPACEFISH_DIR_TRUNC 0
+set SPACEFISH_DIR_TRUNC_REPO false
 set SPACEFISH_VI_MODE_INSERT ''
 set SPACEFISH_VI_MODE_NORMAL '[n] '
 set SPACEFISH_VI_MODE_SUFFIX ''
-{{ end }}
+#]]]
 
+# pass[[[
 set -x PASSWORD_STORE_CLIP_TIME 120
 set -xU XSET_RATE 90
 set -xU XSET_DELAY 200
 {{ if and (eq .chezmoi.fullHostname "x1-carbon") (not (eq .chezmoi.username "root")) }}
 xset r rate $XSET_DELAY $XSET_RATE
-{{ end }}
+{{ end }}#]]]
 
 # set -U BROWSER "chromium"
 set -xU BROWSER "firefox"
+
+set -xU FZF_DEFAULT_COMMAND "find ."
 
 # ]]] universal var's #
 
@@ -71,7 +79,7 @@ chezmoi apply
 {{ if not (eq .linux_os "termux") }}
   ~/scripts/sync-shortcuts
 {{ end }}
-source ~/.config/fish/key_abbr.fish > /dev/null
+# source ~/.config/fish/key_abbr.fish > /dev/null
 set -U fish_fxn_dir "{{ .chezmoi.homedir }}/linux-config/dot_config/fish/functions"
 # set -U fish_fxn_dir "~/.config/fish/functions"
 abbr ff "cd $fish_fxn_dir"
@@ -109,10 +117,12 @@ abbr ant "task-notes"
 abbr apr "task-mod-pri"
 abbr aprl "task-mod-pri L"
 abbr aprm "task-mod-pri M"
+abbr aprn "task-mod-pri ''"
 abbr aprh "task-mod-pri H"
 abbr apj "task-mod-proj"
-abbr at "task-mod-tag"
 abbr asr "task-start"
+abbr at "task-mod-tag"
+abbr aw "task-wait"
 abbr ax "task-context"
 
 # ]]] task #
@@ -131,7 +141,7 @@ abbr def "define"
 abbr ens "enable-site"
 abbr ev "evince-silent"
 # abbr fbg "find-bg"
-abbr fv "fzf-vim"
+abbr fn "fzf-vim"
 abbr fvft "find-vim-filetype"
 # git [[[ #
 
@@ -157,6 +167,7 @@ abbr pgr "grep-pdf"
 abbr pgrf "grep-pdf-file"
 abbr png "git-push-new-gitea"
 abbr pst "pastebin"
+abbr qh "qalc-history"
 abbr rf "refresh-config"
 abbr rs "redshift-set"
 abbr sma "smol-add"
@@ -167,6 +178,7 @@ abbr shrm "shred-rm"
 abbr shs "scan-history"
 abbr svp "server-pages"
 abbr thes "thesaurus"
+abbr usc "us-to-cad"
 abbr ut "unix-timestamp"
 abbr uzr "unzip-rm"
 abbr vsnp "vim-snippet"

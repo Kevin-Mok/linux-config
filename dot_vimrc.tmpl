@@ -66,7 +66,7 @@ autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,mar
 autocmd BufNewFile,BufRead *.gd set expandtab!
 autocmd Filetype go set expandtab! sw=4
 autocmd FileType html,javascript,python,lua set fdm=indent
-" autocmd Filetype markdown set commentstring=<!---\ %s\ -->
+autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
 autocmd Filetype markdown map <F9> :InstantMarkdownStop<CR>:InstantMarkdownPreview<CR>
@@ -76,6 +76,7 @@ autocmd Filetype markdown inoremap < <Esc><<A
 autocmd Filetype markdown inoremap << <
 autocmd Filetype markdown inoremap > <Esc>>>A
 autocmd Filetype markdown inoremap >> >
+" autocmd Filetype markdown set commentstring=<!---\ %s\ -->
 " format options [[[ "
 
 " a = auto-format paragraphs 
@@ -87,11 +88,12 @@ autocmd Filetype markdown inoremap >> >
 " v = break lines in insert 
 " w = whitespace continues paragraph
 " ]]] format options "
-" autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
-autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
+" autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
+autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
 autocmd Filetype json nnoremap <leader>j :%!python -m json.tool<CR>
 autocmd Filetype json set foldmethod=marker
 autocmd Filetype racket set commentstring=;%s;
+autocmd Filetype racket let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
 autocmd Filetype taskdata set tw=0
 autocmd FileType tex set updatetime=1000 timeoutlen=300 tw=65
@@ -174,6 +176,9 @@ Plug 'lervag/vimtex'
           \ 'overfull' : 0,
           \ 'underfull' : 0,
           \ 'global' : 0,
+          \ 'packages' : {
+          \   'gensymb' : 0,
+          \ },
           \ 'references' : 0,
           \ 'unused' : 0,
           \}
@@ -320,6 +325,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'wlangstroth/vim-racket'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'masukomi/vim-markdown-folding'
+  autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+Plug 'cespare/vim-toml'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -438,6 +445,7 @@ nnoremap <leader>rl q:i.s///g<left><left><left>
 " replace in visual selection
 " remove italics tags
 nnoremap <leader>rmi :%s/<\/\?i>//g<CR>
+nnoremap <leader>rs :res 
 " reload vim config
 nnoremap <leader>rv :source $MYVIMRC<CR>
 vnoremap <leader>r q:is///g<ESC>3ha
@@ -458,6 +466,10 @@ nnoremap <leader>sys :set syn=sh<CR>
 vnoremap <leader>t :!tac<CR>
 " capitalize letter
 nnoremap <leader>u vU
+" comment visual block
+" nnoremap <leader>vcc V<leader>cc
+" uncomment visual block
+" nnoremap <leader>vcu V<leader>cu
 " horizontal split "
 nnoremap <leader>vs :vs 
 " open vimrc in vertical split
@@ -558,7 +570,9 @@ autocmd Filetype c inoremap <localleader>uc unsigned char
 
 autocmd BufNewFile,BufRead *.h nnoremap <localleader>x 0iextern <Esc>f{hc$;<Esc>
 
-autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>d Gy3kGpf<Tab>hV3j<C-a>$rnj.j.j$.
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>d Gy3kGp5e<C-V>3j<C-a>$rnj.j.j$.
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>n $rn
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>y $ry
 
 autocmd Filetype fish inoremap <localleader>1 $argv[1]
 autocmd Filetype fish inoremap <localleader>2 $argv[2]

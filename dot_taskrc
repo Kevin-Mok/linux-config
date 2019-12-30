@@ -49,9 +49,13 @@ taskd.credentials=Hevin\/Kevin\/eb6225dc-80fb-4721-8b03-9114c6c4423d
 
 #  urgency {{{ # 
 
+urgency.due.coefficient=18
+urgency.user.project.codm.coefficient=2
+urgency.user.project.crim.coefficient=7
+urgency.user.project.mny.coefficient=7
 urgency.user.project.ms.coefficient=3
-urgency.user.project.pey.coefficient=7
-urgency.user.project.sch.coefficient=5
+urgency.user.project.pey.coefficient=5
+urgency.user.project.sch.coefficient=7
 urgency.uda.priority.H.coefficient=10
 urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1
@@ -63,6 +67,7 @@ urgency.user.tag.nx.coefficient=15
 
 # context.home=project.not:ieas project.not:out project.not:sch tag.not:amn
 context.home=project.not:ieas project.not:out
+context.ieas=project:ieas
 context.out=project:out 
 context.sch=project:sch
 
@@ -71,3 +76,5 @@ context=home
 # context=sch
 
 #  }}} context # 
+
+report.ready.sort=urgency-
