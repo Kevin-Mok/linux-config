@@ -161,7 +161,7 @@ s "systemctl suspend"
 x "exit"
 so "xset dpms force off"
 sd "tmux kill-server; systemctl poweroff"
-rb "systemctl reboot"
+rbt "systemctl reboot"
 lo "i3-msg exit"
 xm "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
 X "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
@@ -745,7 +745,7 @@ nst "cp ~/Documents/workout-logs/stretching.md /tmp && nvim /tmp/stretching.md"
 
 # Red Discord bot
 rde "pyenv shell red-discord-bot-test"
-rdb "redbot --dev --debug"
+rb "redbot --dev --debug"
 
 # ]]] coding projs  #
 
