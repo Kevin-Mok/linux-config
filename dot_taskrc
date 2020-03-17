@@ -51,11 +51,11 @@ taskd.credentials=Hevin\/Kevin\/eb6225dc-80fb-4721-8b03-9114c6c4423d
 
 urgency.due.coefficient=18
 urgency.user.project.codm.coefficient=2
-urgency.user.project.crim.coefficient=7
+urgency.user.project.crim.coefficient=5
 urgency.user.project.mny.coefficient=7
 urgency.user.project.ms.coefficient=3
-urgency.user.project.pey.coefficient=5
-urgency.user.project.sch.coefficient=7
+urgency.user.project.pey.coefficient=7
+urgency.user.project.sch.coefficient=10
 urgency.uda.priority.H.coefficient=10
 urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1

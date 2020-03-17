@@ -38,8 +38,9 @@ status --is-interactive; and source (pyenv init -|psub)
 #]]]
 
 # space prompt[[[
-set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
-# set SPACEFISH_PROMPT_ORDER vi_mode dir git pyenv exec_time jobs exit_code line_sep char
+# set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
+set SPACEFISH_ADD_NEWLINE false
+set SPACEFISH_PROMPT_ORDER vi_mode dir git pyenv exec_time jobs exit_code line_sep char
 set SPACEFISH_DIR_PREFIX ''
 set SPACEFISH_DIR_TRUNC 0
 set SPACEFISH_DIR_TRUNC_REPO false
@@ -151,7 +152,7 @@ abbr gclg "git-clone-gitea"
 abbr gdf "git-diff-files"
 abbr gpsi "git-push-initial"
 abbr gpsmt "git-push-multiple"
-abbr gpng "git-push-new-gitea origin"
+abbr gpng "git-push-new-gitea"
 abbr gpngg "git-push-new-gitea gitea"
 abbr gremotes "git-mult-remotes"
 abbr grmb "git-delete-branch"
@@ -166,7 +167,6 @@ abbr mat "math"
 abbr mdf "mkdir-cd"
 abbr pgr "grep-pdf"
 abbr pgrf "grep-pdf-file"
-abbr png "git-push-new-gitea"
 abbr pst "pastebin"
 abbr qh "qalc-history"
 abbr rf "refresh-config"

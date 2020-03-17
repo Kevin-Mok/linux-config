@@ -16,7 +16,8 @@ exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-e
 # exec xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null
 exec --no-startup-id i3-msg 'workspace $ws2; exec $term'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
-exec --no-startup-id i3-msg 'workspace $ws6; exec discord'
+# exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
+# exec --no-startup-id i3-msg 'workspace $ws6; exec discord'
 
 #  ]]] startup # 
 
@@ -73,8 +74,8 @@ bindsym Mod4+$mod+s exec $type_delay_cmd && xdotool type 'https://smol.gq/'
 bindsym Mod4+t exec xclip -selection clipboard ~/.password-store/social/trapbot && $type_delay_cmd && xdotool key 'Control_L+v'
 bindsym Mod4+u exec $type_delay_cmd && xdotool type 'kevin.mok@mail.utoronto.ca'
 # bindsym Mod4+$mod+u exec pass -c uoft/acorn
-bindsym Mod4+w exec notify-send "watson status" "$(watson status)"
-bindsym Mod4+$mod+w exec notify-send "watson stop" "$(watson status && watson stop)"
+# bindsym Mod4+w exec notify-send "watson status" "$(watson status)"
+# bindsym Mod4+$mod+w exec notify-send "watson stop" "$(watson status && watson stop)"
 bindsym Control+Mod4+w exec $term -e nvim /home/kevin/.config/watson/state.tmp
 # bindsym Mod4+x exec $swex
 bindsym Control+$mod+x exec $type_delay_cmd && xdotool type 'http://codm.ataraxy.tk/'
@@ -304,12 +305,14 @@ set $ws2 "2 "
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach codm'
-bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach crimson'
-bindsym Control+$mod+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach codm'
+bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
+bindsym Control+$mod+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach crimson'
+# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach crimson'
+# bindsym Control+$mod+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach codm'
 
 set $ws3 "3 "
 # set $ws3 "3 "
-workspace $ws3 output $main
+# workspace $ws3 output $main
 bindsym $mod+F3 workspace $ws3; exec $browser
 # bindsym Mod4+b workspace $ws3; layout stacked; exec $term -e fish -c "buku-fzf"
 # bindsym Mod4+$mod+b workspace $ws3; layout stacked; exec $term -e fish -c "buku-fzf fq"
@@ -323,7 +326,7 @@ workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
 
 set $ws5 "5 "
-workspace $ws5 output $secondary
+# workspace $ws5 output $secondary
 assign [class="Steam"] $ws5
 bindsym $mod+F5 workspace $ws5; exec $browser
 bindsym $mod+Mod4+F5 workspace $ws5; exec firefox --private-window
@@ -333,6 +336,8 @@ bindsym Mod4+g workspace $ws5; layout tabbed; exec gimp
 bindsym Mod4+i workspace $ws5; exec idea
 # bindsym Mod4+m workspace $ws5; layout tabbed; exec $term -e ~/.minetest/minetest/bin/minetest
 bindsym Mod4+$mod+t workspace $ws5; exec thunderbird
+# bindsym Mod4+$mod+w workspace $ws5; exec $term -e twitchy
+bindsym Mod4+w workspace $ws5; exec $term -e twitchy
 bindsym Mod4+5 workspace $ws5; exec godot
 bindsym Mod4+F5 workspace $ws5; exec cd ~/coding/ada-mario && godot -e
 # for_window [class="Move_mouse_with_head"] floating enable; move absolute position 0 0
@@ -346,9 +351,11 @@ set $ws6 "6 "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 # bindsym Mod4+$mod+d workspace $ws6; exec discord
-# bindsym Mod4+d workspace $ws6; exec riot-desktop
-bindsym Mod4+d workspace $ws6; exec discord
-bindsym Mod4+$mod+d workspace $ws6; exec riot-desktop
+bindsym Mod4+d workspace $ws6; exec riot-desktop
+bindsym Mod4+$mod+d workspace $ws6; exec discord
+# bindsym Mod4+d workspace $ws6; exec discord
+# bindsym Mod4+$mod+d workspace $ws6; exec riot-desktop
+# bindsym Mod4+d workspace $ws6; exec firefox --new-window https://discordapp.com/channels/430798446723727367/443950744996020228
 # bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app/#/home
 bindsym Mod4+k workspace $ws6; exec slack
 
@@ -356,6 +363,7 @@ set $ws7 "7 "
 workspace $ws7 output $secondary
 # bindsym $mod+F7 workspace $ws7; exec $term
 bindsym $mod+F7 workspace $ws7; exec $term -e mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a
+bindsym Mod4+a workspace $ws7; exec android-file-transfer
 # bindsym Mod4+v workspace $ws7; exec VBoxManage startvm "369-a1"
 
 set $ws8 "8 "
@@ -388,7 +396,7 @@ set $ws11 "11 "
 workspace $ws11 output $secondary
 bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_CPU
 # bindsym $mod+F11 workspace $ws11; exec $term -e gotop -m
-bindsym Mod4+a workspace $ws11; exec antimicro
+# bindsym Mod4+a workspace $ws11; exec antimicro
 
 set $ws12 "12 "
 bindsym $mod+F12 workspace $ws12; exec $term

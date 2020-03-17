@@ -1,0 +1,8 @@
+#!/usr/bin/fish
+
+set TEMP_CSV /tmp/twitchy-fortnite.csv
+set HEADER "Game,Channel,Viewers,Uptime,Title"
+
+echo $HEADER > $TEMP_CSV
+twitchy --non-interactive >> $TEMP_CSV
+xsv search -is1 $argv[1] $TEMP_CSV | xsv sort -NRs3 | xsv table

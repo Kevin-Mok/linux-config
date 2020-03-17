@@ -171,12 +171,13 @@ Plug 'lervag/vimtex'
 	" au BufWritePost *.tex silent call Tex_RunLaTeX()
 	au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
 	let g:Tex_MultipleCompileFormats = 'dvi,pdf'
-	let g:vimtex_view_general_viewer = 'zathura'
+	let g:vimtex_view_general_viewer = 'evince'
     let g:vimtex_quickfix_latexlog = {
           \ 'overfull' : 0,
           \ 'underfull' : 0,
           \ 'global' : 0,
           \ 'packages' : {
+          \   'biblatex' : 0,
           \   'gensymb' : 0,
           \ },
           \ 'references' : 0,
@@ -327,6 +328,7 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'masukomi/vim-markdown-folding'
   autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 Plug 'cespare/vim-toml'
+Plug 'dpelle/vim-LanguageTool'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -398,7 +400,7 @@ nnoremap <leader>ftd /TODO<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 " vimdiff split
 nnoremap <leader>gd :Gvdiff 
-nnoremap <leader>gdh :Gvdiff HEAD~
+nnoremap <leader>gdh :Gvdiff HEAD^
 nnoremap <leader>gdm :Gvdiff master<CR>
 " toggle search highlighting
 nnoremap <leader>h :set hlsearch! hlsearch?<CR>
@@ -439,18 +441,19 @@ nnoremap <leader>plu :PlugUpdate<CR>
 " don't break lines
 nnoremap <leader>py :set tw=0<CR>
 " replace in next x lines
-nnoremap <leader>r q:i.,.+s///g<ESC>Fsi
+" nnoremap <leader>r q:i.,.+s///g<ESC>Fsi
 " replace in line
-nnoremap <leader>rl q:i.s///g<left><left><left>
+nnoremap <leader>r q:i.s///g<left><left><left>
 " replace in visual selection
+vnoremap <leader>r q:is///g<ESC>3ha
+" replace in entire file
+" nnoremap <leader>R q:i%s///g<ESC>2F/i
+nnoremap <leader>ra q:i%s///g<ESC>2F/i
 " remove italics tags
 nnoremap <leader>rmi :%s/<\/\?i>//g<CR>
 nnoremap <leader>rs :res 
 " reload vim config
 nnoremap <leader>rv :source $MYVIMRC<CR>
-vnoremap <leader>r q:is///g<ESC>3ha
-" replace in entire file
-nnoremap <leader>R q:i%s///g<ESC>2F/i
 vnoremap <leader>s :sort<CR>
 nnoremap <leader>sc :set spell spelllang=en_us<CR>
 " run current file in shell
