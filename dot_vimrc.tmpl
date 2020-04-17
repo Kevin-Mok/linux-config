@@ -28,9 +28,9 @@ set tabstop=4
 " set termguicolors
 " set timeoutlen=350
 set timeoutlen=200
-" set tw=80
 " set tw=75
-set tw=70
+" set tw=70
+set tw=60
 set undodir=~/.vim/undo
 set undofile
 " set updatetime=1000
@@ -96,7 +96,7 @@ autocmd Filetype racket set commentstring=;%s;
 autocmd Filetype racket let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
 autocmd Filetype taskdata set tw=0
-autocmd FileType tex set updatetime=1000 timeoutlen=300 tw=65
+autocmd FileType tex set updatetime=1000 timeoutlen=300
 autocmd FileType tex map <F8> :VimtexCompile<CR>
 autocmd VimEnter *.tex VimtexCompile
 autocmd VimLeave *.tex !tex-clean %:p

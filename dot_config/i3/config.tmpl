@@ -1,7 +1,9 @@
 #  startup [[[ # 
 
-set $term urxvt
-set $term_alt st
+# set $term urxvt
+# set $term_alt st
+set $term kitty
+set $term_alt urxvt
 # set $term st
 # set $term_alt urxvt
 {{ if eq .chezmoi.fullHostname "x1-carbon" }}
@@ -14,7 +16,7 @@ exec xbacklight -set 10
 exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing")
 {{ end }}
 # exec xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null
-exec --no-startup-id i3-msg 'workspace $ws2; exec $term'
+exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws6; exec discord'
@@ -50,7 +52,8 @@ bindsym Mod4+c exec $browser
 # bindsym Mod4+e exec notify-send "HPS Word Count" "$(pdftotext /home/kevin/school/latex-notes/hps/essay.pdf - | wc -w)"
 # bindsym Mod4+e exec emacs
 bindsym Mod4+e exec ~/scripts/twem
-bindsym Mod4+f exec firefox
+# bindsym Mod4+f exec firefox
+bindsym Mod4+f exec firefox --private-window
 # bindsym Mod4+$mod+f exec printf 'Kevin@fosstodon.org' | xclip -selection clipboard
 bindsym Mod4+h exec sleep .2 && xdotool type '.hint'
 bindsym Mod4+$mod+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
@@ -67,7 +70,8 @@ bindsym Mod4+$mod+o exec xset dpms force off
 bindsym Mod4+p exec sleep .2 && xdotool type '.catch '
 bindsym Mod4+$mod+p exec passmenu
 # bindsym Mod4+$mod+p exec notify-send "ping" "$(ping -c 3 -W 1 8.8.8.8)"
-bindsym Mod4+q exec qdirstat
+# bindsym Mod4+q exec qdirstat
+bindsym Mod4+q exec printf 'emad1 ' | xclip -selection clipboard && $type_delay_cmd && xdotool key 'Control_L+v'
 bindsym Mod4+r exec $term -e ranger
 bindsym Mod4+$mod+r exec notify-send "watson restart" "$(watson restart)"
 bindsym Mod4+$mod+s exec $type_delay_cmd && xdotool type 'https://smol.gq/'
@@ -320,6 +324,7 @@ bindsym $mod+F3 workspace $ws3; exec $browser
 # bindsym Mod4+$mod+b layout stacked; exec $term -e fish -c "buku-fzf fq"
 bindsym Mod4+b layout tabbed; exec $term -e fish -c "buku-fzf"
 bindsym Mod4+$mod+b layout tabbed; exec $term -e fish -c "buku-fzf fq"
+bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
 
 set $ws4 "4 "
 workspace $ws4 output $secondary
@@ -331,7 +336,7 @@ assign [class="Steam"] $ws5
 bindsym $mod+F5 workspace $ws5; exec $browser
 bindsym $mod+Mod4+F5 workspace $ws5; exec firefox --private-window
 # bindsym Mod4+g workspace $ws5; layout stacking; exec $term -e steam
-bindsym Mod4+g workspace $ws5; layout tabbed; exec gimp
+# bindsym Mod4+g workspace $ws5; layout tabbed; exec gimp
 # bindsym Mod4+g workspace $ws5; exec mgba-qt
 bindsym Mod4+i workspace $ws5; exec idea
 # bindsym Mod4+m workspace $ws5; layout tabbed; exec $term -e ~/.minetest/minetest/bin/minetest
@@ -351,12 +356,13 @@ set $ws6 "6 "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 # bindsym Mod4+$mod+d workspace $ws6; exec discord
-bindsym Mod4+d workspace $ws6; exec riot-desktop
+# bindsym Mod4+d workspace $ws6; exec riot-desktop
+bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec discord
 # bindsym Mod4+$mod+d workspace $ws6; exec riot-desktop
 # bindsym Mod4+d workspace $ws6; exec firefox --new-window https://discordapp.com/channels/430798446723727367/443950744996020228
-# bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app/#/home
+# bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
 
 set $ws7 "7 "
