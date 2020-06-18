@@ -1,4 +1,4 @@
 function task-anno
-    task $argv[1] annotate $argv[2]
+    task $argv[2] annotate $argv[1]
     and task
 end

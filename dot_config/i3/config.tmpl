@@ -1,11 +1,11 @@
 #  startup [[[ # 
 
-# set $term urxvt
-# set $term_alt st
 set $term kitty
-set $term_alt urxvt
 # set $term st
-# set $term_alt urxvt
+# set $term urxvt
+# set $term_alt kitty
+# set $term_alt st
+set $term_alt urxvt
 {{ if eq .chezmoi.fullHostname "x1-carbon" }}
 exec dunst
 exec compton
@@ -16,10 +16,10 @@ exec xbacklight -set 10
 exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing")
 {{ end }}
 # exec xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null
-exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
+# exec --no-startup-id i3-msg 'workspace $ws1; exec $term'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
-# exec --no-startup-id i3-msg 'workspace $ws6; exec discord'
 
 #  ]]] startup # 
 
@@ -55,8 +55,10 @@ bindsym Mod4+e exec ~/scripts/twem
 # bindsym Mod4+f exec firefox
 bindsym Mod4+f exec firefox --private-window
 # bindsym Mod4+$mod+f exec printf 'Kevin@fosstodon.org' | xclip -selection clipboard
-bindsym Mod4+h exec sleep .2 && xdotool type '.hint'
-bindsym Mod4+$mod+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
+# bindsym Mod4+h exec sleep .2 && xdotool type '.hint'
+# bindsym Mod4+$mod+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
+bindsym Mod4+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
+# bindsym Mod4+$mod+h exec sleep .2 && xdotool type '.hint'
 bindsym Mod4+$mod+i exec sleep .2 && xdotool type '.info latest'
 # bindsym Mod4+m exec $term -e ~/scripts/vim-man
 bindsym Mod4+m exec $type_delay_cmd && xdotool type 'me@kevin-mok.com'
@@ -67,13 +69,15 @@ bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail &&
 bindsym Mod4+$mod+o exec xset dpms force off
 # bindsym Mod4+p workspace $ws4; exec pgadmin3
 # bindsym Mod4+p exec pycharm
-bindsym Mod4+p exec sleep .2 && xdotool type '.catch '
-bindsym Mod4+$mod+p exec passmenu
+bindsym Mod4+p exec passmenu
+# bindsym Mod4+p exec sleep .2 && xdotool type '.catch '
+# bindsym Mod4+$mod+p exec passmenu
 # bindsym Mod4+$mod+p exec notify-send "ping" "$(ping -c 3 -W 1 8.8.8.8)"
 # bindsym Mod4+q exec qdirstat
 bindsym Mod4+q exec printf 'emad1 ' | xclip -selection clipboard && $type_delay_cmd && xdotool key 'Control_L+v'
-bindsym Mod4+r exec $term -e ranger
-bindsym Mod4+$mod+r exec notify-send "watson restart" "$(watson restart)"
+bindsym Mod4+r exec $type_delay_cmd && xdotool type 'kmok@redhat.com'
+bindsym Mod4+$mod+r exec $term -e ranger
+# bindsym Mod4+$mod+r exec notify-send "watson restart" "$(watson restart)"
 bindsym Mod4+$mod+s exec $type_delay_cmd && xdotool type 'https://smol.gq/'
 bindsym Mod4+t exec xclip -selection clipboard ~/.password-store/social/trapbot && $type_delay_cmd && xdotool key 'Control_L+v'
 bindsym Mod4+u exec $type_delay_cmd && xdotool type 'kevin.mok@mail.utoronto.ca'
@@ -86,7 +90,8 @@ bindsym Control+$mod+x exec $type_delay_cmd && xdotool type 'http://codm.ataraxy
 bindsym Mod4+z exec cliqz
 {{ if .ext_kb }}
 bindsym Mod4+x exec ~/scripts/xmodmap-custom
-bindsym Print --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+# bindsym Print --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Print --release exec "maim -su | tee ~/tmp/screenshot-$(date +%F_%T).png | xclip -selection clipboard -t image/png"
 bindsym Control+Print --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
@@ -302,17 +307,17 @@ set $secondary "DVI-I-1"
 set $main "HDMI-0"
 {{ end }}
 
-workspace $ws1 output $main
+# workspace $ws1 output $main
+workspace $ws1 output $secondary
 bindsym $mod+F1 workspace $ws1; exec $term
+bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach red-hat'
 
 set $ws2 "2 "
+set $wl_ip_nast_num "5"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
-# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach codm'
-bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
-bindsym Control+$mod+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach crimson'
-# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach crimson'
-# bindsym Control+$mod+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach codm'
+bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
+# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
 
 set $ws3 "3 "
 # set $ws3 "3 "
@@ -329,20 +334,23 @@ bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
 set $ws4 "4 "
 workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
+bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt
 
 set $ws5 "5 "
 # workspace $ws5 output $secondary
 assign [class="Steam"] $ws5
 bindsym $mod+F5 workspace $ws5; exec $browser
-bindsym $mod+Mod4+F5 workspace $ws5; exec firefox --private-window
+bindsym $mod+Mod4+F5 workspace $ws5; exec chromium
+# bindsym $mod+Mod4+F5 workspace $ws5; exec firefox --private-window
+bindsym $mod+Shift+F5 workspace $ws5; exec firefox --private-window
 # bindsym Mod4+g workspace $ws5; layout stacking; exec $term -e steam
 # bindsym Mod4+g workspace $ws5; layout tabbed; exec gimp
 # bindsym Mod4+g workspace $ws5; exec mgba-qt
-bindsym Mod4+i workspace $ws5; exec idea
+# bindsym Mod4+i workspace $ws5; exec idea
 # bindsym Mod4+m workspace $ws5; layout tabbed; exec $term -e ~/.minetest/minetest/bin/minetest
 bindsym Mod4+$mod+t workspace $ws5; exec thunderbird
 # bindsym Mod4+$mod+w workspace $ws5; exec $term -e twitchy
-bindsym Mod4+w workspace $ws5; exec $term -e twitchy
+# bindsym Mod4+w workspace $ws5; exec $term -e twitchy
 bindsym Mod4+5 workspace $ws5; exec godot
 bindsym Mod4+F5 workspace $ws5; exec cd ~/coding/ada-mario && godot -e
 # for_window [class="Move_mouse_with_head"] floating enable; move absolute position 0 0
@@ -356,8 +364,8 @@ set $ws6 "6 "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 # bindsym Mod4+$mod+d workspace $ws6; exec discord
-# bindsym Mod4+d workspace $ws6; exec riot-desktop
-bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
+bindsym Mod4+d workspace $ws6; exec riot-desktop
+# bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec discord
 # bindsym Mod4+$mod+d workspace $ws6; exec riot-desktop
@@ -369,6 +377,8 @@ set $ws7 "7 "
 workspace $ws7 output $secondary
 # bindsym $mod+F7 workspace $ws7; exec $term
 bindsym $mod+F7 workspace $ws7; exec $term -e mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a
+# bindsym Mod4+$mod+F7 workspace $ws7; exec $term -e fish -c 'mosh kmok@192.168.0.16 -- tmux a -t weechat'
+bindsym Mod4+i workspace $ws7; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
 bindsym Mod4+a workspace $ws7; exec android-file-transfer
 # bindsym Mod4+v workspace $ws7; exec VBoxManage startvm "369-a1"
 
@@ -378,6 +388,7 @@ workspace $ws8 output $secondary
 # bindsym $mod+F8 workspace $ws8; exec $term
 # bindsym $mod+F8 workspace $ws8; exec $term -e tmux a -t journal
 bindsym $mod+F8 workspace $ws8; exec $term -e fish -c 'tmux-attach journal'
+bindsym Mod4+$mod+F8 workspace $ws8; exec libreoffice ~/Documents/red-hat/workday.ods
 
 set $ws9 "9 "
 workspace $ws9 output $secondary

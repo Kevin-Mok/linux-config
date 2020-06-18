@@ -62,6 +62,7 @@ cld "colordiff -wy --suppress-common-lines"
 mkpk "makepkg -sri"
 ex "chmod +x"
 lns "ln -s"
+src "source"
 
 # systemctl  [[[ #
 ct "sudo systemctl"
@@ -91,8 +92,8 @@ ssd "mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a"
 sdh "mosh --ssh='ssh -p 399' kevin@165.22.239.234 htop"
 sfd "sftp -rP 399 kevin@165.22.239.234"
 # phone
-ssp "mosh --ssh='ssh -p 8022' 192.168.0.14"
-sfp "sftp -rP 8022 192.168.0.14"
+ssp "mosh --ssh='ssh -p 8022' $PHONE_IP"
+sfp "sftp -rP 8022 $PHONE_IP"
 # test server sites
 # svp "firefox git.ataraxy.tk khkm.tk cal.khkm.tk pste.gq smol.gq twem.tk"
 # postgres ssh tunnel
@@ -115,7 +116,7 @@ udub "udisksctl unmount -b /dev/sdc2"
 # ]]] mounting # 
 
 tch "touch"
-vdr "vidir --verbose"
+vd "vidir --verbose"
 
 # directory-related [[[ #
 
@@ -140,7 +141,7 @@ fnd "find . -type f -name"
 p "pwd"
 
 rmr "rm -rf"
-rmd "rm ~/Downloads/*"
+# rmd "rm ~/Downloads/*"
 rmw "rm ~/.local/share/nvim/swap/"
 md "mkdir -p"
 rsy "rsync -Pr"
@@ -153,7 +154,7 @@ ds "df -h | head -n 1 && df -h | grep sd"
 chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
-nbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.fullHostname }}/tar && lsd -l"
+lbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.fullHostname }}/tar && lsd -l"
 
 # ]]] directory-related #
 
@@ -313,6 +314,7 @@ af "task proj:"
 afcm "task proj:codm"
 afcr "task proj:crim"
 afs "task proj:sch"
+afy "task proj:pey"
 apl "task completed"
 al "task limit:15"
 alg "task log"
@@ -367,13 +369,15 @@ it "sxiv -t *"
 ki "kill -9"
 ka "killall"
 kd "killall Discord && killall Discord"
+ke "killall electron"
 kf "killall firefox"
-kr "killall electron"
+kai "killall imwheel && imwheel"
 kt "killall thunderbird"
 lo "libreoffice"
 # mpv "mpv --volume=50"
 # mp "mpv"
 m "mpv"
+msf "mpv --sub-file="
 mra "man ranger"
 # mt "minetest"
 n "nvim"
@@ -403,6 +407,8 @@ tacm "tmux a -t codm || tmux new -s codm"
 tacr "tmux a -t crimson || tmux new -s crimson"
 taf "tmux a -t fortnite || tmux new -s fortnite"
 taj "tmux a -t journal || tmux new -s journal"
+tarh "tmux a -t red-hat || tmux new -s red-hat"
+tar2 "tmux a -t red-hat-2 || tmux new -s red-hat-2"
 tas "tmux a -t school || tmux new -s school"
 tas2 "tmux a -t school-2 || tmux new -s school-2"
 tal "tmux a"
@@ -415,6 +421,7 @@ tnb "tmux new -s backup"
 #]]]
 usn "usernames --num 20"
 vmd "vimdiff"
+wc "wc -l"
 # wg "wego"
 wg "curl -L wthr.ml"
 wgm "curl -L wthr.ml/m"
@@ -518,6 +525,7 @@ gmgt "git mergetool"
 
 gr "git remote -v"
 gra "git remote add origin"
+grao "git remote add orig"
 # grag "git remote add gitea git@ataraxy.tk:Kevin-Mok/.git"
 
 grr "git remote remove origin"
@@ -569,6 +577,7 @@ glm "git log master"
 gcl "git clone"
 gs "git status -u"
 gf "git fetch origin"
+gfo "git fetch orig"
 gfg "git fetch gitea"
 
 gch "git checkout"
@@ -595,6 +604,7 @@ gsts "git stash show stash@\{0\} -p"
 gclear "git stash clear"
 
 gpl "git pull --rebase"
+gplo "git fetch orig && git pull --rebase . orig/master"
 grb "git rebase -i"
 grba "git rebase --abort"
 grbc "git rebase --continue"
@@ -667,7 +677,7 @@ upip "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xa
 ureq "pip freeze > requirements.txt"
 
 # show last history scan
-hlg "psql -d spotifyvis -a -f /home/kevin/coding/spotify-lib-vis/src/scripts/queries/history.sql | rg 2019 | tac"
+hlg "psql -U postgres -d spotifyvis -a -f /home/kevin/coding/spotify-lib-vis/src/scripts/queries/history.sql | rg 2020 | tac"
 slg "tail -n 5 $spv_dir/src/api/management/commands/update-history.log"
 # scan history
 # hs "$spv_dir/src/update-history.sh && cat $spv_dir/src/api/management/commands/update-history.log | tail -n 1"
@@ -726,8 +736,8 @@ pyh "python -m http.server"
 # j "jekyll"
 # js "jekyll serve"
 hu "hugo"
-hd "hugo server -D --disableFastRender --bind 192.168.0.10 --baseURL 'http://192.168.0.10:1313'"
 hg "hugo serve --disableFastRender"
+hgp "hugo server -D --disableFastRender --bind 192.168.0.10 --baseURL 'http://192.168.0.10:1313'"
 
 # ]]] mfs #
 
@@ -800,19 +810,33 @@ twf "watch -n300 'twitchy-game Fortnite'"
 gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-# 324
-# hk "clear && tmux clear-history && runhaskell TestChups.hs"
-hk "clear && tmux clear-history && runhaskell"
-rk "clear && tmux clear-history && raco test"
-rke "clear && tmux clear-history && raco test ex1.rkt"
-rkr "clear && tmux clear-history && racket"
-rki "racket -l racket/base -i"
-
-# 384
-rgp "clear && tmux clear-history && rg -S -t py"
-8aa "clear && tmux clear-history && python2 autograder.py"
-# 8ap "python2 plane_scheduling.py"
-8aq "clear && tmux clear-history && python2 autograder.py --no-graphics -q q6"
-8at "clear && tmux clear-history && python2 autograder.py --no-graphics -t test_cases/q6/1-JointParticleObserve"
-
 # ]]] school  #
+
+# red-hat [[[ #
+
+# laptop
+loe "libreoffice ~/Documents/expenses/2020.ods &"
+ssw "mosh $WORK_LAPTOP_IP tmux a"
+ssi "mosh $WORK_LAPTOP_IP -- tmux a -t weechat"
+sfw "sftp $WORK_LAPTOP_IP"
+
+fp "fpaste"
+ghr "github-release"
+
+# oc [[[ #
+
+o "oc"
+odc "oc describe pod"
+odl "oc delete project"
+og "oc get pods -w"
+ol "oc logs"
+on "oc new-project"
+op "oc project"
+opd "oc project default"
+ot "oc status"
+
+# ]]] oc #
+
+jk "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:112ef7228e7a8cea5435473f9416cb56e1"
+
+# ]]] red-hat #

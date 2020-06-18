@@ -25,17 +25,27 @@ source /home/kevin/coding/spotify-lib-vis/src/scripts/api-keys-fish.sh
 abbr hum "cd $mfs_dir && hugo serve -D --disableFastRender"
 {{ end }}#]]]
 
-# system[[[
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x CLASSPATH $CLASSPATH /home/kevin/java/*.jar
-set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
-set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
+# system [[[
 set -x HASTE_SERVER https://pste.gq
+set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
+# set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
+set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
-#]]]
+
+# Java [[[ #
+
+# set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-20.1.0
+# set -x GRAALVM_BIN $GRAALVM_HOME/bin
+# set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
+# set -x JAVA_HOME $GRAALVM_HOME
+
+# ]]] Java #
+
+# system ]]]
 
 # space prompt[[[
 # set SPACEFISH_PROMPT_ORDER time user dir host git package node docker ruby golang php rust haskell julia aws conda pyenv kubecontext exec_time line_sep battery jobs exit_code vi_mode char
@@ -61,6 +71,9 @@ xset r rate $XSET_DELAY $XSET_RATE
 set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
+
+set -xU PHONE_IP "192.168.0.10"
+set -xU WORK_LAPTOP_IP "kmok@192.168.0.15"
 
 # ]]] universal var's #
 
@@ -106,7 +119,7 @@ abbr xf "fish_config"
 abbr ! "sudo !!"
 # task [[[ #
 
-abbr aan "task-anno"
+abbr aan "task-anno ''"
 abbr ae "task-edit"
 abbr adl "task-delete"
 abbr adn "task-done"
