@@ -60,6 +60,7 @@ bindsym Mod4+f exec firefox --private-window
 bindsym Mod4+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
 # bindsym Mod4+$mod+h exec sleep .2 && xdotool type '.hint'
 bindsym Mod4+$mod+i exec sleep .2 && xdotool type '.info latest'
+bindsym Mod4+l exec ~/scripts/dmenu-twitch
 # bindsym Mod4+m exec $term -e ~/scripts/vim-man
 bindsym Mod4+m exec $type_delay_cmd && xdotool type 'me@kevin-mok.com'
 # bindsym Mod4+$mod+m exec pass -c uoft/markus
@@ -88,16 +89,23 @@ bindsym Control+Mod4+w exec $term -e nvim /home/kevin/.config/watson/state.tmp
 # bindsym Mod4+x exec $swex
 bindsym Control+$mod+x exec $type_delay_cmd && xdotool type 'http://codm.ataraxy.tk/'
 bindsym Mod4+z exec cliqz
+
+#  screenshot [[[ # 
+
+set $screenshot_folder "/home/kevin/Pictures/screenshots/desktop/unsorted"
+set $scripts_path "/home/kevin/scripts"
 {{ if .ext_kb }}
 bindsym Mod4+x exec ~/scripts/xmodmap-custom
-# bindsym Print --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Print --release exec "maim -su | tee ~/tmp/screenshot-$(date +%F_%T).png | xclip -selection clipboard -t image/png"
-bindsym Control+Print --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+# bindsym Print --release exec "scrot -s $screenshot_folder/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Print --release exec "maim -su | tee ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png | xclip -selection clipboard -t image/png"
+bindsym Control+Print --release exec "scrot -u ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
 bindsym Control+$mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Control+Shift+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ end }}
+
+#  ]]] screenshot # 
 
 #  ]]] app shortcuts # 
 
@@ -316,8 +324,9 @@ set $ws2 "2 "
 set $wl_ip_nast_num "5"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
-bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
+# bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
+bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach red-hat-2'
 
 set $ws3 "3 "
 # set $ws3 "3 "
@@ -334,7 +343,7 @@ bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
 set $ws4 "4 "
 workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
-bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt
+bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt -e ranger $screenshot_folder
 
 set $ws5 "5 "
 # workspace $ws5 output $secondary
@@ -372,13 +381,13 @@ bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec firefox --new-window https://discordapp.com/channels/430798446723727367/443950744996020228
 # bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
+bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
 
 set $ws7 "7 "
 workspace $ws7 output $secondary
 # bindsym $mod+F7 workspace $ws7; exec $term
-bindsym $mod+F7 workspace $ws7; exec $term -e mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a
-# bindsym Mod4+$mod+F7 workspace $ws7; exec $term -e fish -c 'mosh kmok@192.168.0.16 -- tmux a -t weechat'
-bindsym Mod4+i workspace $ws7; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
+bindsym $mod+F7 workspace $ws7; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
+bindsym Mod4+$mod+F7 workspace $ws7; exec $term -e mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a
 bindsym Mod4+a workspace $ws7; exec android-file-transfer
 # bindsym Mod4+v workspace $ws7; exec VBoxManage startvm "369-a1"
 

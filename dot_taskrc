@@ -60,7 +60,8 @@ urgency.user.project.sch.coefficient=7
 urgency.uda.priority.H.coefficient=10
 urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1
-urgency.user.tag.nx.coefficient=15
+urgency.user.tag.jira.coefficient=5
+# urgency.user.tag.nx.coefficient=15
 
 #  }}} urgency # 
 

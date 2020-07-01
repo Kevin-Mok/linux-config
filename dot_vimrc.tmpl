@@ -91,12 +91,12 @@ autocmd Filetype markdown inoremap >> >
 " ]]] format options "
 " autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
 autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
+autocmd Filetype Jenkinsfile,taskdata set tw=0
 autocmd Filetype json nnoremap <leader>j :%!python -m json.tool<CR>
 autocmd Filetype json set foldmethod=marker
 autocmd Filetype racket set commentstring=;%s;
 autocmd Filetype racket let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
-autocmd Filetype taskdata set tw=0
 autocmd FileType tex set updatetime=1000 timeoutlen=300
 autocmd FileType tex map <F8> :VimtexCompile<CR>
 autocmd VimEnter *.tex VimtexCompile
