@@ -64,9 +64,10 @@ autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,mar
 " autocmd Filetype markdown set textwidth=0
 " autocmd Filetype html set foldmarker=0
 autocmd BufNewFile,BufRead *.gd set expandtab!
-autocmd Filetype go set expandtab! sw=4
-" autocmd FileType go,groovy,html,java,javascript,Jenkinsfile,python,lua set fdm=indent
-autocmd FileType go,groovy,html,java,javascript,python,lua set fdm=indent
+autocmd Filetype go set noexpandtab sw=4
+" autocmd FileType go,html,java,javascript,python,lua set fdm=indent
+" autocmd FileType go,html,java,javascript,Jenkinsfile,python,lua set fdm=indent
+autocmd FileType html,javascript,Jenkinsfile,python,lua set fdm=indent
 autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -91,7 +92,7 @@ autocmd Filetype markdown inoremap >> >
 " ]]] format options "
 " autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
 autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
-autocmd Filetype Jenkinsfile,taskdata set tw=0
+autocmd Filetype groovy,Jenkinsfile,taskdata set tw=0
 autocmd Filetype json nnoremap <leader>j :%!python -m json.tool<CR>
 autocmd Filetype json set foldmethod=marker
 autocmd Filetype racket set commentstring=;%s;
@@ -271,10 +272,9 @@ Plug 'terryma/vim-multiple-cursors'
 	let g:multi_cursor_exit_from_insert_mode=0
 Plug 'dag/vim-fish'
 " live preview Markdown"
-" Plug 'shime/vim-livedown'
-" Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-  " let g:instant_markdown_autostart = 0
-  " let g:instant_markdown_port = 8888
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+  let g:instant_markdown_autostart = 0
+  let g:instant_markdown_port = 8888
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
   " let g:mkdp_auto_start = 1
   " let g:mkdp_browser = 'firefox'
@@ -338,6 +338,8 @@ Plug 'dpelle/vim-LanguageTool'
 " increment dates with C-a
 Plug 'tpope/vim-speeddating'
 Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  let g:go_fmt_command = ""
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -406,8 +408,10 @@ nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>ft :se ft?<CR>
 " check todo's
 nnoremap <leader>ftd /TODO<CR>
-nnoremap <leader>g :YcmCompleter GoTo<CR>
-nnoremap <leader>gb <C-O>
+" nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>g :vs \| YcmCompleter GoTo<CR>
+" nnoremap <leader>gb <C-O>
+nnoremap <leader>gb :Git blame<CR>
 " vimdiff split
 nnoremap <leader>gd :Gvdiff 
 nnoremap <leader>gdh :Gvdiff HEAD^

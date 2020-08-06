@@ -95,7 +95,9 @@ bindsym Mod4+z exec cliqz
 set $screenshot_folder "/home/kevin/Pictures/screenshots/desktop/unsorted"
 set $scripts_path "/home/kevin/scripts"
 {{ if .ext_kb }}
-bindsym Mod4+x exec ~/scripts/xmodmap-custom
+# bindsym Mod4+x exec ~/scripts/xmodmap-custom
+bindsym Mod4+x exec notify-send "xmodmap" "$(~/scripts/xmodmap-custom)"
+# bindsym Mod4+e exec notify-send "HPS Word Count" "$(pdftotext /home/kevin/school/latex-notes/hps/essay.pdf - | wc -w)"
 # bindsym Print --release exec "scrot -s $screenshot_folder/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Print --release exec "maim -su | tee ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png | xclip -selection clipboard -t image/png"
 bindsym Control+Print --release exec "scrot -u ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
@@ -191,7 +193,7 @@ for_window [class="^.*"] border pixel 3
 gaps inner 0
 gaps outer 0
 {{ if eq .chezmoi.fullHostname "nzxt" }}
-border_radius $border_radius
+# border_radius $border_radius
 {{ end }}
 
 #  other gaps [[[ # 
@@ -321,12 +323,14 @@ bindsym $mod+F1 workspace $ws1; exec $term
 bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach red-hat'
 
 set $ws2 "2 "
-set $wl_ip_nast_num "5"
+set $wl_ip_nast_num "2"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
 bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach red-hat-2'
+
+#  ws3 [[[ # 
 
 set $ws3 "3 "
 # set $ws3 "3 "
@@ -340,10 +344,14 @@ bindsym Mod4+b layout tabbed; exec $term -e fish -c "buku-fzf"
 bindsym Mod4+$mod+b layout tabbed; exec $term -e fish -c "buku-fzf fq"
 bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
 
+#  ]]] ws3 # 
+
 set $ws4 "4 "
 workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
 bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt -e ranger $screenshot_folder
+
+#  ws5 [[[ # 
 
 set $ws5 "5 "
 # workspace $ws5 output $secondary
@@ -369,11 +377,15 @@ for_window [class="ada-mario"] floating enable
 # for_window [class="ada-mario"] move absolute position 930 480
 for_window [class="ada-mario"] move absolute position 640 0
 
+#  ]]] ws5 # 
+
+#  ws6 [[[ # 
+
 set $ws6 "6 "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 # bindsym Mod4+$mod+d workspace $ws6; exec discord
-bindsym Mod4+d workspace $ws6; exec riot-desktop
+bindsym Mod4+d workspace $ws6; exec element-desktop
 # bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec discord
@@ -381,7 +393,11 @@ bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec firefox --new-window https://discordapp.com/channels/430798446723727367/443950744996020228
 # bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
+# bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
 bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
+# bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'tmux-attach weechat'
+
+#  ]]] ws6 # 
 
 set $ws7 "7 "
 workspace $ws7 output $secondary

@@ -70,11 +70,15 @@ urgency.user.tag.jira.coefficient=5
 # context.home=project.not:ieas project.not:out project.not:sch tag.not:amn
 context.home=project.not:ieas project.not:out
 context.ieas=project:ieas
+context.not-pey=project.not:pey 
 context.out=project:out 
+context.pey=project:pey 
 context.sch=project:sch
 
-context=home
+# context=home
 # context=out
+context=pey
+# context=not-pey
 # context=sch
 
 #  }}} context # 

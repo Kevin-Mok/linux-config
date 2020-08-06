@@ -1,5 +1,5 @@
 function watson-add-fortnite
-  set year_month "2020-06"
+  set year_month "2020-08"
   set start_time "$year_month-$argv[1] $argv[2]"
   set end_time "$year_month-$argv[3] $argv[4]"
 

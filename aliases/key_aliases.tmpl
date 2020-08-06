@@ -90,6 +90,7 @@ xcssh "bat ~/.ssh/id_rsa.pub | xclip -selection clipboard"
 # digital ocean
 ssd "mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a"
 sdh "mosh --ssh='ssh -p 399' kevin@165.22.239.234 htop"
+scd "scp -P 399 kevin@165.22.239.234"
 sfd "sftp -rP 399 kevin@165.22.239.234"
 # phone
 ssp "mosh --ssh='ssh -p 8022' $PHONE_IP"
@@ -103,6 +104,7 @@ sdt "ssh kevin@165.22.239.234 -L 5433:localhost:5432"
 # ]]] ssh #
 
 wh "watch"
+w60 "watch -n60 '"
 ct "crontab"
 cte "crontab -e"
 
@@ -110,9 +112,11 @@ wm "sudo wifi-menu"
 
 # mounting [[[ #
 udm "udisksctl mount -b"
+udmi "ifuse /mnt/ipad"
 udmb "udisksctl mount -b /dev/sdc2"
 udu "udisksctl unmount -b"
 udub "udisksctl unmount -b /dev/sdc2"
+udui "umount /mnt/ipad"
 
 # ]]] mounting # 
 
@@ -302,12 +306,15 @@ aamy "task add proj:mny"
 aap "task add proj:"
 aacm "task add proj:codm"
 aacr "task add proj:crim"
+aaj "task add proj:pey +jira []"
 aas "task add proj:sch"
 aay "task add proj:pey"
 ac "task context"
 acn "task context none && task"
 ach "task context home && task"
 aco "task context out && task"
+acp "task context pey && task"
+acnp "task context not-pey && task"
 acs "task context sch && task"
 af "task proj:"
 afcm "task proj:codm"
@@ -366,8 +373,8 @@ htm "htop -s PERCENT_MEM"
 # i "sxiv"
 ia "sxiv -a"
 it "sxiv -t *"
-ki "kill -9"
-ka "killall"
+kill "kill -9"
+kal "killall"
 kd "killall Discord && killall Discord"
 ke "killall electron"
 kf "killall firefox"
@@ -375,8 +382,8 @@ kai "killall imwheel && imwheel"
 kt "killall thunderbird"
 lo "libreoffice"
 # mpv "mpv --volume=50"
-# mp "mpv"
 m "mpv"
+ml "mpv --loop"
 msf "mpv --sub-file="
 mra "man ranger"
 # mt "minetest"
@@ -386,6 +393,8 @@ ndu "ncdu"
 p3 "python3"
 pdft "pdftotext"
 pipes "pipes.sh -t 3"
+pcp "pycp"
+pmv "pymv"
 py "python"
 q "qalc '"
 qg "qalculate-gtk"
@@ -403,6 +412,7 @@ stp "termdown"
 # sw "swex"
 t  "tmux"#[[[
 ta "tmux a -t"
+tabu "tmux a -t backup || tmux new -s backup"
 tacf "tmux a -t config || tmux new -s config"
 tacm "tmux a -t codm || tmux new -s codm"
 tacr "tmux a -t crimson || tmux new -s crimson"
@@ -423,6 +433,7 @@ tnb "tmux new -s backup"
 usn "usernames --num 20"
 vmd "vimdiff"
 wc "wc -l"
+wch "weechat"
 # wg "wego"
 wg "curl -L wthr.ml"
 wgm "curl -L wthr.ml/m"
@@ -489,6 +500,7 @@ wr "watson report -Gcd"
 wra "watson report -Gcap"
 wram "watson report -Gca | rg -S '^\w.*-\s\d*h' | sort -t' ' -hk3 | sed 's/ - /,/' | xsv table"
 wrat "watson report -GcaT"
+wrf "watson report -Gc --from ''"
 wrm "watson report -GcmT"
 wrw "watson report -Gc"
 
@@ -513,6 +525,7 @@ gbd "git branch -D"
 gba "git branch --no-merged && echo '' && git branch --merged"
 gbu "git branch --no-merged"
 gbm "git branch --merged"
+gbr "git branch -m"
 
 gsm "git submodule"
 gsma "git submodule add"
@@ -521,6 +534,8 @@ gsmp "git submodule foreach git pull"
 gsmu "git submodule update --recursive --remote"
  
 gmg "git merge"
+gmga "git merge --abort"
+gmgs "git merge --squash"
 gmgts "git merge -X theirs"
 gmgt "git mergetool"
 
@@ -530,7 +545,6 @@ grao "git remote add orig"
 # grag "git remote add gitea git@ataraxy.tk:Kevin-Mok/.git"
 
 grr "git remote remove origin"
-grs "git remote show origin"
 gru "git branch --set-upstream-to=origin/master master"
 
 # ]]] branch  #
@@ -567,9 +581,13 @@ gdh "git diff --cached -w HEAD~1"
 gds "git diff --stat"
 gdt "git difftool -w --tool=vimdiff"
 gdtc "git difftool -w --cached --tool=vimdiff"
-gl "git log"
+gl "git log -5"
+gl1 "git log --oneline"
+gl1x "git log --oneline -1 | xclip -selection clipboard"
+gla "git log"
 glm "git log master"
 # gsl "git shortlog"
+gsh "git show"
 
 # ]]] diff/log #
 
@@ -578,8 +596,7 @@ glm "git log master"
 gcl "git clone"
 gs "git status -u"
 gf "git fetch"
-gfo "git fetch orig"
-gfg "git fetch gitea"
+gfa "git fetch --all"
 
 gch "git checkout"
 gchn "git checkout -b"
@@ -588,9 +605,11 @@ gchnw "git checkout -b wip"
 gchw "git checkout wip"
 gchh "git checkout HEAD --"
 
-grom "git reset --hard origin/master"
-grh "git reset --hard HEAD"
-grh1 "git reset --hard HEAD~1"
+grs "git reset --hard"
+grss "git reset --soft HEAD~1"
+grso "git reset --hard origin/master"
+grsh "git reset --hard HEAD"
+grsh1 "git reset --hard HEAD~1"
 # show files in git repo
 # gls "git ls-tree -r HEAD --name-only"
 gls "git ls-tree HEAD --name-only"
@@ -603,13 +622,16 @@ gst "git stash"
 gstl "git stash list"
 gstp "git stash pop"
 gsts "git stash show stash@\{0\} -p"
-gclear "git stash clear"
+gstcl "git stash clear"
 
 gpl "git pull --rebase"
 gplo "git fetch orig && git pull --rebase . orig/master"
 grb "git rebase -i"
 grba "git rebase --abort"
 grbc "git rebase --continue"
+
+grl "git reflog"
+grlc "git checkout HEAD@{1}"
 
 # ]]] pull #
 
@@ -623,6 +645,7 @@ gcap "git add -A && git commit --amend --no-edit -S && git push --force"
 
 psgi "git add -A && git commit -m 'Update' -S && git push"
 gps "git push"
+gpso "git push origin"
 gpsg "git push gitea"
 # gpsi "git config credential.helper store && git push"
 # gpsn "git push --set-upstream origin master"
@@ -645,10 +668,10 @@ rgt "rg TODO"
 
 # make [[[ #
 
-ma "printf '\033c' && bear make"
-mc "bear make clean"
-mca "bear make clean && printf '\033c' && bear make"
-rmc "rm compile_commands.json"
+# ma "printf '\033c' && bear make"
+# mc "bear make clean"
+# mca "bear make clean && printf '\033c' && bear make"
+# rmc "rm compile_commands.json"
 
 # ]]] make #
 
@@ -817,6 +840,9 @@ ssc "mosh mokkar@teach.cs.utoronto.ca"
 # red-hat [[[ #
 
 # laptop
+# gcfr "git config user.email 'kmok@redhat.com' && git config user.signingkey 10B001347552F396"
+gchk "git checkout KOGITO-"
+
 loe "libreoffice ~/Documents/expenses/2020.ods &"
 ssw "mosh $WORK_LAPTOP_IP tmux a"
 ssi "mosh $WORK_LAPTOP_IP -- tmux a -t weechat"
@@ -840,8 +866,26 @@ ot "oc status"
 
 # ]]] oc #
 
-jk "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:112ef7228e7a8cea5435473f9416cb56e1"
-jkb "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:112ef7228e7a8cea5435473f9416cb56e1 build -s -v"
-jkc "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:112ef7228e7a8cea5435473f9416cb56e1 console -f"
+# jenkins [[[ #
+
+jk "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN"
+jkb "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN build -s -v"
+jkc "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN console -f"
+
+# ]]] jenkins #
+
+# maven [[[ #
+
+mc "mvn clean"
+# mps "mvn package -DskipTests"
+mp "mvn package -DskipTests"
+mpr "mvn package -DskipTests && ./server-control.sh start"
+mt "mvn test"
+mct "mvn clean test"
+
+# ]]] maven #
+
+kg "kogito"
+mk "minikube"
 
 # ]]] red-hat #
