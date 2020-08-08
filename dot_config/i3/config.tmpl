@@ -65,8 +65,10 @@ bindsym Mod4+l exec ~/scripts/dmenu-twitch
 bindsym Mod4+m exec $type_delay_cmd && xdotool type 'me@kevin-mok.com'
 # bindsym Mod4+$mod+m exec pass -c uoft/markus
 bindsym Mod4+n exec $term -e nvim
-bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
 # bindsym Mod4+o exec $type_delay_cmd && xdotool key 'Control_L+v'
+# bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
+# bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
+bindsym Mod4+o exec obs
 bindsym Mod4+$mod+o exec xset dpms force off
 # bindsym Mod4+p workspace $ws4; exec pgadmin3
 # bindsym Mod4+p exec pycharm

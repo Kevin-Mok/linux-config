@@ -149,7 +149,7 @@ rmr "rm -rf"
 # rmd "rm ~/Downloads/*"
 rmw "rm ~/.local/share/nvim/swap/"
 md "mkdir -p"
-rsy "rsync -Pr"
+rsy "rsync --ignore-existing -Ptr"
 
 # list all (un)mounted drives
 lhd "sudo fdisk -l"
@@ -586,6 +586,7 @@ gl1 "git log --oneline"
 gl1x "git log --oneline -1 | xclip -selection clipboard"
 gla "git log"
 glm "git log master"
+gqs "git-quick-stats -T"
 # gsl "git shortlog"
 gsh "git show"
 
@@ -838,6 +839,9 @@ ssc "mosh mokkar@teach.cs.utoronto.ca"
 # ]]] school  #
 
 # red-hat [[[ #
+
+vpu "nmcli con up id '1 - Red Hat Global VPN' --ask"
+vpd "nmcli con down id '1 - Red Hat Global VPN'"
 
 # laptop
 # gcfr "git config user.email 'kmok@redhat.com' && git config user.signingkey 10B001347552F396"
