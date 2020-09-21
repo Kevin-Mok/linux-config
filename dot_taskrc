@@ -42,7 +42,7 @@ include /usr/share/doc/task/rc/dark-16.theme
 taskd.certificate=\/home\/kevin\/.task\/do.cert.pem
 taskd.key=\/home\/kevin\/.task\/do.key.pem
 taskd.ca=\/home\/kevin\/.task\/ca.cert.pem
-taskd.server=taskd.khkm.tk:53589
+taskd.server=taskd.khkm.gq:53589
 taskd.credentials=Hevin\/Kevin\/eb6225dc-80fb-4721-8b03-9114c6c4423d
 
 #  }}} server # 
@@ -56,8 +56,10 @@ urgency.user.project.fn.coefficient=5
 urgency.user.project.mny.coefficient=7
 urgency.user.project.ms.coefficient=3
 urgency.user.project.pey.coefficient=10
+urgency.user.project.pogo.coefficient=5
 urgency.user.project.sch.coefficient=7
 urgency.uda.priority.H.coefficient=10
+urgency.uda.priority.M.coefficient=4
 urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1
 urgency.user.tag.jira.coefficient=5

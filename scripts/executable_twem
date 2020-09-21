@@ -4,7 +4,7 @@
     # xdotool key Left
 # done
 sleep .3
-xdotool type 'https://twem.tk/.png'
+xdotool type 'https://twem.gq/.png'
 i=0
 while [ "$i" -ne 4 ]
 do

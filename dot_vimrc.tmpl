@@ -340,6 +340,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   let g:go_fmt_command = ""
+Plug 'buoto/gotests-vim'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -599,6 +600,11 @@ autocmd Filetype javascript inoremap <localleader>x process.exit()
 autocmd Filetype markdown inoremap <localleader>c - [ ] 
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
+
+autocmd Filetype go nnoremap <localleader>f :GoTestFunc<CR>
+autocmd Filetype go nnoremap <localleader>l :GoLint<CR>
+autocmd Filetype go nnoremap <localleader>m :GoTests<CR>
+autocmd Filetype go nnoremap <localleader>t :GoTest<CR>
 
 autocmd Filetype go-template inoremap <localleader>e {{"{{ else }}"}}
 autocmd Filetype go-template inoremap <localleader>hd {{"{{ .chezmoi.homedir }}"}}

@@ -37,12 +37,12 @@ set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 # set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-20.1.0
 # set -x GRAALVM_BIN $GRAALVM_HOME/bin
-# set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
 # set -x JAVA_HOME $GRAALVM_HOME
 
 # for shared libs
-# set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk
 set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
+# set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk
+
 set -x PATH $JAVA_HOME/bin $PATH
 
 # ]]] Java #
@@ -76,7 +76,7 @@ set -xU FZF_DEFAULT_COMMAND "find ."
 
 # set -xU PHONE_IP "192.168.0.10"
 # set -xU WORK_LAPTOP_IP "kmok@192.168.0.12"
-set -x PHONE_IP "192.168.0.10"
+set -x PHONE_IP "192.168.0.11"
 set -x WORK_LAPTOP_IP "kmok@192.168.0.12"
 
 {{ if eq .chezmoi.fullHostname "nzxt" }}
@@ -208,12 +208,15 @@ abbr smr "smol-replace"
 abbr shrm "shred-rm"
 abbr shs "scan-history"
 abbr svp "server-pages"
+abbr ta "tmux-attach"
 abbr thes "thesaurus"
 abbr usc "us-to-cad"
 abbr ut "unix-timestamp"
 abbr uzr "unzip-rm"
 abbr vsnp "vim-snippet"
-abbr waf "watson-add-fortnite"
+abbr wag "watson-add-game"
+abbr waf "watson-add-game fortnite"
+abbr wap "watson-add-game pokemon-go"
 abbr xya "export-pkgs"
 
 # school [[[ #
