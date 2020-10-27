@@ -6,6 +6,7 @@
 
 # clear screen
 c "printf '\033c'"
+cpr "cp -r"
 d "cd ~/Downloads && printf '\033c'"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
@@ -351,6 +352,8 @@ chr "google-chrome"
 clc "cloc ."
 cv "cava"
 dg "dragon-drag-and-drop -x"
+dk "docker"
+dki "docker images"
 ffx "firefox"
 fh "feh"
 fi "fish"
@@ -415,6 +418,7 @@ tnb "tmux new -s backup"
 #]]]
 usn "usernames --num 20"
 vmd "vimdiff"
+wc "weechat"
 # wg "wego"
 wg "curl -L wthr.ml"
 wgm "curl -L wthr.ml/m"
@@ -521,7 +525,7 @@ gra "git remote add origin"
 # grag "git remote add gitea git@ataraxy.tk:Kevin-Mok/.git"
 
 grr "git remote remove origin"
-grs "git remote show origin"
+# grs "git remote show origin"
 gru "git branch --set-upstream-to=origin/master master"
 
 # ]]] branch  #
@@ -568,8 +572,10 @@ glm "git log master"
 
 gcl "git clone"
 gs "git status -u"
-gf "git fetch origin"
+gf "git fetch"
 gfg "git fetch gitea"
+gfo "git fetch origin"
+gfog "git fetch orig"
 
 gch "git checkout"
 gchn "git checkout -b"
@@ -578,6 +584,7 @@ gchnw "git checkout -b wip"
 gchw "git checkout wip"
 gchh "git checkout HEAD --"
 
+grs "git reset --hard HEAD"
 grom "git reset --hard origin/master"
 gheadm1 "git reset --hard HEAD~1"
 # show files in git repo
@@ -800,19 +807,67 @@ twf "watch -n300 'twitchy-game Fortnite'"
 gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-# 324
-# hk "clear && tmux clear-history && runhaskell TestChups.hs"
-hk "clear && tmux clear-history && runhaskell"
-rk "clear && tmux clear-history && raco test"
-rke "clear && tmux clear-history && raco test ex1.rkt"
-rkr "clear && tmux clear-history && racket"
-rki "racket -l racket/base -i"
-
-# 384
-rgp "clear && tmux clear-history && rg -S -t py"
-8aa "clear && tmux clear-history && python2 autograder.py"
-# 8ap "python2 plane_scheduling.py"
-8aq "clear && tmux clear-history && python2 autograder.py --no-graphics -q q6"
-8at "clear && tmux clear-history && python2 autograder.py --no-graphics -t test_cases/q6/1-JointParticleObserve"
-
 # ]]] school  #
+
+# red-hat [[[ #
+
+fp "fpaste"
+
+# oc [[[ #
+
+cra "sudo systemctl start libvirtd && crc start"
+crs "crc stop"
+crcc "crc console"
+crcr "crc console --credentials"
+
+o "oc"
+oa "oc apply -f"
+od "oc describe"
+odp "oc describe pod"
+odi "oc describe kogitoinfra"
+odr "oc describe kogitoruntime"
+odl "oc delete"
+odlb "oc delete kogitobuild"
+odlc "oc delete configmap"
+odlp "oc delete pod"
+odlpj "oc delete project"
+odlr "oc delete kogitoruntime"
+og "oc get pods"
+ogw "oc get pods -w"
+ogb "oc get kogitobuild"
+ogc "oc get configmap"
+ogi "oc get imagestream"
+ogn "oc get"
+ogr "oc get kogitoruntime"
+ol "oc logs -f"
+oli "oc login -u kubeadmin -p"
+on "oc new-project"
+op "oc project"
+opa "oc projects | rg kogito"
+opd "oc project default"
+ot "oc status"
+
+# ]]] oc #
+
+jk "java -jar ~/Downloads/jenkins-cli.jar -s https://rhba-jenkins.rhev-ci-vms.eng.rdu2.redhat.com/ -auth kmok:\$JENKINS_RHBA_TOKEN" 
+
+# kogito [[[ #
+
+k "kogito"
+kp "kogito deploy-service"
+kl "kogito delete-service"
+kph "kogito deploy-service hw"
+klh "kogito delete-service hw"
+chw "curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{\"name\" : \"john\"}' http://hw-2113.apps-crc.testing/scripts"
+
+# do "make mod clean && DEBUG=true operator-sdk run --local --watch-namespace=3376-2"
+# dop "git pull --rebase && make mod clean && DEBUG=true operator-sdk run --local --watch-namespace=3376-2"
+
+# ]]] kogito #
+
+po "podman"
+poi "podman image"
+pos "podman images"
+pot "podman image tag"
+
+# ]]] red-hat #

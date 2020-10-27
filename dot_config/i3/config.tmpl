@@ -16,7 +16,8 @@ exec xbacklight -set 10
 exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing")
 {{ end }}
 # exec xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null
-exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
+exec --no-startup-id i3-msg 'workspace $ws1; exec $term'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws6; exec discord'
@@ -27,7 +28,7 @@ exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 
 set $mod Mod1
 set $browser "firefox"
-# set $browser "chromium"
+# set $browser "chromium-browser"
 set $scripts_path "/home/kevin/scripts"
 set $sch_dir "$HOME/Documents/School"
 
@@ -40,7 +41,8 @@ bindsym Control+Shift+Return exec st -A1
 bindsym Control+$mod+Return exec $term_alt
 # bindsym Control+$mod+Return exec st
 # PROTIP: You can also dynamically set dmenu's colors this way:
-bindsym Mod4+Return exec /home/kevin/scripts/dmenu-history -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+# bindsym Mod4+Return exec /home/kevin/scripts/dmenu-history -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+bindsym Mod4+Return exec ~/scripts/dmenu-history -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # bindsym Mod4+Return exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # bindsym Mod4+Return exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -90,8 +92,8 @@ bindsym Print --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'x
 bindsym Control+Print --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
-bindsym Control+$mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Control+Shift+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+$mod+p --release exec "maim -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+Shift+p --release exec "maim -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ end }}
 
 #  ]]] app shortcuts # 
@@ -103,13 +105,13 @@ bindsym $mod+Mod4+2 exec redshift -x && redshift -O 2000
 bindsym $mod+Mod4+3 exec redshift -x && redshift -O 3000
 bindsym $mod+Mod4+4 exec redshift -x && redshift -O 4000
 bindsym $mod+Mod4+5 exec redshift -x && redshift -O 5000
-bindsym $mod+Mod4+grave exec redshift -x
+bindsym $mod+Mod4+grave exec Redshift -x
 
 #  ]]] redshift # 
 
 #  backlight [[[ # 
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if or (eq .chezmoi.fullHostname "x1-carbon") (eq .linux_os "fedora") }}
 bindsym Shift+F1 exec xbacklight -set 10
 bindsym Shift+F2 exec xbacklight -set 20
 bindsym Shift+F3 exec xbacklight -set 30
@@ -119,7 +121,8 @@ bindsym Shift+F6 exec xbacklight -set 60
 bindsym Shift+F7 exec xbacklight -set 70
 bindsym Shift+F8 exec xbacklight -set 80
 bindsym Shift+F9 exec xbacklight -set 90
-bindsym Shift+F0 exec xbacklight -set 100
+bindsym Shift+F10 exec xbacklight -set 100
+bindsym Shift+grave exec xbacklight -set 0
 
 bindsym Control+$mod+plus exec xbacklight -inc 2
 bindsym Control+$mod+minus exec xbacklight -dec 2
@@ -175,8 +178,8 @@ for_window [class="^.*"] border pixel 3
 # gaps inner $inner_gaps
 # gaps outer $outer_gaps
 # gaps bottom 0
-gaps inner 0
-gaps outer 0
+# gaps inner 0
+# gaps outer 0
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 border_radius $border_radius
 {{ end }}
@@ -278,7 +281,7 @@ bindsym Control+$mod+a floating enable; resize set 400px 150px; move absolute po
 set $make_st_script "/home/kevin/st/make-st.sh"
 # test
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if or (eq .chezmoi.fullHostname "x1-carbon") (eq .linux_os "fedora") }}
 bindsym Control+Shift+q exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/editing") && $make_st_script
 bindsym Control+Shift+w exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") && $make_st_script
 bindsym Control+$mod+z exec feh --bg-fill ~/Pictures/Backgrounds/dim/black.jpg
@@ -294,9 +297,12 @@ bindsym Control+$mod+y exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Back
 #  ws names [[[ # 
 
 set $ws1 "1 "
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if or (eq .chezmoi.fullHostname "x1-carbon") (eq .linux_os "fedora") }}
 set $secondary "HDMI2"
 set $main "eDP1"
+# {{ else if eq .linux_os "fedora" }}
+# set $secondary "HDMI2"
+# set $main "eDP-1"
 {{ else if eq .chezmoi.fullHostname "nzxt" }}
 set $secondary "DVI-I-1"
 set $main "HDMI-0"
@@ -504,6 +510,9 @@ bar {
   i3bar_command i3bar -t 
   {{ if eq .chezmoi.fullHostname "x1-carbon" }}
   font pango:$sb_font 17
+  {{ else if eq .linux_os "fedora" }}
+  # font pango:$sb_font 23
+  font pango:$sb_font 25
   {{ else }}
   # font pango:$sb_font 17
   font pango:$sb_font 16

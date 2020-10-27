@@ -1,8 +1,7 @@
 #!/bin/bash
 
-. "/home/kevin/.cache/wal/colors.sh"
-
+. "/home/$USER/.cache/wal/colors.sh"
 idle="$(mpstat 1 1 -P ALL | sed -n -e '4{p;q}' | awk '{print $NF}')"
 used=$(echo 100 - "$idle" | bc)
 used_rounded=$(printf %.0f "$used")
-printf "%s%%\n\n%s\n" "$used_rounded" "$color7"
+printf " %s%%\n\n%s\n" "$used_rounded" "$color7"

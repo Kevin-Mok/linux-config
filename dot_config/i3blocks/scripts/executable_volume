@@ -17,7 +17,7 @@ AUDIO_LOW_SYMBOL=${AUDIO_LOW_SYMBOL:-''}
 
 AUDIO_MUTED_SYMBOL=${AUDIO_MUTED_SYMBOL:-''}
 
-. "/home/kevin/.cache/wal/colors.sh"
+. "/home/$USER/.cache/wal/colors.sh"
 # DEFAULT_COLOR=${DEFAULT_COLOR:-"#ffffff"}
 DEFAULT_COLOR="$color7"
 MUTED_COLOR=${MUTED_COLOR:-"#a0a0a0"}

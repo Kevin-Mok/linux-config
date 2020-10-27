@@ -26,11 +26,17 @@ abbr hum "cd $mfs_dir && hugo serve -D --disableFastRender"
 {{ end }}#]]]
 
 # system[[[
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
 set -x CLASSPATH $CLASSPATH /home/kevin/java/*.jar
-set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
-set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
+set -x GOPATH ~/go
 set -x HASTE_SERVER https://pste.gq
+set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-20.1.0
+set -x GRAALVM_BIN $GRAALVM_HOME/bin
+# set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
+set -x JAVA_HOME $GRAALVM_HOME
+set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
+set -x MAVEN_HOME /opt/maven
+set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin $MAVEN_HOME/bin
+set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 status --is-interactive; and source (pyenv init -|psub)
@@ -61,6 +67,8 @@ xset r rate $XSET_DELAY $XSET_RATE
 set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
+
+set -xU KOGITO_SERVICE_URL "http://example-quarkus-3376.apps-crc.testing/"
 
 # ]]] universal var's #
 
@@ -140,6 +148,8 @@ abbr cpp "copy echo (pwd)"
 abbr cff "create-fish-function"
 abbr ctr "systemctl-restart"
 abbr def "define"
+abbr do "debug-operator"
+abbr dop "debug-operator pull"
 abbr ens "enable-site"
 abbr ev "evince-silent"
 # abbr fbg "find-bg"
@@ -168,6 +178,7 @@ abbr mn "man-vim"
 abbr ma "man-vim task"
 abbr mat "math"
 abbr mdf "mkdir-cd"
+abbr oge "oc-get-events"
 abbr pgr "grep-pdf"
 abbr pgrf "grep-pdf-file"
 abbr pst "pastebin"
@@ -191,13 +202,7 @@ abbr xya "export-pkgs"
 
 # school [[[ #
 
-# 369
-abbr grc "grep-c"
-abbr grh "grep-headers"
-abbr rgh "rg-headers"
-
-abbr jcr "java-compile-run"
-abbr jct "java-compile-test"
+abbr rdo "redeploy-operator"
 
 # ]]] school #
 

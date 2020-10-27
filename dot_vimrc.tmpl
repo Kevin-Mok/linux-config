@@ -66,6 +66,7 @@ autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,mar
 autocmd BufNewFile,BufRead *.gd set expandtab!
 autocmd Filetype go set expandtab! sw=4
 autocmd FileType html,javascript,python,lua set fdm=indent
+autocmd Filetype Jenkinsfile,taskdata set tw=0
 autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -95,7 +96,6 @@ autocmd Filetype json set foldmethod=marker
 autocmd Filetype racket set commentstring=;%s;
 autocmd Filetype racket let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
-autocmd Filetype taskdata set tw=0
 autocmd FileType tex set updatetime=1000 timeoutlen=300
 autocmd FileType tex map <F8> :VimtexCompile<CR>
 autocmd VimEnter *.tex VimtexCompile
@@ -329,6 +329,7 @@ Plug 'masukomi/vim-markdown-folding'
   autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 Plug 'cespare/vim-toml'
 Plug 'dpelle/vim-LanguageTool'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 " ]]] vim-plug "
 
 " Mappings [[[ "

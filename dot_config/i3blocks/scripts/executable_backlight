@@ -5,7 +5,7 @@ round()
 echo $(printf %.$2f $(echo "scale=$2;(((10^$2)*$1)+0.5)/(10^$2)" | bc))
 };
 
-. "/home/kevin/.cache/wal/colors.sh"
+. "/home/$USER/.cache/wal/colors.sh"
 cur_bl=$(xbacklight -get)
 # echo "$(round "$cur_bl" 0)%"
-printf "$(round "$cur_bl" 0)\n\n%s\n" "$color7"
+printf " $(round "$cur_bl" 0)\n\n%s\n" "$color7"

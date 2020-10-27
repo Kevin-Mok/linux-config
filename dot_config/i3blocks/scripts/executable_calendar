@@ -37,7 +37,7 @@ case "$BLOCK_BUTTON" in
 	    > /dev/null"
     # --close-on-unfocus \
 esac
-. "/home/kevin/.cache/wal/colors.sh"
+. "/home/$USER/.cache/wal/colors.sh"
 echo "$LABEL$(date "$DATEFMT")"
 echo "$LABEL$(date "$SHORTFMT")"
 echo "$color7"

@@ -39,7 +39,7 @@ W_name=$(nmcli d | grep "$W_inter" | awk '{print $4}')
 echo $QUALITY% # full text
 echo $QUALITY% # short text
 
-. "/home/kevin/.cache/wal/colors.sh"
+. "/home/$USER/.cache/wal/colors.sh"
 # color
 if [[ $QUALITY -lt 50 ]]; then
     echo "#FF0000"
