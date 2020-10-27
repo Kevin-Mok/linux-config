@@ -56,7 +56,7 @@ urgency.user.project.fn.coefficient=5
 urgency.user.project.mny.coefficient=7
 urgency.user.project.ms.coefficient=3
 urgency.user.project.pey.coefficient=10
-urgency.user.project.pogo.coefficient=5
+urgency.user.project.pogo.coefficient=7
 urgency.user.project.sch.coefficient=7
 urgency.uda.priority.H.coefficient=10
 urgency.uda.priority.M.coefficient=4
@@ -64,6 +64,7 @@ urgency.uda.priority.L.coefficient=-7
 urgency.uda.priority..coefficient=1
 urgency.user.tag.jira.coefficient=5
 # urgency.user.tag.nx.coefficient=15
+urgency.user.tag.nexus.coefficient=3
 
 #  }}} urgency # 
 

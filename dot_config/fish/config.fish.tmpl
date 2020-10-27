@@ -76,8 +76,8 @@ set -xU FZF_DEFAULT_COMMAND "find ."
 
 # set -xU PHONE_IP "192.168.0.10"
 # set -xU WORK_LAPTOP_IP "kmok@192.168.0.12"
-set -x PHONE_IP "192.168.0.11"
-set -x WORK_LAPTOP_IP "kmok@192.168.0.12"
+set -x PHONE_IP "192.168.0.12"
+set -x WORK_LAPTOP_IP "kmok@192.168.0.13"
 
 {{ if eq .chezmoi.fullHostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
@@ -209,6 +209,7 @@ abbr shrm "shred-rm"
 abbr shs "scan-history"
 abbr svp "server-pages"
 abbr ta "tmux-attach"
+abbr tao "tmux-attach obs"
 abbr thes "thesaurus"
 abbr usc "us-to-cad"
 abbr ut "unix-timestamp"

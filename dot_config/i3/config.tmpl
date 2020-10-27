@@ -53,7 +53,8 @@ bindsym Mod4+c exec $browser
 # bindsym Mod4+e exec emacs
 bindsym Mod4+e exec ~/scripts/twem
 # bindsym Mod4+f exec firefox
-bindsym Mod4+f exec firefox --private-window
+# bindsym Mod4+f exec firefox --private-window
+bindsym Mod4+f exec firefox --private-window google.ca
 # bindsym Mod4+$mod+f exec printf 'Kevin@fosstodon.org' | xclip -selection clipboard
 # bindsym Mod4+h exec sleep .2 && xdotool type '.hint'
 # bindsym Mod4+$mod+h exec $type_delay_cmd && xdotool type 'kevin.mok@live.ca'
@@ -324,19 +325,22 @@ bindsym $mod+F1 workspace $ws1; exec $term
 bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach red-hat'
 
 set $ws2 "2 "
-set $wl_ip_nast_num "2"
+set $wl_ip_nast_num "3"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
 bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach red-hat-2'
+bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt-2
 
 #  ws3 [[[ # 
 
 set $ws3 "3 "
 # set $ws3 "3 "
 # workspace $ws3 output $main
-bindsym $mod+F3 workspace $ws3; exec $browser
+# bindsym $mod+F3 workspace $ws3; exec $browser
+# bindsym $mod+F3 exec $browser; move container to workspace $ws3; workspace $ws3
+bindsym $mod+F3 exec $browser
 bindsym Mod4+$mod+F3 workspace $ws3; exec firefox -P work
 # bindsym Mod4+b workspace $ws3; layout stacked; exec $term -e fish -c "buku-fzf"
 # bindsym Mod4+$mod+b workspace $ws3; layout stacked; exec $term -e fish -c "buku-fzf fq"

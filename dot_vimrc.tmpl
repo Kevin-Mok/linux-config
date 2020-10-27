@@ -66,8 +66,8 @@ autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,mar
 autocmd BufNewFile,BufRead *.gd set expandtab!
 autocmd Filetype go set noexpandtab sw=4
 " autocmd FileType go,html,java,javascript,python,lua set fdm=indent
-" autocmd FileType go,html,java,javascript,Jenkinsfile,python,lua set fdm=indent
-autocmd FileType html,javascript,Jenkinsfile,python,lua set fdm=indent
+autocmd FileType go,html,java,javascript,Jenkinsfile,python,lua set fdm=indent
+" autocmd FileType html,javascript,Jenkinsfile,python,lua set fdm=indent
 autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -598,6 +598,7 @@ autocmd Filetype fish inoremap <localleader>2 $argv[2]
 autocmd Filetype javascript inoremap <localleader>x process.exit()
 
 autocmd Filetype markdown inoremap <localleader>c - [ ] 
+autocmd Filetype markdown inoremap <localleader>t TODO: 
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
 
@@ -609,6 +610,9 @@ autocmd Filetype go nnoremap <localleader>t :GoTest<CR>
 autocmd Filetype go-template inoremap <localleader>e {{"{{ else }}"}}
 autocmd Filetype go-template inoremap <localleader>hd {{"{{ .chezmoi.homedir }}"}}
 autocmd Filetype go-template nnoremap <localleader>fp :%s/{{"{{{"}}/[[[/g<CR>:%s/}}}/]]]/g<CR>
+
+autocmd Filetype Jenkinsfile nnoremap <localleader>q :.s/"/'/g<CR>
+autocmd Filetype Jenkinsfile vnoremap <localleader>q :s/"/'/g<CR>
 
 autocmd Filetype python inoremap <localleader>bp breakpoint()
 autocmd Filetype python inoremap <localleader>s self.
