@@ -389,7 +389,8 @@ nnoremap <leader>dg ggdG
 " delete entire line
 nnoremap <leader>dl 0d$
 " delete lines matching pattern
-nnoremap <leader>dls :g//d<left><left>
+" nnoremap <leader>dls :g//d<left><left>
+nnoremap <leader>dls q:ig//d<left><left>
 " show docstring for cur word
 nnoremap <leader>do :YcmCompleter GetDoc<CR>
 " delete line into system clipboard
@@ -417,6 +418,7 @@ nnoremap <leader>gb :Git blame<CR>
 nnoremap <leader>gd :Gvdiff 
 nnoremap <leader>gdh :Gvdiff HEAD^
 nnoremap <leader>gdm :Gvdiff master<CR>
+nnoremap <leader>gdo :Gvdiff orig/master<CR>
 " toggle search highlighting
 nnoremap <leader>h :set hlsearch! hlsearch?<CR>
 " help
@@ -424,9 +426,13 @@ nnoremap <leader>he :vert help
 nnoremap <leader>ht :set tabstop=2 shiftwidth=2 expandtab<CR>
 nnoremap <leader>vhe :vert help 
 " don't add space when joining lines "
-nnoremap <leader>j gJ
+" nnoremap <leader>j gJ
+" jump forward
+nnoremap <leader>j <C-I>
 " join all paragraphs into single line "
 nnoremap <leader>jl :set tw=9999999<CR>gggqG
+" jump back
+nnoremap <leader>k <C-O>
 " format current line
 nnoremap <leader>l Vgq
 " format this and next line
@@ -605,6 +611,7 @@ autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 autocmd Filetype go nnoremap <localleader>f :GoTestFunc<CR>
 autocmd Filetype go nnoremap <localleader>l :GoLint<CR>
 autocmd Filetype go nnoremap <localleader>m :GoTests<CR>
+autocmd Filetype go nnoremap <localleader>r yawq:iGoRename <Esc>p
 autocmd Filetype go nnoremap <localleader>t :GoTest<CR>
 
 autocmd Filetype go-template inoremap <localleader>e {{"{{ else }}"}}

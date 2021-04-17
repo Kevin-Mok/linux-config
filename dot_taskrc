@@ -53,7 +53,7 @@ urgency.due.coefficient=18
 urgency.user.project.codm.coefficient=2
 urgency.user.project.crim.coefficient=1
 urgency.user.project.fn.coefficient=5
-urgency.user.project.mny.coefficient=7
+urgency.user.project.mny.coefficient=10
 urgency.user.project.ms.coefficient=3
 urgency.user.project.pey.coefficient=10
 urgency.user.project.pogo.coefficient=7
@@ -80,8 +80,8 @@ context.sch=project:sch
 
 # context=home
 # context=out
-context=pey
-# context=not-pey
+# context=pey
+context=not-pey
 # context=sch
 
 #  }}} context # 

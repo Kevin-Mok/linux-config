@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. "/home/kevin/.cache/wal/colors.sh"
+ticker=$(~/scripts/ticker $TICKER)
+printf "%s\n\n%s\n" "$ticker" "$color7"

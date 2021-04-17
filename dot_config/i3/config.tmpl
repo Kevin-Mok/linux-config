@@ -48,10 +48,13 @@ bindsym Mod4+Return exec /home/kevin/scripts/dmenu-history -nb "$fg" -nf "$bg" -
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym Mod4+b layout tabbed; exec zathura
-bindsym Mod4+c exec $browser
+# bindsym Mod4+c exec $browser
+# bindsym Mod4+$mod+c exec chatterino
+bindsym Mod4+c exec chatterino
+bindsym Mod4+$mod+c exec $browser
 # bindsym Mod4+e exec notify-send "HPS Word Count" "$(pdftotext /home/kevin/school/latex-notes/hps/essay.pdf - | wc -w)"
 # bindsym Mod4+e exec emacs
-bindsym Mod4+e exec ~/scripts/twem
+# bindsym Mod4+e exec ~/scripts/twem
 # bindsym Mod4+f exec firefox
 # bindsym Mod4+f exec firefox --private-window
 bindsym Mod4+f exec firefox --private-window google.ca
@@ -68,7 +71,7 @@ bindsym Mod4+m exec $type_delay_cmd && xdotool type 'me@kevin-mok.com'
 bindsym Mod4+n exec $term -e nvim
 # bindsym Mod4+$mod+o exec xset dpms force off
 # bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
-bindsym Mod4+o exec obs
+bindsym Mod4+o workspace $ws11; exec obs
 bindSym $mod+Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail && $type_delay_cmd && xdotool key 'Control_L+v'
 # bindsym Mod4+p workspace $ws4; exec pgadmin3
 # bindsym Mod4+p exec pycharm
@@ -79,7 +82,8 @@ bindsym Mod4+p exec passmenu
 # bindsym Mod4+q exec qdirstat
 bindsym Mod4+q exec printf 'emad1 ' | xclip -selection clipboard && $type_delay_cmd && xdotool key 'Control_L+v'
 bindsym Mod4+r exec $type_delay_cmd && xdotool type 'kmok@redhat.com'
-bindsym Mod4+$mod+r exec $term -e ranger
+bindsym Mod4+$mod+r exec pass show -c career/redhat && $type_delay_cmd && xdotool key 'Control_L+v'
+# bindsym Mod4+$mod+r exec $term -e ranger
 # bindsym Mod4+$mod+r exec notify-send "watson restart" "$(watson restart)"
 bindsym Mod4+$mod+s exec $type_delay_cmd && xdotool type 'https://smol.gq/'
 bindsym Mod4+t exec xclip -selection clipboard ~/.password-store/social/trapbot && $type_delay_cmd && xdotool key 'Control_L+v'
@@ -91,6 +95,7 @@ bindsym Control+Mod4+w exec $term -e nvim /home/kevin/.config/watson/state.tmp
 # bindsym Mod4+x exec $swex
 bindsym Control+$mod+x exec $type_delay_cmd && xdotool type 'http://codm.ataraxy.tk/'
 bindsym Mod4+z exec cliqz
+bindsym Pause exec ~/scripts/twem
 
 #  screenshot [[[ # 
 
@@ -147,6 +152,7 @@ bindsym Control+$mod+q exec sudo systemctl stop netctl-auto@wlp3s0.service
 
 #  ]]] backlight # 
 
+for_window [class="chatterino"] floating enable
 for_window [class="Peek"] floating enable
 for_window [title="Qalculate!"] floating enable
 
@@ -322,16 +328,17 @@ set $main "HDMI-0"
 # workspace $ws1 output $main
 workspace $ws1 output $secondary
 bindsym $mod+F1 workspace $ws1; exec $term
+bindsym Mod4+$mod+F1 workspace $ws1; exec chatterino
 bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach red-hat'
 
 set $ws2 "2 "
-set $wl_ip_nast_num "3"
+set $work_laptop_ip "192.168.0.16"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
-# bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
+# bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
 bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach red-hat-2'
-bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt-2
+bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt-2
 
 #  ws3 [[[ # 
 
@@ -356,6 +363,7 @@ set $ws4 "4 "
 workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
 bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt -e ranger $screenshot_folder
+bindsym Mod4+e workspace $ws4; exec libreoffice ~/Documents/expenses/investments.ods
 
 #  ws5 [[[ # 
 
@@ -399,8 +407,8 @@ bindsym Mod4+$mod+d workspace $ws6; exec discord
 # bindsym Mod4+d workspace $ws6; exec firefox --new-window https://discordapp.com/channels/430798446723727367/443950744996020228
 # bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
-# bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
-bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t weechat'
+# bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'
+bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'
 # bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'tmux-attach weechat'
 
 #  ]]] ws6 # 
@@ -408,7 +416,7 @@ bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@192.168.0.1$wl_i
 set $ws7 "7 "
 workspace $ws7 output $secondary
 # bindsym $mod+F7 workspace $ws7; exec $term
-bindsym $mod+F7 workspace $ws7; exec $term -e mosh kmok@192.168.0.1$wl_ip_nast_num -- tmux a -t nzxt
+bindsym $mod+F7 workspace $ws7; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt
 bindsym Mod4+$mod+F7 workspace $ws7; exec $term -e mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a
 bindsym Mod4+a workspace $ws7; exec android-file-transfer
 # bindsym Mod4+v workspace $ws7; exec VBoxManage startvm "369-a1"
@@ -419,7 +427,8 @@ workspace $ws8 output $secondary
 # bindsym $mod+F8 workspace $ws8; exec $term
 # bindsym $mod+F8 workspace $ws8; exec $term -e tmux a -t journal
 bindsym $mod+F8 workspace $ws8; exec $term -e fish -c 'tmux-attach journal'
-bindsym Mod4+$mod+F8 workspace $ws8; exec libreoffice ~/Documents/red-hat/workday.ods
+bindsym Mod4+$mod+F8 workspace $ws8; exec libreoffice ~/Documents/sit-stand/sit-stand.ods
+bindsym $mod+Shift+F8 workspace $ws8; exec libreoffice ~/Documents/red-hat/workday.ods
 
 set $ws9 "9 "
 workspace $ws9 output $secondary
@@ -436,13 +445,15 @@ set $hp 2
 bindsym Mod4+v workspace $ws10; exec $term -e alsamixer -c 1
 # bindsym Mod4+$mod+c workspace $ws10; exec $term -e cava
 # bindsym Mod4+h workspace $ws10; exec $term -e alsamixer -c $hp
-bindsym Mod4+s workspace $ws10; exec spotify
+bindsym Mod4+s workspace $ws10; exec ~/scripts/spotify-clean
 
 set $ws11 "11 "
 # set $ws11 "11 📊"
 # assign [class="Summoners War Exporter"] $ws11
 workspace $ws11 output $secondary
-bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_CPU
+# bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_CPU
+bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_MEM
+bindsym Mod4+$mod+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach obs'
 # bindsym $mod+F11 workspace $ws11; exec $term -e gotop -m
 # bindsym Mod4+a workspace $ws11; exec antimicro
 
