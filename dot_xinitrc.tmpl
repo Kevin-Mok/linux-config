@@ -12,7 +12,7 @@ redshift -O 3000
 xset r rate $XSET_DELAY $XSET_RATE
 # exec /home/kevin/Downloads/dwm/reload-dwm.sh
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 dunst &
 compton -b
 imwheel &

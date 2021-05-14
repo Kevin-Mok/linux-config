@@ -6,7 +6,7 @@ set $term kitty
 # set $term_alt kitty
 # set $term_alt st
 set $term_alt urxvt
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 exec dunst
 exec compton
 exec imwheel
@@ -131,7 +131,7 @@ bindsym $mod+Mod4+grave exec redshift -x
 
 #  backlight [[[ # 
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Shift+F1 exec xbacklight -set 10
 bindsym Shift+F2 exec xbacklight -set 20
 bindsym Shift+F3 exec xbacklight -set 30
@@ -200,7 +200,7 @@ for_window [class="^.*"] border pixel 3
 # gaps bottom 0
 gaps inner 0
 gaps outer 0
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 # border_radius $border_radius
 {{ end }}
 
@@ -258,7 +258,7 @@ bindsym $mod+minus move workspace to output left
 bindsym $mod+plus move workspace to output right
 
 # move focused window
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Control+Shift+h move left 50px
 bindsym Control+Shift+j move down 50px
 bindsym Control+Shift+k move up 50px
@@ -301,7 +301,7 @@ bindsym Control+$mod+a floating enable; resize set 400px 150px; move absolute po
 set $make_st_script "/home/kevin/st/make-st.sh"
 # test
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Control+Shift+q exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/editing") && $make_st_script
 bindsym Control+Shift+w exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") && $make_st_script
 bindsym Control+$mod+z exec feh --bg-fill ~/Pictures/Backgrounds/dim/black.jpg
@@ -317,10 +317,10 @@ bindsym Control+$mod+y exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Back
 #  ws names [[[ # 
 
 set $ws1 "1 "
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 set $secondary "HDMI2"
 set $main "eDP1"
-{{ else if eq .chezmoi.fullHostname "nzxt" }}
+{{ else if eq .chezmoi.hostname "nzxt" }}
 set $secondary "DVI-I-1"
 set $main "HDMI-0"
 {{ end }}
@@ -555,7 +555,7 @@ set $bar_trans 00
 set $main_ws_trans aa
 bar {
   i3bar_command i3bar -t 
-  {{ if eq .chezmoi.fullHostname "x1-carbon" }}
+  {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 17
   {{ else }}
   # font pango:$sb_font 17
@@ -585,7 +585,7 @@ bar {
 
 bar {
   output $secondary
-  {{ if eq .chezmoi.fullHostname "x1-carbon" }}
+  {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 18
   {{ else }}
   font pango:$sb_font 20

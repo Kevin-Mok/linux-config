@@ -18,7 +18,7 @@ set -x GPG_TTY (tty)
 set -U fish_greeting
 
 # spv[[[
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 set -U spv_dir "/home/kevin/coding/spotify-lib-vis"
 set -U mfs_dir "/home/kevin/coding/mf-site"
 source /home/kevin/coding/spotify-lib-vis/src/scripts/api-keys-fish.sh
@@ -64,7 +64,7 @@ set SPACEFISH_VI_MODE_SUFFIX ''
 set -x PASSWORD_STORE_CLIP_TIME 120
 set -xU XSET_RATE 90
 set -xU XSET_DELAY 200
-{{ if and (eq .chezmoi.fullHostname "x1-carbon") (not (eq .chezmoi.username "root")) }}
+{{ if and (eq .chezmoi.hostname "x1-carbon") (not (eq .chezmoi.username "root")) }}
 xset r rate $XSET_DELAY $XSET_RATE
 {{ end }}#]]]
 
@@ -73,10 +73,10 @@ set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.11"
-set -x WORK_LAPTOP_IP "kmok@192.168.0.12"
+set -x PHONE_IP "192.168.0.12"
+set -x WORK_LAPTOP_IP "kmok@192.168.0.16"
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 set -x JENKINS_TOKEN 114a1b2e8693b57fa6f4bce88e2deee8cc
 status --is-interactive; and source (pyenv init -|psub)
@@ -209,6 +209,7 @@ abbr shrm "shred-rm"
 abbr shs "scan-history"
 abbr svp "server-pages"
 abbr ta "tmux-attach"
+abbr taf "tmux-attach fn"
 abbr tao "tmux-attach obs"
 abbr thes "thesaurus"
 # abbr usc "us-to-cad"

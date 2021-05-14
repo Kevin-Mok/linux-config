@@ -53,7 +53,7 @@ sw ~/.local/share/nvim/swap/
 tx ~/linux-config/txt
 wd ~/.config/watson
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 b1 ~/coding/mf-site/themes/base16
 2d ~/coding/godot-demos/2d-plat
 ada ~/coding/ada-mario
@@ -88,7 +88,7 @@ te ~/Pictures/twitch-emotes
 
 {{ end }}
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 adb ~/coding/ada-mario/build
 adm ~/coding/ada-mario/media
 adp ~/coding/ada-mario-presentation
@@ -160,7 +160,7 @@ kjf ~/coding/kogito/jenkins-test/full
 kl ~/coding/kogito/shared-libraries
 # operator [[[ #
 
-ko ~/go/src/github.com/kiegroup/kogito-cloud-operator
+ko ~/go/src/github.com/kiegroup/kogito-operator
 kor ~/go/src/github.com/kiegroup/rhpam-kogito-operator
 # koc ~/go/src/github.com/kiegroup/kogito-cloud-operator/cmd/kogito/command
 koc ~/coding/kogito/kogito-cloud-operator
@@ -171,6 +171,7 @@ kou ~/go/src/github.com/kiegroup/kogito-cloud-operator/cmd/kogito/command/util
 ko2 ~/coding/kogito/kogito-cloud-operator-2
 
 # ]]] operator #
+kob ~/coding/kogito-operator-onboarding
 kot ~/coding/kogito/optaplanner
 kp ~/coding/kogito/kogito-pipelines
 kp2 ~/coding/kogito/kogito-pipelines-2
