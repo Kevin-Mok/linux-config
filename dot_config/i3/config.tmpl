@@ -332,7 +332,7 @@ bindsym Mod4+$mod+F1 workspace $ws1; exec chatterino
 bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach red-hat'
 
 set $ws2 "2 "
-set $work_laptop_ip "192.168.0.16"
+set $work_laptop_ip "192.168.0.15"
 workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt
@@ -355,7 +355,7 @@ bindsym Mod4+$mod+F3 workspace $ws3; exec firefox -P work
 # bindsym Mod4+$mod+b layout stacked; exec $term -e fish -c "buku-fzf fq"
 bindsym Mod4+b layout tabbed; exec $term -e fish -c "buku-fzf"
 bindsym Mod4+$mod+b layout tabbed; exec $term -e fish -c "buku-fzf fq"
-bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
+# bindsym Mod4+g workspace $ws3; layout tabbed; exec gimp
 
 #  ]]] ws3 # 
 
@@ -364,6 +364,7 @@ workspace $ws4 output $secondary
 bindsym $mod+F4 workspace $ws4; exec $term
 bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt -e ranger $screenshot_folder
 bindsym Mod4+e workspace $ws4; exec libreoffice ~/Documents/expenses/investments.ods
+bindsym Mod4+g workspace $ws4; layout tabbed; exec gimp
 
 #  ws5 [[[ # 
 

@@ -56,7 +56,7 @@ cpr "cp -r"
 fde "fd -e"
 grep "grep --color=auto -n"
 grpr "grep -r"
-rgc "rg -S"
+rgc "rg -i"
 rge "rg -t"
 xa "xargs"
 # pk "pkill -f"
@@ -174,7 +174,8 @@ lbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
 
 s "systemctl suspend"
 xx "exit"
-so "xset dpms force off"
+sof "xset dpms force off"
+son "xset s off -dpms"
 sd "tmux kill-server; systemctl poweroff"
 rb "tmux kill-server; systemctl reboot"
 lgo "i3-msg exit"
@@ -345,7 +346,7 @@ ay "task sync"
 # buku [[[ #
 
 # b "buku"
-bd "buku -za '"
+bd "buku -a '"
 bdb "sqlitebrowser ~/.local/share/buku/bookmarks.db &"
 bh "buku -h | bat"
 bi "buku --immutable 1 -zu"
@@ -359,7 +360,7 @@ bsv "bukuserver run --host 127.0.0.1 --port 5001"
 bt "buku --deep -n5 -t"
 bu "buku -zu"
 but "buku -zu --tag"
-bw "buku --immutable 1 -zw -1"
+bw "buku --immutable 1 -w -1"
 
 # ]]] buku #
 cc "calcurse"
@@ -377,7 +378,7 @@ fi "fish"
 gpd "gpg --decrypt"
 gpe "gpg --encrypt --recipient"
 gtm "gotop -m"
-h "habitctl log"
+hb "habitctl log"
 # hbe "habitctl edit"
 # hbeh "habitctl edith"
 htc "htop -s PERCENT_CPU"
@@ -520,6 +521,8 @@ wrm "watson report -GcmT"
 wrw "watson report -Gc"
 
 # ]]] log/report #
+
+tt "timetrace"
 
 # ]]] watson #
 
@@ -793,8 +796,8 @@ gpsh "git push heroku"
 pyh "python -m http.server"
 # j "jekyll"
 # js "jekyll serve"
-hu "hugo"
-hg "hugo serve --disableFastRender"
+hg "hugo"
+hgs "hugo serve --disableFastRender"
 hgp "hugo server -D --disableFastRender --bind 192.168.0.10 --baseURL 'http://192.168.0.10:1313'"
 
 # ]]] mfs #
@@ -892,6 +895,8 @@ vpd "nmcli con down id '1 - Red Hat Global VPN'"
 gchk "git checkout KOGITO-"
 gch3 "git checkout KOGITO-1031-diff-3"
 
+# ssh [[[ #
+
 loe "libreoffice ~/Documents/expenses/2021.ods &"
 loi "libreoffice ~/Documents/expenses/investments.ods &"
 ssw "mosh $WORK_LAPTOP_IP tmux a"
@@ -900,6 +905,8 @@ ssi "mosh $WORK_LAPTOP_IP -- tmux a -t weechat"
 scw "scp $WORK_LAPTOP_IP:"
 sfw "sftp $WORK_LAPTOP_IP"
 
+# ]]] ssh #
+
 fp "fpaste"
 ghr "github-release"
 
@@ -907,6 +914,8 @@ ghr "github-release"
 
 o "kubectl"
 oa "kubectl apply -f"
+oc "kubectl create"
+ocf "kubectl config set-context --current --namespace=kogito"
 od "kubectl describe"
 odp "kubectl describe pod"
 odi "kubectl describe kogitoinfra"
@@ -917,8 +926,12 @@ odlc "kubectl delete configmap"
 odlp "kubectl delete pod"
 odlpj "kubectl delete project"
 odlr "kubectl delete kogitoruntime"
-og "kubectl get pods"
-ogw "kubectl get pods -w"
+oex "kubectl exec"
+oed "kubectl edit"
+og "kubectl get"
+oga "kubectl get all"
+ogp "kubectl get pods"
+ogw "watch kubectl get pods"
 ogb "kubectl get kogitobuild"
 ogc "kubectl get configmap"
 ogi "kubectl get imagestream"
@@ -955,7 +968,10 @@ mvpr "mvn clean package -DskipTests && ./server-control.sh start"
 
 # ]]] maven #
 
+# make [[[ #
+
 mk "make -j8"
+mbc "make build-cli && scp build/_output/bin/kogito $WORK_LAPTOP_IP:/home/kmok/go/bin"
 mc "make clean"
 mct "make clean test"
 ml "make lint"
@@ -965,17 +981,46 @@ mt "make test"
 mvt "make vet"
 mvtt "make vet test"
 
-kg "kogito"
-# mk "minikube"
+# ]]] make #
+
+# kg "kogito"
+
+# minikube [[[ #
+
+mb "minikube"
+mba "minikube start"
+mbd "minikube delete"
+mbs "minikube stop"
+mbt "minikube status"
+
+# ]]] minikube #
+
+# go [[[ #
 
 gor "go run"
+gom "DEBUG=true go run main.go"
 got "go test"
 gota "go test *"
-mbc "make build-cli && scp build/_output/bin/kogito $WORK_LAPTOP_IP:/home/kmok/go/bin"
+
+# ]]] go #
+
+# docker [[[ #
 
 dk "docker"
+dkb "docker build"
 dki "docker image"
-dkis "docker images"
+dkp "docker push"
+dks "docker images"
+
+# ]]] docker #
+
+sb "ansible"
+sbp "ansible-playbook"
+
+h "helm"
+hd "helm delete"
+hi "helm install"
+hu "helm upgrade"
 
 # ]]] red-hat #
 

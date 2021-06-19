@@ -30,16 +30,16 @@ set -x HASTE_SERVER https://pste.gq
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
 # set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin ~/.gem/ruby/2.7.0/bin
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 # Java [[[ #
 
-# set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-20.1.0
-# set -x GRAALVM_BIN $GRAALVM_HOME/bin
-# set -x JAVA_HOME $GRAALVM_HOME
+set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-21.1.0
+set -x GRAALVM_BIN $GRAALVM_HOME/bin
+set -x JAVA_HOME $GRAALVM_HOME
 
-set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
+# set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk
 # set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk # for shared libs
 
 set -x PATH $JAVA_HOME/bin $PATH
@@ -73,14 +73,16 @@ set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.12"
-set -x WORK_LAPTOP_IP "kmok@192.168.0.16"
+set -x PHONE_IP "192.168.0.10"
+set -x WORK_LAPTOP_IP "kmok@192.168.12.10"
 
 {{ if eq .chezmoi.hostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 set -x JENKINS_TOKEN 114a1b2e8693b57fa6f4bce88e2deee8cc
 status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
+
+set -xU LOCAL_KOGITO_SERVICE_URL "http://192.168.49.2:31213"
 
 # ]]] universal var's #
 

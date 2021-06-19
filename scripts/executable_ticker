@@ -87,13 +87,15 @@ for symbol in $(IFS=' '; echo "${SYMBOLS[*]}" | tr '[:lower:]' '[:upper:]'); do
     if [[ "$symbol" == "USDCAD=X" ]]; then
         printf "%0.4f\n" "$price"
     elif [[ "$symbol" == "BTC-USD" || "$symbol" == "ETH-USD" ]]; then
-        echo "$price" | cut -c 2-3
+        # echo "$price" | cut -c 2-3
+        echo "$price" | cut -c -3
     elif (( $(echo "$price > 10000" | bc -l) )); then
         printf "%'0.0f\n" "$price" | cut -c 2-4
     # elif (( $(echo "$price < 1" | bc -l) )); then
         # printf "%0.3f\n" "$price"
     else
         printf "%0.2f\n" "$price" | cut -c 3-
+        # printf "%0.2f\n" "$price"
     fi
   fi
 done

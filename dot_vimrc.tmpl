@@ -605,6 +605,7 @@ autocmd Filetype javascript inoremap <localleader>x process.exit()
 
 autocmd Filetype markdown inoremap <localleader>c - [ ] 
 autocmd Filetype markdown inoremap <localleader>t TODO: 
+autocmd Filetype markdown vnoremap <localleader>rx q:is/\[x/[ /g<Esc><CR>
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
 
