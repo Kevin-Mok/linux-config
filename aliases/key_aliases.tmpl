@@ -7,6 +7,7 @@
 # clear screen
 c "printf '\033c'"
 d "cd ~/Downloads && printf '\033c'"
+e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
 nft "printf '\033c' && neofetch"
@@ -88,6 +89,7 @@ nctr "sudo systemctl restart netctl-auto@wlp4s0.service"
 
 # ssh [[[ #
 
+ss "ssh"
 cpssh "ssh-copy-id -i ~/.ssh/id_rsa.pub"
 xcssh "bat ~/.ssh/id_rsa.pub | xclip -selection clipboard"
 # digital ocean
@@ -100,6 +102,10 @@ ssp "mosh --ssh='ssh -p 8022' $PHONE_IP"
 scpp "scp -P 8022 $PHONE_IP:"
 sfp "sftp -rP 8022 $PHONE_IP"
 rsp "rsync --ignore-existing -Ptre 'ssh -p 8022' $PHONE_IP:"
+# vultr
+ssa "mosh atxadmin@45.32.87.10"
+ssv "mosh kevin@45.32.87.10"
+
 
 # test server sites
 # svp "firefox git.ataraxy.tk khkm.tk cal.khkm.tk pste.gq smol.gq twem.tk"
@@ -450,7 +456,8 @@ usn "usernames --num 20"
 vmd "vimdiff"
 wc "wc -l"
 wch "weechat"
-wg "wego"
+# wg "wego"
+wg "curl wttr.in"
 # wg "curl -L wthr.ml"
 wgm "curl -L wthr.ml/m"
 wgt "curl -L wthr.ml/t"
@@ -471,6 +478,7 @@ pg "pass generate -c"
 ps "pass show"
 
 xc "xclip -selection clipboard"
+xo "xclip -o >"
 yh "echo 'kevin.mok@live.ca' | xclip -selection clipboard"
 yg "xclip -selection clipboard ~/.password-store/social/gmail"
 ytb "xclip -selection clipboard ~/.password-store/social/trapbot"
@@ -522,9 +530,21 @@ wrw "watson report -Gc"
 
 # ]]] log/report #
 
-tt "timetrace"
-
 # ]]] watson #
+
+# timetrace [[[ #
+
+tt "timetrace"
+tta "timetrace start"
+tte "timetrace edit"
+ttc "timetrace create"
+ttp "timetrace create project"
+ttl "timetrace list records today"
+ttr "timetrace report"
+tts "timetrace stop"
+ttt "timetrace status"
+
+# ]]] timetrace #
 
 # ]]] applications  #
 
@@ -564,7 +584,7 @@ grao "git remote add orig"
 grag "git remote add gitea ssh://git@git.kevin-mok.com:399/Kevin-Mok/"
 
 grr "git remote remove origin"
-gru "git branch --set-upstream-to=origin/master master"
+gru "git branch --set-upstream-to=origin/main main"
 
 # ]]] branch  #
 
@@ -606,7 +626,7 @@ gl "git log -5"
 gl1 "git log --oneline"
 gl1x "git log --oneline -1 | xclip -selection clipboard"
 gla "git log"
-glm "git log master"
+glm "git log main"
 glr "git log --reverse"
 gqs "git-quick-stats -T"
 # gsl "git shortlog"
@@ -627,21 +647,22 @@ gfo "git fetch orig"
 gch "git checkout"
 gchn "git checkout -b"
 gchm "git checkout master"
+gchmn "git checkout main"
 gchnw "git checkout -b wip"
 gchw "git checkout wip"
 gchh "git checkout HEAD --"
 
 # grss "git reset --soft HEAD~1"
 # grs "git reset --hard"
-# grso "git reset --hard origin/master"
+# grso "git reset --hard origin/main"
 # grsh "git reset --hard HEAD"
 # grsh1 "git reset --hard HEAD~1"
 grs "git reset --soft"
 grs1 "git reset --soft HEAD~1"
 grs1c "git reset --soft HEAD~1 && git commit --amend --no-edit -S"
-grso "git reset --soft orig/master"
+grso "git reset --soft orig/main"
 grsh "git reset --hard"
-grsho "git reset --hard origin/master"
+grsho "git reset --hard origin/main"
 grshh "git reset --hard HEAD"
 grshh1 "git reset --hard HEAD~1"
 # show files in git repo
@@ -684,9 +705,10 @@ gpsoh "git push -f origin HEAD:"
 gpsg "git push gitea"
 gpsd "git push origin --delete"
 # gpsi "git config credential.helper store && git push"
-# gpsn "git push --set-upstream origin master"
+# gpsn "git push --set-upstream origin main"
 gpsn "eval (git push 2>&1 | tail -n 2)"
 gpsf "git push --force"
+gpsu "git push --set-upstream origin"
 
 # assume file unchanged
 gunc "git update-index --assume-unchanged"
@@ -725,7 +747,7 @@ zp "chezmoi -v apply"
 # spotify-lib-vis [[[ #
 
 # start spv server outside dir
-ssv "source ../bin/activate.fish && python manage.py runserver"
+psv "source ../bin/activate.fish && python manage.py runserver"
 # open spv db in psql
 spvdb "psql -d spotifyvis -U django"
 mig "python manage.py makemigrations && python manage.py migrate --run-syncdb && ssv"
@@ -915,12 +937,14 @@ ghr "github-release"
 o "kubectl"
 oa "kubectl apply -f"
 oc "kubectl create"
-ocf "kubectl config set-context --current --namespace=kogito"
+ocf "kubectl create ns kogito; kubectl config set-context --current --namespace=kogito"
+oct "kubectx"
 od "kubectl describe"
 odp "kubectl describe pod"
 odi "kubectl describe kogitoinfra"
 odr "kubectl describe kogitoruntime"
 odl "kubectl delete"
+odlf "kubectl delete -f"
 odlb "kubectl delete kogitobuild"
 odlc "kubectl delete configmap"
 odlp "kubectl delete pod"
@@ -937,6 +961,8 @@ ogc "kubectl get configmap"
 ogi "kubectl get imagestream"
 ogn "kubectl get"
 ogr "kubectl get kogitoruntime"
+ogs "kubectl get service"
+ogsm "kubectl get servicemonitor"
 ol "kubectl logs -f"
 oli "kubectl login -u kubeadmin -p"
 on "kubectl new-project"
@@ -971,6 +997,7 @@ mvpr "mvn clean package -DskipTests && ./server-control.sh start"
 # make [[[ #
 
 mk "make -j8"
+mb4 "make -j8 before-pr"
 mbc "make build-cli && scp build/_output/bin/kogito $WORK_LAPTOP_IP:/home/kmok/go/bin"
 mc "make clean"
 mct "make clean test"
@@ -1001,6 +1028,7 @@ gor "go run"
 gom "DEBUG=true go run main.go"
 got "go test"
 gota "go test *"
+gotd "go mod tidy"
 
 # ]]] go #
 
@@ -1020,6 +1048,7 @@ sbp "ansible-playbook"
 h "helm"
 hd "helm delete"
 hi "helm install"
+ht "helm template"
 hu "helm upgrade"
 
 # ]]] red-hat #

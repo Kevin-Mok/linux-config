@@ -73,8 +73,8 @@ set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.10"
-set -x WORK_LAPTOP_IP "kmok@192.168.12.10"
+set -x PHONE_IP "192.168.0.12"
+set -x WORK_LAPTOP_IP "kmok@192.168.12.11"
 
 {{ if eq .chezmoi.hostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
@@ -82,7 +82,9 @@ set -x JENKINS_TOKEN 114a1b2e8693b57fa6f4bce88e2deee8cc
 status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
 
-set -xU LOCAL_KOGITO_SERVICE_URL "http://192.168.49.2:31213"
+set -xU MINIKUBE_IP "http://192.168.49.2"
+set -xU LOCAL_KOGITO_SERVICE_PORT "32047"
+set -xU LOCAL_KOGITO_SERVICE_URL "$MINIKUBE_IP:$LOCAL_KOGITO_SERVICE_PORT"
 
 # ]]] universal var's #
 
@@ -176,6 +178,7 @@ abbr fvft "find-vim-filetype"
 abbr gcamp "git-amend-push"
 abbr gclg "git-clone-gitea"
 abbr gdf "git-diff-files"
+abbr gpsd "git-push-diff-name"
 abbr gpsi "git-push-initial"
 abbr gpsmt "git-push-multiple"
 abbr gpng "git-push-new-gitea"
@@ -199,6 +202,7 @@ abbr pgr "grep-pdf"
 abbr pgrf "grep-pdf-file"
 abbr pst "pastebin"
 abbr qh "qalc-history"
+abbr qu "qalc-update"
 abbr re "reminder ''"
 abbr rf "refresh-config"
 abbr rl "readlink-cp"
@@ -211,6 +215,7 @@ abbr shrm "shred-rm"
 abbr shs "scan-history"
 abbr svp "server-pages"
 abbr ta "tmux-attach"
+abbr taa "tmux-attach atx"
 abbr taf "tmux-attach fn"
 abbr tao "tmux-attach obs"
 abbr thes "thesaurus"
