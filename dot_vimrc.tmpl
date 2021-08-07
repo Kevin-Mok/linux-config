@@ -605,8 +605,9 @@ autocmd Filetype fish inoremap <localleader>2 $argv[2]
 autocmd Filetype javascript inoremap <localleader>x process.exit()
 
 autocmd Filetype markdown inoremap <localleader>c - [ ] 
+autocmd Filetype markdown nnoremap <localleader>e 0f[lr<Space>
 autocmd Filetype markdown inoremap <localleader>t TODO: 
-autocmd Filetype markdown vnoremap <localleader>rx q:is/\[x/[ /g<Esc><CR>
+autocmd Filetype markdown vnoremap <localleader>r q:is/\[x/[ /g<Esc><CR>:set nohlsearch<CR>
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
 

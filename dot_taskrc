@@ -66,6 +66,8 @@ urgency.user.tag.jira.coefficient=5
 # urgency.user.tag.nx.coefficient=15
 urgency.user.tag.nexus.coefficient=3
 
+report.ready.sort=urgency-
+
 #  }}} urgency # 
 
 #  context {{{ # 
@@ -80,10 +82,7 @@ context.sch=project:sch
 
 # context=home
 # context=out
+# context=sch
 context=pey
 # context=not-pey
-# context=sch
-
 #  }}} context # 
-
-report.ready.sort=urgency-

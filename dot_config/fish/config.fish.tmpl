@@ -73,8 +73,9 @@ set -xU BROWSER "firefox"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.12"
-set -x WORK_LAPTOP_IP "kmok@192.168.12.11"
+set -x PHONE_IP "192.168.0.18"
+set -x PIXEL_IP "192.168.0.12"
+set -x WORK_LAPTOP_IP "kmok@192.168.0.11"
 
 {{ if eq .chezmoi.hostname "nzxt" }}
 set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
@@ -83,7 +84,7 @@ status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
 
 set -xU MINIKUBE_IP "http://192.168.49.2"
-set -xU LOCAL_KOGITO_SERVICE_PORT "32047"
+set -xU LOCAL_KOGITO_SERVICE_PORT "32000"
 set -xU LOCAL_KOGITO_SERVICE_URL "$MINIKUBE_IP:$LOCAL_KOGITO_SERVICE_PORT"
 
 # ]]] universal var's #
@@ -169,6 +170,7 @@ abbr ctr "systemctl-restart"
 abbr def "define"
 abbr ens "enable-site"
 abbr ev "evince-silent"
+abbr ff "fzf-cd"
 # abbr fbg "find-bg"
 abbr fr "fzf-ranger"
 abbr fv "fzf-vim"
