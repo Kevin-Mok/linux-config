@@ -1,6 +1,7 @@
 #!/bin/bash
 
-mount_dir="/run/media/kevin/backup-hd"
+# mount_dir="/run/media/kevin/backup-hd"
+mount_dir="/mnt/linux-files-2"
 # Backup destination
 case $1 in
 	nzxt )

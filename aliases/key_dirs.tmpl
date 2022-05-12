@@ -1,4 +1,4 @@
-# vim: fdm=marker ft=sh.go-template syntax=sh
+#  vim: fdm=marker ft=sh.go-template syntax=sh
 
 # sys [[[ #
 
@@ -14,12 +14,15 @@ D  ~/Documents
 k ~/
 lc ~/linux-config
 lf /mnt/linux-files
+lf2 /mnt/linux-files-2
 lfp /mnt/linux-files/Pictures
 lfv /mnt/linux-files/Videos
+lfv2 /mnt/linux-files-2/Videos
 lfy /mnt/linux-files/Videos/yt
 me /run/media/kevin
 o /
 pd ~/.password-store
+pfp ~/Pictures/profile-pics
 P ~/Pictures
 ssu ~/Pictures/screenshots/desktop/unsorted
 std ~/st
@@ -28,7 +31,7 @@ tm ~/tmp
 
 {{ if and (eq .chezmoi.username "root") (eq .linux_os "debian") }}
 ng /etc/nginx/sites-available
-sv /etc/systemd/system
+# sv /etc/systemd/system
 {{ end }}
 
 # ]]] sys #
@@ -52,6 +55,8 @@ rdp ~/coding/discord-bots/pinky/cogs/CogManager/cogs/adventure
 sr ~/linux-config/scripts
 snp ~/.vim/plugged/vim-snippets/UltiSnips
 sw ~/.local/share/nvim/swap/
+ttd ~/.timetrace
+ttdr ~/.timetrace/records
 tx ~/linux-config/txt
 wd ~/.config/watson
 
@@ -70,6 +75,10 @@ msl ~/coding/mf-site/content/letter
 # mp ~/coding/mf-site/static/pdf
 pk ~/Documents/journal/packing-lists
 pn ~/coding/red-discord-bot
+rs ~/coding/rarity-surf/backend/rarity_check/project
+rsf ~/coding/rarity-surf/frontend
+rsc ~/coding/rarity-surf/backend/rarity_check/project/management/commands
+rsm ~/coding/rarity-surf/backend/rarity_check/project/migrations
 sv ~/coding/spotify-lib-vis/src
 svg ~/coding/spotify-lib-vis/src/graphs/static/graphs/scripts
 swd ~/coding/swex
@@ -100,11 +109,13 @@ ads ~/coding/ada-mario/scripts
 adP ~/Pictures/ada-mario
 {{ end }}
 
+
 # ]]] cdn #
 
 # gaming [[[ #
 
 lfo /mnt/linux-files/Videos/obs
+lfo2 /mnt/linux-files-2/Videos/obs
 pxv /mnt/linux-files/Videos/pixel
 
 # codm [[[ #
@@ -132,9 +143,12 @@ tcd /mnt/linux-files/Videos/yt/fortnite/clips/twitch-clip-downloader
 pgv /mnt/linux-files/Videos/pokemon-go
 tr ~/.local/share/Terraria
 
+dc ~/Documents/chat/discord
 twt ~/Documents/twitter
 
 sdv ~/Documents/stardew-valley-aha
+
+wo ~/Documents/workout-logs/3
 
 # ]]] gaming #
 
@@ -143,15 +157,48 @@ sdv ~/Documents/stardew-valley-aha
 sc ~/school
 lt ~/school/latex-notes
 
-lb ~/coding/linux-basics
-xy ~/Documents/ataraxy-venture
-xd ~/Documents/ataraxy-venture/discord
+0 ~/school/300
+0a ~/school/latex-notes/300/a4
+0d ~/school/300/diversity
+0e ~/school/300/exam
+0p ~/school/300/pdf
+0n ~/school/300/notes
+
+# 301 [[[ #
+
+1 ~/school/301
+1a ~/school/301/a2
+1af ~/school/301/a1/price-calc/src
+# 1ab ~/school/301/a1/backend
+1ab ~/school/301/todo-app-medium-demo/flask_app
+1as ~/school/301/a2/scripts
+1apr ~/coding/pull-requests/301/a1
+1d ~/school/301/korotu/deliverables/deliverable-2/minter/src
+1d3 ~/school/301/korotu/deliverables/deliverable-3
+1dc ~/school/301/korotu/deliverables/deliverable-2/nft-contract
+1k ~/school/301/korotu
+1kd ~/school/301/korotu/deliverables/deliverable-1
+1pr ~/coding/pull-requests/301/d3
+
+# ]]] 301 #
+
+# solidity [[[ #
+
+sl ~/coding/solidity
+shd ~/coding/solidity/dotenv
+shw ~/coding/solidity/hello-world
+shws ~/coding/solidity/hello-world-part-four-tutorial/starter-files/src
+snf ~/coding/solidity/nft
+snm ~/coding/solidity/nft-minter-tutorial/minter-starter-files/src
+
+# ]]] solidity #
 
 # ]]] sch #
 
 # pey [[[ #
 
 atx ~/Documents/ataraxy-venture
+em ~/Documents/emails
 li ~/Documents/linkedin
 lic ~/Documents/linkedin/msgs
 rh ~/Documents/red-hat
@@ -173,7 +220,8 @@ kex ~/coding/kogito/kogito-examples
 keh ~/coding/kogito/kogito-examples/process-scripts-quarkus/target
 kep ~/coding/kogito/kogito-examples/process-postgresql-persistence-quarkus
 kfl ~/coding/kogito/kogito-apps
-kh ~/coding/kogito/kogito-helm-chart
+kh ~/coding/kogito/kogito-helm-charts
+kho ~/coding/kogito/kogito-helm-chart-old
 ki ~/coding/kogito/kogito-images
 kj ~/coding/kogito/jenkins-test
 kjb ~/coding/kogito/jenkins-test-bot
@@ -199,6 +247,7 @@ kot ~/coding/kogito/optaplanner
 kp ~/coding/kogito/kogito-pipelines
 kp2 ~/coding/kogito/kogito-pipelines-2
 kpr ~/coding/pull-requests/red-hat
+kprh ~/coding/pull-requests/red-hat/helm
 kr ~/coding/kogito/kogito-runtimes
 krj ~/coding/kogito/kogito-runtimes/jenkins-spock-tests
 ky ~/coding/kogito/kogito-kmok-yamls
@@ -214,3 +263,6 @@ dv ~/coding/devops-sre-knowledge
 nxo ~/coding/kogito/nexus-operator
 
 # ]]] pey #
+
+mb ~/coding/mint-bot
+nft ~/Documents/nft

@@ -10,7 +10,7 @@ d "cd ~/Downloads && printf '\033c'"
 e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
-nft "printf '\033c' && neofetch"
+nfth "printf '\033c' && neofetch"
 fi "fish"
 # reload urxvt
 ru "xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null"
@@ -33,6 +33,8 @@ whi "whereis"
 xr "xrandr"
 
 {{ if eq .chezmoi.hostname "nzxt" }}
+xra "xrandr --auto"
+xrs "xrandr --auto && xrandr --output HDMI-0 --right-of DVI-I-1"
 xrn "xrandr --output HDMI-0 --rotate normal && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
 xrr "xrandr --output HDMI-0 --rotate right && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
 {{ end }}
@@ -89,7 +91,7 @@ nctr "sudo systemctl restart netctl-auto@wlp4s0.service"
 
 # ssh [[[ #
 
-ss "ssh"
+# ss "ssh"
 cpssh "ssh-copy-id -i ~/.ssh/id_rsa.pub"
 xcssh "bat ~/.ssh/id_rsa.pub | xclip -selection clipboard"
 # digital ocean
@@ -97,11 +99,24 @@ ssd "mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a"
 sdh "mosh --ssh='ssh -p 399' kevin@165.22.239.234 htop"
 scd "scp -P 399 kevin@165.22.239.234"
 sfd "sftp -rP 399 kevin@165.22.239.234"
-# phone
+# phone [[[ #
+
 ssp "mosh --ssh='ssh -p 8022' $PHONE_IP"
 scpp "scp -P 8022 $PHONE_IP:"
 sfp "sftp -rP 8022 $PHONE_IP"
 rsp "rsync --ignore-existing -Ptre 'ssh -p 8022' $PHONE_IP:"
+
+# ]]] phone #
+
+# pixel [[[ #
+
+sspx "mosh --ssh='ssh -p 8022' $PIXEL_IP"
+scpx "scp -P 8022 $PIXEL_IP:"
+sfpx "sftp -rP 8022 $PIXEL_IP"
+rspx "rsync --ignore-existing -Ptre 'ssh -p 8022' $PIXEL_IP:"
+
+# ]]] pixel #
+
 # vultr
 ssa "mosh atxadmin@45.32.87.10"
 ssv "mosh kevin@45.32.87.10"
@@ -156,7 +171,7 @@ f "cd"
 fz "fzf -e"
 fbg "cd ~/Pictures/Backgrounds && ranger --selectfile (fzf -e --delimiter '/' --with-nth -1)"
 fnd "find . -type f -name"
-p "pwd"
+# p "pwd"
 
 rmr "rm -rf"
 # rmd "rm ~/Downloads/*"
@@ -173,6 +188,8 @@ chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
 lbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
+
+uzl "unzip -l"
 
 # ]]] directory-related #
 
@@ -268,13 +285,15 @@ apu "apt upgrade"
 
 # python [[[ #
 
-py "python"
+p "python"
+# py "python"
 py2 "python2"
 # pyt "printf '\033c' && pytest -vvs"
-pyt "clear && tmux clear-history && pytest -vvs"
+# pyt "clear && tmux clear-history && pytest -vvs"
+pyt "clear && tmux clear-history && pytest --cov"
 pyts "clear && tmux clear-history && pytest -vv"
 pyu "python -m unittest"
-pipi "pip install --user"
+pipi "pip install"
 spipi "sudo pip install"
 
 # ]]] python #
@@ -328,6 +347,7 @@ aay "task add proj:pey"
 ac "task context"
 acn "task context none && task"
 ach "task context home && task"
+acm "task context mny && task"
 aco "task context out && task"
 acp "task context pey && task"
 acnp "task context not-pey && task"
@@ -375,10 +395,13 @@ cci "calcurse -i"
 ccs "calcurse-caldav"
 chr "google-chrome"
 cht "chatterino"
-clc "cloc ."
+# clc "cloc ."
+clc "cloc . --vcs=git"
 cv "cava"
 dg "dragon-drag-and-drop -x"
-fox "firefox"
+fx "firefox -P"
+fxd "firefox -P default"
+fxw "firefox -P work"
 fh "feh"
 fi "fish"
 gpd "gpg --decrypt"
@@ -414,6 +437,7 @@ np "nvim --"
 ndu "ncdu"
 p3 "python3"
 pdft "pdftotext"
+pdu "pdfunite"
 pipes "pipes.sh -t 3"
 pcp "pycp"
 pmv "pymv"
@@ -432,6 +456,7 @@ sn "sudo nvim"
 sqlb "sqlitebrowser"
 # ss "mosh"
 stp "termdown"
+h "termdown"
 # sw "swex"
 # t  "tmux"#[[[
 # ta "tmux a -t"
@@ -454,7 +479,8 @@ tnb "tmux new -s backup"
 #]]]
 usn "usernames --num 20"
 vmd "vimdiff"
-wc "wc -l"
+wcl "wc -l"
+wcw "wc -w"
 wch "weechat"
 # wg "wego"
 wg "curl wttr.in"
@@ -536,10 +562,12 @@ wrw "watson report -Gc"
 
 tt "timetrace"
 tta "timetrace start"
-tte "timetrace edit"
+ttaa "timetrace start a3@300"
+tte "timetrace edit record latest"
 ttc "timetrace create"
 ttp "timetrace create project"
-ttl "timetrace list records today"
+ttlp "timetrace list projects"
+ttlr "timetrace list records today"
 ttr "timetrace report"
 tts "timetrace stop"
 ttt "timetrace status"
@@ -565,6 +593,7 @@ gbu "git branch --no-merged"
 gbm "git branch --merged"
 gbr "git branch -m"
 gbu "git branch --set-upstream-to="
+gbv "git branch -vv"
 
 gsm "git submodule"
 gsma "git submodule add"
@@ -650,8 +679,8 @@ gfo "git fetch orig"
 
 gch "git checkout"
 gchn "git checkout -b"
-gchm "git checkout master"
-gchmn "git checkout main"
+gchm "git checkout main"
+gchms "git checkout master"
 gchnw "git checkout -b wip"
 gchw "git checkout wip"
 gchh "git checkout HEAD --"
@@ -684,7 +713,7 @@ gsts "git stash show stash@\{0\} -p"
 gstcl "git stash clear"
 
 gpl "git pull --rebase"
-gplo "git fetch orig && git pull --rebase . orig/main"
+gplo "git fetch origin && git pull --rebase . origin/main"
 grb "git rebase -i"
 grba "git rebase --abort"
 grbc "git rebase --continue"
@@ -707,7 +736,8 @@ gps "git push"
 gpso "git push origin"
 gpsoh "git push -f origin HEAD:"
 gpsg "git push gitea"
-gpsd "git push origin --delete"
+gpsk "git push kevin"
+gpsdl "git push origin --delete"
 # gpsi "git config credential.helper store && git push"
 # gpsn "git push --set-upstream origin main"
 gpsn "eval (git push 2>&1 | tail -n 2)"
@@ -723,10 +753,21 @@ gunc "git update-index --assume-unchanged"
 
 # coding projs  [[[ #
 
+# pm "python main.py"
+pmn "python main.py"
 tld "tldr"
 # fsl "zathura --fork ~/coding/fastest-languages.pdf"
 fsl "bat ~/Documents/fastest-languages/fastest-languages.md"
 rgt "rg TODO"
+
+# django [[[ #
+
+# pmn "python manage.py"
+pm "python manage.py"
+pmk "python manage.py makemigrations"
+pmg "python manage.py migrate"
+
+# ]]] django #
 
 # make [[[ #
 
@@ -792,6 +833,7 @@ wr0 "watson report --all --project=309 --tag=phase2"
 # server [[[ #
 
 no "node"
+noe "node --experimental-json-modules"
 ndm "nodemon"
 knd "killall node"
 mg "mongo"
@@ -799,7 +841,7 @@ mg "mongo"
 0ht "cd ~/school/309-proj && python3 -m http.server"
 mgd "mongod --dbpath mongo-data"
 # nds "killall node && nodemon server.js"
-nds "nodemon server.js"
+# nds "nodemon server.js"
 
 # ]]] server #
 
@@ -853,6 +895,39 @@ nst "cp ~/Documents/workout-logs/stretching.md /tmp && nvim /tmp/stretching.md"
 rde "pyenv shell red-discord-bot-test"
 rbd "redbot --dev --debug"
 
+lo7 "libreoffice ~/Documents/expenses/2021.ods &"
+
+nps "npm start"
+
+# rarity surf [[[ #
+
+# po "python ~/coding/rarity-sniper/opensea.py | tail -n30"
+# po "python ~/coding/rarity-sniper/opensea.py"
+# poa "python ~/coding/rarity-sniper/opensea.py"
+# pp "python scrape.py"
+# pr "python rarity.py"
+# pu "python ~/coding/rarity-sniper/opensea.py update"
+
+po "python manage.py opensea"
+pr "python manage.py rarity"
+bz "python manage.py rarity -t Bitz -n"
+pmp "python manage.py makemigrations project"
+srs "source ~/.venv/rarity-sniper/bin/activate.fish"
+
+yra "yarn add"
+yrb "yarn build"
+yrbs "yarn build && serve -s build"
+yrr "yarn remove"
+yrs "yarn start"
+sv "serve -s build"
+
+ssrr "mosh root@161.35.107.30"
+ssr "mosh 161.35.107.30"
+
+# ]]] rarity surf #
+
+
+
 # ]]] coding projs  #
 
 # games [[[ #
@@ -894,7 +969,7 @@ twf "watch -n300 'twitchy-game Fortnite'"
 # ]]] twitchy #
 
 lob "lsd -F --group-dirs first 2020*.mkv"
-wo "watch -n60 'lsd -lF --group-dirs first --size short 2020*.mkv'"
+wob "watch -n60 'lsd -lF --group-dirs first --size short 2020*.mkv'"
 
 fnp "t timeline FNProgress | sed -n '2p'"
 fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
@@ -909,6 +984,14 @@ fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
 gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
+spc "source ~/.venv/price-calc/bin/activate.fish"
+scv "source ~/.venv/covid-monitor/bin/activate.fish"
+fr "flask run"
+pmd "python manage.py db"
+pmdm "python manage.py db migrate"
+pmdu "python manage.py db upgrade"
+# pt "pytest --cov"
+
 # ]]] school  #
 
 # red-hat [[[ #
@@ -916,15 +999,17 @@ ssc "mosh mokkar@teach.cs.utoronto.ca"
 vpu "nmcli con up id '1 - Red Hat Global VPN' --ask"
 vpd "nmcli con down id '1 - Red Hat Global VPN'"
 
+loe "libreoffice ~/Documents/expenses/2021.ods &"
+loi "libreoffice ~/Documents/expenses/investments.ods &"
+
 # laptop
 # gcfr "git config user.email 'kmok@redhat.com' && git config user.signingkey 10B001347552F396"
 gchk "git checkout KOGITO-"
+gchnk "git checkout -b KOGITO-"
 gch3 "git checkout KOGITO-1031-diff-3"
 
 # ssh [[[ #
 
-loe "libreoffice ~/Documents/expenses/2021.ods &"
-loi "libreoffice ~/Documents/expenses/investments.ods &"
 ssw "mosh $WORK_LAPTOP_IP tmux a"
 ssw2 "mosh $WORK_LAPTOP_IP -- tmux a -t nzxt-2"
 ssi "mosh $WORK_LAPTOP_IP -- tmux a -t weechat"
@@ -940,7 +1025,7 @@ ghr "github-release"
 
 o "kubectl"
 oa "kubectl apply -f"
-oc "kubectl create"
+ocr "kubectl create"
 ocf "kubectl create ns kogito; kubectl config set-context --current --namespace=kogito"
 oct "kubectx"
 od "kubectl describe"
@@ -1002,13 +1087,14 @@ mvpr "mvn clean package -DskipTests && ./server-control.sh start"
 
 # make [[[ #
 
-mk "make -j8"
-mb4 "make -j8 before-pr"
+mk "make"
+mb4 "make before-pr"
 mbc "make build-cli && scp build/_output/bin/kogito $WORK_LAPTOP_IP:/home/kmok/go/bin"
 mc "make clean"
 mct "make clean test"
 mi "make install"
 ml "make lint"
+mr "make run"
 mt "make test"
 # mvet "make vet"
 # mvett "make vet test"
@@ -1021,7 +1107,7 @@ mvtt "make vet test"
 
 # minikube [[[ #
 
-mb "minikube"
+# mb "minikube"
 mba "minikube start"
 mbd "minikube delete"
 mbs "minikube stop"
@@ -1052,13 +1138,28 @@ dks "docker images"
 sb "ansible"
 sbp "ansible-playbook"
 
-h "helm"
+# helm [[[ #
+
+# h "helm"
 hd "helm delete"
 hi "helm install"
+him "helm install --set openshift=false"
 ht "helm template"
 hu "helm upgrade"
+
+# ]]] helm #
 
 # ]]] red-hat #
 
 # tet "ticker (cat ~/Documents/expenses/etf.md) | xclip -selection clipboard"
 tet "ticker (xclip -o) | xclip -selection clipboard"
+
+# vpn [[[ #
+
+eip "curl ifconfig.me"
+fdb "firefox -P discord-"
+sip "curl ifconfig.me"
+vpc "nordvpn connect && curl ifconfig.me"
+vpd "nordvpn disconnect"
+
+# ]]] vpn #

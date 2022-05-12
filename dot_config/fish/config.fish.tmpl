@@ -30,7 +30,7 @@ set -x HASTE_SERVER https://pste.gq
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
 # set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 # Java [[[ #
@@ -68,24 +68,27 @@ set -xU XSET_DELAY 200
 xset r rate $XSET_DELAY $XSET_RATE
 {{ end }}#]]]
 
-# set -U BROWSER "chromium"
 set -xU BROWSER "firefox"
+# set -U BROWSER "chromium"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.18"
-set -x PIXEL_IP "192.168.0.12"
+set -x PHONE_IP "192.168.0.12"
+set -x PIXEL_IP "192.168.0.18"
 set -x WORK_LAPTOP_IP "kmok@192.168.0.11"
 
 {{ if eq .chezmoi.hostname "nzxt" }}
-set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
+# set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 set -x JENKINS_TOKEN 114a1b2e8693b57fa6f4bce88e2deee8cc
 status --is-interactive; and source (pyenv init -|psub)
 {{ end }}
 
 set -xU MINIKUBE_IP "http://192.168.49.2"
 set -xU LOCAL_KOGITO_SERVICE_PORT "32000"
-set -xU LOCAL_KOGITO_SERVICE_URL "$MINIKUBE_IP:$LOCAL_KOGITO_SERVICE_PORT"
+# set -xU LOCAL_KOGITO_SERVICE_URL "$MINIKUBE_IP:$LOCAL_KOGITO_SERVICE_PORT"
+
+set -x FLASK_DEBUG 1
+set -x DB_NAME "covid_monitor"
 
 # ]]] universal var's #
 
@@ -101,12 +104,12 @@ builtin cd $last_dir && ls > /dev/null
 bind \ce edit_command_buffer
 bind \cr forward-word
 
-chezmoi apply
+# chezmoi apply
 {{ if not (eq .linux_os "termux") }}
   ~/scripts/sync-shortcuts
 {{ end }}
 # source ~/.config/fish/key_abbr.fish > /dev/null
-set -U fish_fxn_dir "{{ .chezmoi.homedir }}/linux-config/dot_config/fish/functions"
+set -U fish_fxn_dir "{{ .chezmoi.homeDir }}/linux-config/dot_config/fish/functions"
 # set -U fish_fxn_dir "~/.config/fish/functions"
 abbr ff "cd $fish_fxn_dir"
 for fxn in (find $fish_fxn_dir -name '*.fish')
@@ -157,6 +160,7 @@ abbr ag "grep-aliases"
 abbr bk "buku-fzf"
 abbr bkf "buku-fzf fq"
 abbr bq "benq-brightness"
+abbr bn "discord-burner"
 abbr bun "backup nzxt"
 abbr bupp "backup-phone-pics"
 abbr ca "cad-to-us"
@@ -168,11 +172,12 @@ abbr cpp "copy echo (pwd)"
 abbr cff "create-fish-function"
 abbr ctr "systemctl-restart"
 abbr def "define"
+abbr drs "dump-rarity-check"
 abbr ens "enable-site"
 abbr ev "evince-silent"
 abbr ff "fzf-cd"
 # abbr fbg "find-bg"
-abbr fr "fzf-ranger"
+# abbr fr "fzf-ranger"
 abbr fv "fzf-vim"
 abbr fvft "find-vim-filetype"
 # git [[[ #
@@ -208,7 +213,8 @@ abbr qu "qalc-update"
 abbr re "reminder ''"
 abbr rf "refresh-config"
 abbr rl "readlink-cp"
-abbr rs "redshift-set"
+abbr rds "redshift-set"
+abbr scf "scp-vid fn"
 abbr sma "smol-add"
 abbr smd "smol-delete"
 abbr sml "smol-slist"
@@ -219,6 +225,8 @@ abbr svp "server-pages"
 abbr ta "tmux-attach"
 abbr taa "tmux-attach atx"
 abbr taf "tmux-attach fn"
+abbr tan "tmux-attach nft"
+abbr tan2 "tmux-attach nft-2"
 abbr tao "tmux-attach obs"
 abbr thes "thesaurus"
 # abbr usc "us-to-cad"

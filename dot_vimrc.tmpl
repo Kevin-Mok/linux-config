@@ -27,8 +27,8 @@ set smartcase
 set tabstop=4
 " set t_Co=256
 " set termguicolors
-" set timeoutlen=350
-set timeoutlen=200
+set timeoutlen=350
+" set timeoutlen=200
 " set tw=75
 " set tw=70
 set tw=60
@@ -59,7 +59,7 @@ autocmd CursorHold * if !bufexists("[Command Line]") | checktime | endif
 
 autocmd BufNewFile,BufRead .* set syntax=sh
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,markdown,
+autocmd FileType *css,gitcommit,haskell,htmldjango,html,graphql,javascript,javascriptreact,json,lisp,markdown,
       \racket,tex,text,yaml set tabstop=2 shiftwidth=2
 " autocmd BufNewFile,BufRead *.md set filetype=markdown
 " autocmd Filetype markdown set textwidth=0
@@ -67,8 +67,10 @@ autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,mar
 autocmd BufNewFile,BufRead *.gd set expandtab!
 autocmd Filetype go set noexpandtab sw=4
 " autocmd FileType go,html,java,javascript,python,lua set fdm=indent
-autocmd FileType go,html,java,javascript,Jenkinsfile,python,lua set fdm=indent
+" autocmd FileType go,html,java,javascript,javascriptreact,Jenkinsfile,python,lua set fdm=indent
+autocmd FileType go,html,java,Jenkinsfile,python,lua set fdm=indent
 " autocmd FileType html,javascript,Jenkinsfile,python,lua set fdm=indent
+autocmd BufNewFile,BufRead *.gql setfiletype graphql
 autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -174,22 +176,27 @@ Plug 'lervag/vimtex'
 	" au BufWritePost *.tex silent call Tex_RunLaTeX()
 	au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
 	let g:Tex_MultipleCompileFormats = 'dvi,pdf'
-	let g:vimtex_view_general_viewer = 'evince'
-    let g:vimtex_quickfix_latexlog = {
-          \ 'overfull' : 0,
-          \ 'underfull' : 0,
-          \ 'global' : 0,
-          \ 'packages' : {
-          \   'biblatex' : 0,
-          \   'gensymb' : 0,
-          \ },
-          \ 'references' : 0,
-          \ 'unused' : 0,
-          \}
+	" let g:vimtex_view_general_viewer = 'evince'
+	let g:vimtex_view_general_viewer = 'zathura'
+    " let g:vimtex_quickfix_latexlog = {
+          " \ 'overfull' : 0,
+          " \ 'underfull' : 0,
+          " \ 'global' : 0,
+          " \ 'packages' : {
+          " \   'biblatex' : 0,
+          " \   'gensymb' : 0,
+          " \ },
+          " \ 'references' : 0,
+          " \ 'unused' : 0,
+          " \}
+    let g:vimtex_quickfix_ignore_filters = [
+          \'Overfull',
+          \]
     let g:vimtex_quickfix_autoclose_after_keystrokes = 5
-    " let g:vimtex_compiler_latexmk = {
+    let g:vimtex_compiler_latexmk = {
+        \ 'continuous' : 1,
+        \}
         " \ 'continuous' : 0,
-        " \}
 
 {{ if not (eq .chezmoi.username "root") }}
 " auto-completion for various languages
@@ -342,6 +349,12 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   let g:go_fmt_command = ""
 Plug 'buoto/gotests-vim'
+Plug 'tomlion/vim-solidity'
+Plug 'jparise/vim-graphql'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mlaursen/vim-react-snippets', { 'branch': 'main' }
+Plug 'cristianoliveira/vim-react-html-snippets'
+Plug 'jidn/vim-dbml'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -358,6 +371,7 @@ colorscheme gotham256
 
 nnoremap <ScrollWheelUp> <C-U>
 nnoremap <ScrollWheelDown> <C-D>
+nnoremap Y yy
 
 " visual select across lines by default "
 nnoremap v <C-V>
@@ -608,6 +622,7 @@ autocmd Filetype markdown inoremap <localleader>c - [ ]
 autocmd Filetype markdown nnoremap <localleader>e 0f[lr<Space>
 autocmd Filetype markdown inoremap <localleader>t TODO: 
 autocmd Filetype markdown vnoremap <localleader>r q:is/\[x/[ /g<Esc><CR>:set nohlsearch<CR>
+autocmd Filetype markdown vnoremap <localleader>x q:is/\[ /[x/g<Esc><CR>:set nohlsearch<CR>
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
 
@@ -618,13 +633,14 @@ autocmd Filetype go nnoremap <localleader>r yawq:iGoRename <Esc>p
 autocmd Filetype go nnoremap <localleader>t :GoTest<CR>
 
 autocmd Filetype go-template inoremap <localleader>e {{"{{ else }}"}}
-autocmd Filetype go-template inoremap <localleader>hd {{"{{ .chezmoi.homedir }}"}}
+autocmd Filetype go-template inoremap <localleader>hd {{"{{ .chezmoi.homeDir }}"}}
 autocmd Filetype go-template nnoremap <localleader>fp :%s/{{"{{{"}}/[[[/g<CR>:%s/}}}/]]]/g<CR>
 
 autocmd Filetype Jenkinsfile nnoremap <localleader>q :.s/"/'/g<CR>
 autocmd Filetype Jenkinsfile vnoremap <localleader>q :s/"/'/g<CR>
 
 autocmd Filetype python inoremap <localleader>bp breakpoint()
+autocmd Filetype python inoremap <localleader>ip from pprint import pprint
 autocmd Filetype python inoremap <localleader>s self.
 
 " ]]] Local Mappings "
