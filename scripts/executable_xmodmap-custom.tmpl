@@ -3,7 +3,7 @@
 DELAY=200
 RATE=90
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 xmodmap ~/.Xmodmap-laptop &> /dev/null 
 {{ else }}
 xmodmap ~/.Xmodmap &> /dev/null 

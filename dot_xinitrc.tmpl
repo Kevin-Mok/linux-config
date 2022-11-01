@@ -4,13 +4,14 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 {{ if .ext_kb }}
 xmodmap ~/.Xmodmap
 {{ else }}
-xmodmap ~/.Xmodmap-laptop
+# xmodmap ~/.Xmodmap-laptop
+xmodmap ~/tmp/.Xmodmap-laptop
 {{ end }}
 redshift -O 2000
 xset r rate $XSET_DELAY $XSET_RATE
 # exec /home/kevin/Downloads/dwm/reload-dwm.sh
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 dunst &
 compton -b
 imwheel &

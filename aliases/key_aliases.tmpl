@@ -28,10 +28,11 @@ td "tldr"
 # display [[[ #
 
 # nvt "nvidia-settings --assign CurrentMetaMode='DVI-I-1: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}, HDMI-0: nvidia-auto-select +3840+0 {ForceCompositionPipeline=On}'"
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 xr "xrandr"
 xro "xrandr --output HDMI2 --off" 
-xrr "xrandr --output HDMI2 --auto --right-of eDP1 --scale 1.33x1.33" 
+xrl "xrandr --output HDMI2 --auto --left-of eDP1 --scale 1.33x1.33 && xrandr --output eDP1 --panning 2560x1440+2554+0"
+xrr "xrandr --output HDMI2 --auto --right-of eDP1 --scale 1.33x1.33"
 xrm "xrandr --output HDMI2 --auto --same-as eDP1 --scale 1.33x1.33"
 xrs "xrandr -s 0"
 {{ end }}
@@ -68,9 +69,11 @@ ctt "sudo systemctl status"
 ctltd "sudo systemctl status dhcpcd"
 ctlas "sudo systemctl start sshd"
 
-nct "sudo netctl"
-nctf "sudo ip link set dev wlp3s0 down"
-nctr "sudo systemctl restart netctl-auto@wlp4s0.service"
+nc "sudo netctl"
+ncd "sudo ip link set dev wlp3s0 down"
+ncu "sudo ip link set dev wlp3s0 up"
+ncr "sudo systemctl restart netctl-auto@wlp3s0.service"
+ncs "sudo systemctl stop netctl-auto@wlp3s0.service"
 
 # ]]] systemctl  #
 
@@ -103,7 +106,7 @@ udub "udisksctl unmount -b /dev/sdc2"
 
 # ]]] mounting # 
 
-tc "touch"
+tch "touch"
 vdr "vidir --verbose"
 
 # directory-related [[[ #
@@ -140,13 +143,14 @@ ds "df -h | head -n 1 && df -h | grep sd"
 chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
-nbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.fullHostname }}/tar && lsd -l"
+nbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
 
 # ]]] directory-related #
 
 # power options  [[[ #
 
 s "systemctl suspend"
+sl "i3lock-fancy && systemctl suspend"
 x "exit"
 so "xset dpms force off"
 sd "tmux kill-server; systemctl poweroff"
@@ -154,7 +158,7 @@ rb "systemctl reboot"
 lo "i3-msg exit"
 xm "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
 X "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 xl "xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE"
 XL "xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE"
 bt "~/linux-config/dot_config/i3blocks/scripts/executable_battery"
@@ -164,7 +168,7 @@ bt "~/linux-config/dot_config/i3blocks/scripts/executable_battery"
 
 # sound [[[ #
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 vlm "alsamixer -c 0"
 vlh "alsamixer -c 2"
 {{ else }}
@@ -183,7 +187,7 @@ vlm "alsamixer -c 1"
 # pcr "sudo pacman -Rns"
 # pcud "sudo pacman -Sy"
 # pcug "sudo pacman -Syu"
-# xpc "pacman -Qqne > ~/{{ .chezmoi.os }}-config/txt/{{ .chezmoi.fullHostname }}-pkgs.txt && pacman -Qqme > ~/{{ .chezmoi.os }}-config/txt/{{ .chezmoi.fullHostname }}-aur.txt "
+# xpc "pacman -Qqne > ~/{{ .chezmoi.os }}-config/txt/{{ .chezmoi.hostname }}-pkgs.txt && pacman -Qqme > ~/{{ .chezmoi.os }}-config/txt/{{ .chezmoi.hostname }}-aur.txt "
 
 # ]]] pacman  #
 
@@ -248,6 +252,7 @@ spipi "sudo pip install"
 # internet [[[ #
 
 pg "ping -c 2 -W 1 8.8.8.8"
+wpg "watch ping -c 2 -W 1 8.8.8.8"
 pgc "ping 8.8.8.8"
 dh "sudo dhcpcd"
 kdh "sudo killall dhcpcd"
@@ -279,13 +284,17 @@ am "antimicro"
 
 a "task"
 aa "task add"
+aa3 "task add proj:sch +324"
 aal "task add proj:lnx"
+aap "task add proj:"
+aas "task add proj:sch"
 ac "task context"
 acn "task context none && task"
 ach "task context home && task"
 aco "task context out && task"
 acs "task context sch && task"
 acpl "task completed"
+af "task proj:"
 al "task limit:10"
 ans "task +next"
 ao "taskopen"
@@ -339,7 +348,8 @@ ka "killall"
 kd "killall Discord && killall Discord"
 kr "killall electron"
 kt "killall thunderbird"
-mp "mpv --volume=50"
+# mp "mpv --volume=50"
+m "mpv"
 mra "man ranger"
 # mt "minetest"
 n "nvim"
@@ -365,6 +375,7 @@ ta "tmux a -t"
 tac "tmux a -t config || tmux new -s config"
 taj "tmux a -t journal || tmux new -s journal"
 tal "tmux a"
+tc "clear && tmux clear-history"
 tk "tmux kill-server"
 tl "tmux ls"
 tn "tmux new -s"
@@ -372,7 +383,8 @@ tnb "tmux new -s backup"
 #]]]
 usn "usernames --num 20"
 vmd "vimdiff"
-wg "wego"
+# wg "wego"
+wg "curl -L wthr.ml"
 ytd "youtube-dl"
 z "zathura --fork"
 
@@ -611,7 +623,7 @@ slg "tail -n 5 $spv_dir/src/api/management/commands/update-history.log"
 # removes all but newest file
 # rmol "ls -t | tail -n +2 | xargs rm -- && l"
 
-snw "spotify-now -i '%artist - %title'"
+# snw "spotify-now -i '%artist - %title'"
 
 svd "pg_dump spotifyvis > spotifyvis.bak"
 
@@ -691,6 +703,7 @@ nst "cp ~/Documents/workout-logs/stretching.md /tmp && nvim /tmp/stretching.md"
 
 # games [[[ #
 
+{{ if eq .chezmoi.hostname "nzxt" }}
 wlm "watson log --all --project=minetest"
 wrm "watson report --all --project=minetest"
 wamv "watson start minetest +video"
@@ -704,6 +717,7 @@ msv "minetestserver --gameid minimal --worldname Test --terminal"
 # mtrsy "rsync -vr .minetest/ /mnt/linux-files/.minetest/"
 
 tet "pandoc -f markdown -t html twitch-emote-conversion.md | xclip -selection clipboard"
+{{ end }}
 
 # ]]] games #
 
@@ -714,14 +728,10 @@ tet "pandoc -f markdown -t html twitch-emote-conversion.md | xclip -selection cl
 # wrf "watson report --all --tag=final"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-# alg course
-jc "javac -d out *.java"
-jr "java -cp \"$CLASSPATH:out\""
-
-# 263
-wl6 "watson log --all --project=263 --tag=a5"
-wr6 "watson report --all --project=263 --tag=a5"
-z6 "zathura --fork ~/school/263/Introduction-to-Algorithms-CLRs/Introduction\ to\ Algorithms\ -\ 3rd\ Edition.pdf"
-pd6 "pdflatex a5"
+rk "clear && tmux clear-history && raco test"
+rka "clear && tmux clear-history && raco test hubbub_test_sample.rkt"
+rkr "clear && tmux clear-history && racket"
+# hk "clear && tmux clear-history && runhaskell TestChups.hs"
+hk "clear && tmux clear-history && runhaskell"
 
 # ]]] school  #

@@ -15,7 +15,7 @@ color=#cbe4ff
 
 #  volume/spotify [[[ # 
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 [volume]
 interval=once
 signal=1
@@ -32,7 +32,7 @@ interval=5
 
 #  laptop [[[ # 
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 [battery]
 label=⚡ 
 interval=30
@@ -54,7 +54,7 @@ interval=5
 [calendar]
 interval=30
 label= 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 DATEFMT=+%H:%M
 {{ else }}
 DATEFMT=+%H:%M.%a-%m-%d
@@ -67,7 +67,7 @@ WIDTH=220
 
 #  sys.monitoring [[[ # 
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 # [wifi]
 # label=
 # instance=wlp4s0
@@ -88,7 +88,7 @@ interval=5
 label= 
 interval=5
 
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 [memory]
 label= 
 # color=#3da061

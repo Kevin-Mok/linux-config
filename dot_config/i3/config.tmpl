@@ -4,7 +4,7 @@ set $term urxvt
 set $term_alt st
 # set $term st
 # set $term_alt urxvt
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 exec dunst
 exec compton
 exec imwheel
@@ -58,7 +58,8 @@ bindsym Mod4+o exec xclip -selection clipboard ~/.password-store/social/gmail &&
 bindsym Mod4+$mod+o exec xset dpms force off
 # bindsym Mod4+p workspace $ws4; exec pgadmin3
 # bindsym Mod4+p exec pycharm
-bindsym Mod4+p exec passmenu
+bindsym Mod4+p exec $type_delay_cmd && xdotool type '.catch '
+bindsym Mod4+$mod+p exec passmenu
 # bindsym Mod4+$mod+p exec notify-send "ping" "$(ping -c 3 -W 1 8.8.8.8)"
 bindsym Mod4+q exec qdirstat
 bindsym Mod4+r exec $term -e ranger
@@ -79,8 +80,8 @@ bindsym Print --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xc
 bindsym Control+Print --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
 bindsym Mod4+x exec xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE
-bindsym Control+$mod+p --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
-bindsym Control+Shift+p --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+p --release exec "scrot -s ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Control+$mod+p --release exec "scrot -u ~/tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ end }}
 
 #  ]]] app shortcuts # 
@@ -98,7 +99,7 @@ bindsym $mod+Mod4+grave exec redshift -x
 
 #  backlight [[[ # 
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Shift+F1 exec xbacklight -set 10
 bindsym Shift+F2 exec xbacklight -set 20
 bindsym Shift+F3 exec xbacklight -set 30
@@ -108,7 +109,7 @@ bindsym Shift+F6 exec xbacklight -set 60
 bindsym Shift+F7 exec xbacklight -set 70
 bindsym Shift+F8 exec xbacklight -set 80
 bindsym Shift+F9 exec xbacklight -set 90
-bindsym Shift+F0 exec xbacklight -set 100
+bindsym Shift+F10 exec xbacklight -set 100
 
 bindsym Control+$mod+plus exec xbacklight -inc 2
 bindsym Control+$mod+minus exec xbacklight -dec 2
@@ -166,7 +167,7 @@ for_window [class="^.*"] border pixel 3
 # gaps bottom 0
 gaps inner 0
 gaps outer 0
-{{ if eq .chezmoi.fullHostname "nzxt" }}
+{{ if eq .chezmoi.hostname "nzxt" }}
 border_radius $border_radius
 {{ end }}
 
@@ -224,7 +225,7 @@ bindsym $mod+minus move workspace to output left
 bindsym $mod+plus move workspace to output right
 
 # move focused window
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Control+Shift+h move left 50px
 bindsym Control+Shift+j move down 50px
 bindsym Control+Shift+k move up 50px
@@ -267,7 +268,7 @@ bindsym Control+$mod+a floating enable; resize set 400px 150px; move absolute po
 set $make_st_script "/home/kevin/st/make-st.sh"
 # test
 
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 bindsym Control+Shift+q exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/bright/editing") && $make_st_script
 bindsym Control+Shift+w exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") && $make_st_script
 bindsym Control+$mod+z exec feh --bg-fill ~/Pictures/Backgrounds/dim/black.jpg
@@ -283,10 +284,10 @@ bindsym Control+$mod+y exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Back
 #  ws names [[[ # 
 
 set $ws1 "1 "
-{{ if eq .chezmoi.fullHostname "x1-carbon" }}
+{{ if eq .chezmoi.hostname "x1-carbon" }}
 set $secondary "HDMI2"
 set $main "eDP1"
-{{ else if eq .chezmoi.fullHostname "nzxt" }}
+{{ else if eq .chezmoi.hostname "nzxt" }}
 set $secondary "DVI-I-1"
 set $main "HDMI-0"
 {{ end }}
@@ -335,8 +336,8 @@ for_window [class="ada-mario"] move absolute position 640 0
 set $ws6 "6 "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
-# bindsym Mod4+d workspace $ws6; exec discord
-bindsym Mod4+d workspace $ws6; exec riot-desktop
+bindsym Mod4+d workspace $ws6; exec discord
+# bindsym Mod4+d workspace $ws6; exec riot-desktop
 # bindsym Mod4+i workspace $ws6; exec firefox -new-window https://riot.im/app/#/home
 bindsym Mod4+k workspace $ws6; exec slack
 
@@ -476,7 +477,7 @@ set $bar_trans 00
 set $main_ws_trans aa
 bar {
   i3bar_command i3bar -t 
-  {{ if eq .chezmoi.fullHostname "x1-carbon" }}
+  {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 17
   {{ else }}
   # font pango:$sb_font 17
@@ -506,7 +507,7 @@ bar {
 
 bar {
   output $secondary
-  {{ if eq .chezmoi.fullHostname "x1-carbon" }}
+  {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 18
   {{ else }}
   font pango:$sb_font 20

@@ -176,4 +176,4 @@ export GPG_TTY=$(tty)
 export PASSWORD_STORE_CLIP_TIME=120
 
 #exec fish
-source ~/aliases/.key_aliases
+source /home/kevin/aliases/.key_aliases
