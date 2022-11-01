@@ -7,14 +7,15 @@
 # clear screen
 c "printf '\033c'"
 d "cd ~/Downloads && printf '\033c'"
+e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
-nft "printf '\033c' && neofetch"
+nfth "printf '\033c' && neofetch"
 fi "fish"
 # reload urxvt
 ru "xrdb ~/.Xresources && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null"
 
-dua "sudo du -h --apparent-size | sort -h"
+dua "du -ah --apparent-size | sort -h"
 # list file sizes in megabytes with depth 1
 # duh "sudo du -d 1 -h --apparent-size | sort -h"
 # dum "sudo du -d 1 -m --apparent-size | sort -h"
@@ -22,14 +23,22 @@ duh "du -d 1 -h --apparent-size | sort -h"
 dum "du -d 1 -m --apparent-size | sort -h"
 # m "man"
 td "tldr"
+whi "whereis"
 
 # ]]] basic #
 
 # display [[[ #
 
 # nvt "nvidia-settings --assign CurrentMetaMode='DVI-I-1: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}, HDMI-0: nvidia-auto-select +3840+0 {ForceCompositionPipeline=On}'"
+
+{{ if eq .chezmoi.hostname "nzxt" }}
+xra "xrandr --auto"
+xrs "xrandr --auto && xrandr --output HDMI-0 --right-of DVI-I-1"
+xrn "xrandr --output HDMI-0 --rotate normal && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
+xrr "xrandr --output HDMI-0 --rotate right && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
+{{ end }}
+
 {{ if eq .chezmoi.hostname "x1-carbon" }}
-xr "xrandr"
 xro "xrandr --output HDMI2 --off" 
 xrl "xrandr --output HDMI2 --auto --left-of eDP1 --scale 1.33x1.33 && xrandr --output eDP1 --panning 2560x1440+2554+0"
 xrr "xrandr --output HDMI2 --auto --right-of eDP1 --scale 1.33x1.33"
@@ -40,21 +49,26 @@ xrs "xrandr -s 0"
 # ]]] display #
 
 ngb "sudo nvim /etc/default/grub"
-mkgb "sudo grub-mkconfig -o /boot/grub/grub.cfg"
+mgb "sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 # a "bat"
-ba "bat"
+b "bat"
 # ba "bat *"
 awkp "awk -F',' '{print \$0}'"
+cpr "cp -r"
+fde "fd -e"
 grep "grep --color=auto -n"
 grpr "grep -r"
-rg "rg -S"
+rgc "rg -i"
+rge "rg -t"
+xa "xargs"
 # pk "pkill -f"
 cld "colordiff -wy --suppress-common-lines"
 
 mkpk "makepkg -sri"
 ex "chmod +x"
 lns "ln -s"
+src "source"
 
 # systemctl  [[[ #
 ct "sudo systemctl"
@@ -79,20 +93,46 @@ ncs "sudo systemctl stop netctl-auto@wlp3s0.service"
 
 # ssh [[[ #
 
+# ss "ssh"
 cpssh "ssh-copy-id -i ~/.ssh/id_rsa.pub"
 xcssh "bat ~/.ssh/id_rsa.pub | xclip -selection clipboard"
-sp "mosh --ssh='ssh -p 8022' 192.168.0.12"
+# digital ocean
 ssd "mosh --ssh='ssh -p 399' kevin@165.22.239.234 tmux a"
-sfd "sftp -P 399 kevin@165.22.239.234"
 sdh "mosh --ssh='ssh -p 399' kevin@165.22.239.234 htop"
+scd "scp -P 399 kevin@165.22.239.234"
+sfd "sftp -rP 399 kevin@165.22.239.234"
+# phone [[[ #
+
+ssp "mosh --ssh='ssh -p 8022' $PHONE_IP"
+scpp "scp -P 8022 $PHONE_IP:"
+sfp "sftp -rP 8022 $PHONE_IP"
+rsp "rsync --ignore-existing -Ptre 'ssh -p 8022' $PHONE_IP:"
+
+# ]]] phone #
+
+# pixel [[[ #
+
+sspx "mosh --ssh='ssh -p 8022' $PIXEL_IP"
+scpx "scp -P 8022 $PIXEL_IP:"
+sfpx "sftp -rP 8022 $PIXEL_IP"
+rspx "rsync --ignore-existing -Ptre 'ssh -p 8022' $PIXEL_IP:"
+
+# ]]] pixel #
+
+# vultr
+ssa "mosh atxadmin@45.32.87.10"
+ssv "mosh kevin@45.32.87.10"
+
+
 # test server sites
-svp "firefox git.ataraxy.tk khkm.tk cal.khkm.tk pste.gq smol.gq twem.tk"
+# svp "firefox git.ataraxy.tk khkm.tk cal.khkm.tk pste.gq smol.gq twem.tk"
 # postgres ssh tunnel
 sdt "ssh kevin@165.22.239.234 -L 5433:localhost:5432"
 
 # ]]] ssh #
 
 wh "watch"
+w60 "watch -n60 '"
 ct "crontab"
 cte "crontab -e"
 
@@ -100,21 +140,26 @@ wm "sudo wifi-menu"
 
 # mounting [[[ #
 udm "udisksctl mount -b"
+udmi "ifuse /mnt/ipad"
 udmb "udisksctl mount -b /dev/sdc2"
 udu "udisksctl unmount -b"
 udub "udisksctl unmount -b /dev/sdc2"
+udui "umount /mnt/ipad"
 
 # ]]] mounting # 
 
-tch "touch"
-vdr "vidir --verbose"
+tc "touch"
+vd "vidir --verbose"
 
 # directory-related [[[ #
 
 {{ if not (eq .linux_os "termux") }}
 l "lsd -F --group-dirs first"
 la "lsd -AF --group-dirs first"
+ld "lsd -F --group-dirs first -d */"
 ll "lsd -lF --group-dirs first --size short"
+lld "lsd -lF --group-dirs first --size short -d */"
+llr "lsd -lF --group-dirs first --size short -tr"
 lla "lsd -AlF --group-dirs first --size short"
 {{ else }}
 l "ls"
@@ -128,12 +173,13 @@ f "cd"
 fz "fzf -e"
 fbg "cd ~/Pictures/Backgrounds && ranger --selectfile (fzf -e --delimiter '/' --with-nth -1)"
 fnd "find . -type f -name"
+# p "pwd"
 
 rmr "rm -rf"
-rmd "rm ~/Downloads/*"
+# rmd "rm ~/Downloads/*"
 rmw "rm ~/.local/share/nvim/swap/"
 md "mkdir -p"
-rsy "rsync -Pr"
+rsy "rsync --ignore-existing -Ptr"
 
 # list all (un)mounted drives
 lhd "sudo fdisk -l"
@@ -143,7 +189,9 @@ ds "df -h | head -n 1 && df -h | grep sd"
 chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
-nbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
+lbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
+
+uzl "unzip -l"
 
 # ]]] directory-related #
 
@@ -151,12 +199,14 @@ nbu "cd /run/media/kevin/backup-hd/{{ .chezmoi.hostname }}/tar && lsd -l"
 
 s "systemctl suspend"
 sl "i3lock-fancy && systemctl suspend"
-x "exit"
 so "xset dpms force off"
+xx "exit"
+sof "xset dpms force off"
+son "xset s off -dpms"
 sd "tmux kill-server; systemctl poweroff"
-rb "systemctl reboot"
-lo "i3-msg exit"
-xm "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
+rb "tmux kill-server; systemctl reboot"
+lgo "i3-msg exit"
+x "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
 X "xmodmap ~/.Xmodmap && xset r rate $XSET_DELAY $XSET_RATE"
 {{ if eq .chezmoi.hostname "x1-carbon" }}
 xl "xmodmap ~/.Xmodmap-laptop && xset r rate $XSET_DELAY $XSET_RATE"
@@ -239,12 +289,15 @@ apu "apt upgrade"
 
 # python [[[ #
 
-py "python"
+p "python"
+# py "python"
+py2 "python2"
 # pyt "printf '\033c' && pytest -vvs"
-pyt "clear && tmux clear-history && pytest -vvs"
+# pyt "clear && tmux clear-history && pytest -vvs"
+pyt "clear && tmux clear-history && pytest --cov"
 pyts "clear && tmux clear-history && pytest -vv"
 pyu "python -m unittest"
-pipi "pip install --user"
+pipi "pip install"
 spipi "sudo pip install"
 
 # ]]] python #
@@ -279,25 +332,44 @@ mst "sudo rm ~/st/config.h && sudo bear make -C ~/st install"
 # applications  [[[ #
 
 # silent="> /dev/null 2>&1& "
+13 "rot13"
 am "antimicro"
 # task [[[ #
 
 a "task"
 aa "task add"
-aa3 "task add proj:sch +324"
 aal "task add proj:lnx"
 aap "task add proj:"
 aas "task add proj:sch"
+# aam "task add proj:ms"
+aam "task add proj:mny"
+aap "task add proj:"
+# aacm "task add proj:codm"
+aacr "task add proj:crim"
+aaj "task add proj:pey +jira []"
+aapp "task add proj:pogo"
+aas "task add proj:sch"
+aay "task add proj:pey"
 ac "task context"
 acn "task context none && task"
 ach "task context home && task"
+acm "task context mny && task"
 aco "task context out && task"
+acp "task context pey && task"
+acnp "task context not-pey && task"
 acs "task context sch && task"
-acpl "task completed"
 af "task proj:"
-al "task limit:10"
+afcm "task proj:codm"
+afcr "task proj:crim"
+afs "task proj:sch"
+afy "task proj:pey"
+aj "task +jira"
+apl "task completed"
+al "task limit:15"
+alg "task log"
+algy "task log proj:pey"
 ans "task +next"
-ao "taskopen"
+ao "taskopen -A"
 asm "task summary"
 awt "task waiting"
 ay "task sync"
@@ -306,7 +378,7 @@ ay "task sync"
 # buku [[[ #
 
 # b "buku"
-bd "buku -za '"
+bd "buku -a '"
 bdb "sqlitebrowser ~/.local/share/buku/bookmarks.db &"
 bh "buku -h | bat"
 bi "buku --immutable 1 -zu"
@@ -320,72 +392,113 @@ bsv "bukuserver run --host 127.0.0.1 --port 5001"
 bt "buku --deep -n5 -t"
 bu "buku -zu"
 but "buku -zu --tag"
-bw "buku --immutable 1 -zw -1"
+bw "buku --immutable 1 -w -1"
 
 # ]]] buku #
 cc "calcurse"
 ccc "calcurse -D ~/.calcurse/alt-cals/class"
+cci "calcurse -i"
 ccs "calcurse-caldav"
 chr "google-chrome"
-clc "cloc ."
+cht "chatterino"
+# clc "cloc ."
+clc "cloc . --vcs=git"
 cv "cava"
 dg "dragon-drag-and-drop -x"
-ffx "firefox"
+fx "firefox -P"
+fxd "firefox -P default"
+fxw "firefox -P work"
 fh "feh"
 fi "fish"
 gpd "gpg --decrypt"
 gpe "gpg --encrypt --recipient"
+gtm "gotop -m"
 hb "habitctl log"
 # hbe "habitctl edit"
 # hbeh "habitctl edith"
 htc "htop -s PERCENT_CPU"
 htm "htop -s PERCENT_MEM"
-i "sxiv"
+# i "sxiv"
 ia "sxiv -a"
 it "sxiv -t *"
-ki "kill -9"
+kill "kill -9"
 ka "killall"
 kd "killall Discord && killall Discord"
-kr "killall electron"
+ke "killall electron"
+kf "killall firefox"
+kag "killall gopls"
+kai "killall imwheel && imwheel"
 kt "killall thunderbird"
-# mp "mpv --volume=50"
 m "mpv"
+mp "mpv --volume=50"
+# lo "libreoffice"
+m "mpv"
+mpvv "mpv --volume=50"
+mpl "mpv --loop"
+msf "mpv --sub-file="
 mra "man ranger"
 # mt "minetest"
 n "nvim"
+nl "nload devices wlp4s0 -u M"
+nm "nomacs ."
+np "nvim --"
 ndu "ncdu"
 p3 "python3"
 pdft "pdftotext"
+pdu "pdfunite"
 pipes "pipes.sh -t 3"
+pcp "pycp"
+pmv "pymv"
 py "python"
-qc "qalc '"
-qcg "qalculate-gtk"
+q "qalc '"
+qe "qalc -e '1USD to CAD'"
+qg "qalculate-gtk"
 r "ranger"
 rbg "ranger --selectfile (grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2)"
 # rgc "printf '\033c' && rg"
 # rgc "printf '\033c' && rg"
 rgc "clear && tmux clear-history && rg -S"
 rx "redshift -x"
+scm "sc-im"
 sn "sudo nvim"
-ss "mosh"
+sqlb "sqlitebrowser"
+# ss "mosh"
 stp "termdown"
+h "termdown"
 # sw "swex"
-t  "tmux"#[[[
-ta "tmux a -t"
-tac "tmux a -t config || tmux new -s config"
+# t  "tmux"#[[[
+# ta "tmux a -t"
+tabu "tmux a -t backup || tmux new -s backup"
+tacf "tmux a -t config || tmux new -s config"
+tacm "tmux a -t codm || tmux new -s codm"
+tacr "tmux a -t crimson || tmux new -s crimson"
 taj "tmux a -t journal || tmux new -s journal"
+tarh "tmux a -t red-hat || tmux new -s red-hat"
+tar2 "tmux a -t red-hat-2 || tmux new -s red-hat-2"
+tas "tmux a -t school || tmux new -s school"
+tas2 "tmux a -t school-2 || tmux new -s school-2"
 tal "tmux a"
 tc "clear && tmux clear-history"
 tk "tmux kill-server"
+tk "tmux kill-session -t"
+tks "tmux kill-server"
 tl "tmux ls"
 tn "tmux new -s"
 tnb "tmux new -s backup"
 #]]]
 usn "usernames --num 20"
 vmd "vimdiff"
-# wg "wego"
-wg "curl -L wthr.ml"
+wg "wego"
 ytd "youtube-dl"
+wcl "wc -l"
+wcw "wc -w"
+wch "weechat"
+# wg "wego"
+wg "curl wttr.in"
+# wg "curl -L wthr.ml"
+wgm "curl -L wthr.ml/m"
+wgt "curl -L wthr.ml/t"
+yt "youtube-dl"
 z "zathura --fork"
 
 lz "unzip -l"
@@ -394,17 +507,18 @@ trx "tar xvzf"
 
 # pass  [[[ #
 
-ps "pass"
-psc "pass -c"
-pse "pass edit"
-psi "pass insert -m"
-psg "pass generate -c"
-pss "pass show"
+# p "pass"
+pc "pass -c"
+pe "pass edit"
+pi "pass insert -m"
+pg "pass generate -c"
+ps "pass show"
 
 xc "xclip -selection clipboard"
+xo "xclip -o >"
 yh "echo 'kevin.mok@live.ca' | xclip -selection clipboard"
 yg "xclip -selection clipboard ~/.password-store/social/gmail"
-yt "xclip -selection clipboard ~/.password-store/social/trapbot"
+ytb "xclip -selection clipboard ~/.password-store/social/trapbot"
 yu "echo 'kevin.mok@mail.utoronto.ca' | xclip -selection clipboard"
 
 # ]]] pass  #
@@ -416,8 +530,9 @@ w "watson"
 # start [[[ #
 
 wa "watson start"
+wacm "watson start fun +cod-mobile"
 wae "watson start && watson edit"
-wad "watson add -f '' -t ''"
+wad "watson add"
 
 we "watson edit"
 wre "watson restart"
@@ -438,18 +553,37 @@ wt "watson status"
 # log/report [[[ #
 
 wl "watson log -Gcd"
-wla "watson log -Gca -p"
-wlat "watson log -Gca -T"
+wla "watson log -Gcap"
+wlat "watson log -GcaT"
 ww "watson log -Gc"
+wwa "watson log -Gc | bat"
 wr "watson report -Gcd"
-wra "watson report -Gca -p"
-wram "watson report -Gca | rg -S '^\w.*-\s\d*h' | sort -t' ' -hk3"
-wrat "watson report -Gca -T"
+wra "watson report -Gcap"
+wram "watson report -Gca | rg -S '^\w.*-\s\d*h' | sort -t' ' -hk3 | sed 's/ - /,/' | xsv table"
+wrat "watson report -GcaT"
+wrf "watson report -Gc --from ''"
+wrm "watson report -GcmT"
 wrw "watson report -Gc"
 
 # ]]] log/report #
 
 # ]]] watson #
+
+# timetrace [[[ #
+
+tt "timetrace"
+tta "timetrace start"
+ttaa "timetrace start a3@300"
+tte "timetrace edit record latest"
+ttc "timetrace create"
+ttp "timetrace create project"
+ttlp "timetrace list projects"
+ttlr "timetrace list records today"
+ttr "timetrace report"
+tts "timetrace stop"
+ttt "timetrace status"
+
+# ]]] timetrace #
 
 # ]]] applications  #
 
@@ -468,30 +602,52 @@ gbd "git branch -D"
 gba "git branch --no-merged && echo '' && git branch --merged"
 gbu "git branch --no-merged"
 gbm "git branch --merged"
+gbr "git branch -m"
+gbu "git branch --set-upstream-to="
+gbv "git branch -vv"
 
-gsm "git submodule add"
+gsm "git submodule"
+gsma "git submodule add"
+gsmi "git submodule init"
 gsmp "git submodule foreach git pull"
-
+gsmu "git submodule update --recursive --remote"
+ 
 gmg "git merge"
+gmga "git merge --abort"
+gmgs "git merge --squash"
+gmgts "git merge -X theirs"
 gmgt "git mergetool"
 
 gr "git remote -v"
 gra "git remote add origin"
-# grag "git remote add gitea git@ataraxy.tk:Kevin-Mok/.git"
+grao "git remote add orig"
+grag "git remote add gitea ssh://git@git.kevin-mok.com:399/Kevin-Mok/"
 
 grr "git remote remove origin"
-grs "git remote show origin"
-gru "git branch --set-upstream-to=origin/master master"
+gru "git branch --set-upstream-to=origin/main main"
 
 # ]]] branch  #
+
+gt "git tag"
+gta "git tag -as"
+gtd "git tag -d"
 
 # add/remove [[[ #
 
 ga "git add -A && git status -u"
 gac "git add -A && git commit -S"
 gaf "git add -f"
+gal "git lfs track"
 # unsigned commt
 gacu "git add -A && git commit"
+
+glf "git lfs"
+# glfi "git lfs install"
+# glfp "git lfs pull"
+glfp "git lfs install && git lfs pull"
+glft "git lfs track *"
+
+gm "git mv"
 
 grm "git rm"
 grmf "git rm -f"
@@ -507,11 +663,20 @@ gd "git diff -w"
 gdc "git diff --cached -w"
 gdh "git diff --cached -w HEAD~1"
 gds "git diff --stat"
+gdsc "git diff --stat --cached -w"
 gdt "git difftool -w --tool=vimdiff"
 gdtc "git difftool -w --cached --tool=vimdiff"
-gl "git log"
-glm "git log master"
-gsl "git shortlog"
+gl "git log -5"
+gl1 "git log --oneline"
+gl1x "git log --oneline -1 | xclip -selection clipboard"
+gla "git log"
+glm "git log main"
+glr "git log --reverse"
+gqs "git-quick-stats -T"
+# gsl "git shortlog"
+gsh "git show"
+gshh "git show HEAD"
+gshs "git show --stat"
 
 # ]]] diff/log #
 
@@ -519,35 +684,53 @@ gsl "git shortlog"
 
 gcl "git clone"
 gs "git status -u"
-gf "git fetch origin"
-gfg "git fetch gitea"
+gf "git fetch"
+gfa "git fetch --all"
+gfo "git fetch orig"
 
 gch "git checkout"
 gchn "git checkout -b"
-gchm "git checkout master"
+gchm "git checkout main"
+gchms "git checkout master"
 gchnw "git checkout -b wip"
 gchw "git checkout wip"
-gchfh "git checkout HEAD --"
+gchh "git checkout HEAD --"
 
-grom "git reset --hard origin/master"
-gheadm1 "git reset --hard HEAD~1"
+# grss "git reset --soft HEAD~1"
+# grs "git reset --hard"
+# grso "git reset --hard origin/main"
+# grsh "git reset --hard HEAD"
+# grsh1 "git reset --hard HEAD~1"
+grs "git reset --soft"
+grs1 "git reset --soft HEAD~1"
+grs1c "git reset --soft HEAD~1 && git commit --amend --no-edit -S"
+grso "git reset --soft orig/main"
+grsh "git reset --hard"
+grsho "git reset --hard origin/main"
+grshh "git reset --hard HEAD"
+grshh1 "git reset --hard HEAD~1"
 # show files in git repo
 # gls "git ls-tree -r HEAD --name-only"
 gls "git ls-tree HEAD --name-only"
 
 gchp "git cherry-pick"
+gchpt "git cherry-pick --strategy=recursive -X theirs"
 gchpc "git cherry-pick --continue"
 
-gst "git stash"
+gst "git stash push -m ''"
 gstl "git stash list"
 gstp "git stash pop"
 gsts "git stash show stash@\{0\} -p"
-gclear "git stash clear"
+gstcl "git stash clear"
 
 gpl "git pull --rebase"
+gplo "git fetch origin && git pull --rebase . origin/main"
 grb "git rebase -i"
 grba "git rebase --abort"
 grbc "git rebase --continue"
+
+grl "git reflog"
+grlc "git checkout HEAD@{1}"
 
 # ]]] pull #
 
@@ -561,11 +744,16 @@ gcap "git add -A && git commit --amend --no-edit -S && git push --force"
 
 psgi "git add -A && git commit -m 'Update' -S && git push"
 gps "git push"
+gpso "git push origin"
+gpsoh "git push -f origin HEAD:"
 gpsg "git push gitea"
+gpsk "git push kevin"
+gpsdl "git push origin --delete"
 # gpsi "git config credential.helper store && git push"
-# gpsn "git push --set-upstream origin master"
+# gpsn "git push --set-upstream origin main"
 gpsn "eval (git push 2>&1 | tail -n 2)"
 gpsf "git push --force"
+gpsu "git push --set-upstream origin"
 
 # assume file unchanged
 gunc "git update-index --assume-unchanged"
@@ -576,16 +764,28 @@ gunc "git update-index --assume-unchanged"
 
 # coding projs  [[[ #
 
+# pm "python main.py"
+pmn "python main.py"
+tld "tldr"
 # fsl "zathura --fork ~/coding/fastest-languages.pdf"
 fsl "bat ~/Documents/fastest-languages/fastest-languages.md"
 rgt "rg TODO"
 
+# django [[[ #
+
+# pmn "python manage.py"
+pm "python manage.py"
+pmk "python manage.py makemigrations"
+pmg "python manage.py migrate"
+
+# ]]] django #
+
 # make [[[ #
 
-ma "printf '\033c' && bear make"
-mc "bear make clean"
-mca "bear make clean && printf '\033c' && bear make"
-rmc "rm compile_commands.json"
+# ma "printf '\033c' && bear make"
+# mc "bear make clean"
+# mca "bear make clean && printf '\033c' && bear make"
+# rmc "rm compile_commands.json"
 
 # ]]] make #
 
@@ -603,7 +803,7 @@ zp "chezmoi -v apply"
 # spotify-lib-vis [[[ #
 
 # start spv server outside dir
-ssv "source ../bin/activate.fish && python manage.py runserver"
+psv "source ../bin/activate.fish && python manage.py runserver"
 # open spv db in psql
 spvdb "psql -d spotifyvis -U django"
 mig "python manage.py makemigrations && python manage.py migrate --run-syncdb && ssv"
@@ -616,7 +816,7 @@ upip "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xa
 ureq "pip freeze > requirements.txt"
 
 # show last history scan
-hlg "psql -d spotifyvis -a -f /home/kevin/coding/spotify-lib-vis/src/scripts/history.sql | rg 2019 | tac"
+hlg "psql -U postgres -d spotifyvis -a -f /home/kevin/coding/spotify-lib-vis/src/scripts/queries/history.sql | rg 2021 | tac"
 slg "tail -n 5 $spv_dir/src/api/management/commands/update-history.log"
 # scan history
 # hs "$spv_dir/src/update-history.sh && cat $spv_dir/src/api/management/commands/update-history.log | tail -n 1"
@@ -643,7 +843,8 @@ wr0 "watson report --all --project=309 --tag=phase2"
 
 # server [[[ #
 
-# nd "node"
+no "node"
+noe "node --experimental-json-modules"
 ndm "nodemon"
 knd "killall node"
 mg "mongo"
@@ -651,7 +852,7 @@ mg "mongo"
 0ht "cd ~/school/309-proj && python3 -m http.server"
 mgd "mongod --dbpath mongo-data"
 # nds "killall node && nodemon server.js"
-nds "nodemon server.js"
+# nds "nodemon server.js"
 
 # ]]] server #
 
@@ -671,11 +872,12 @@ gpsh "git push heroku"
 
 # mfs [[[ #
 
-ht "python3 -m http.server"
+pyh "python -m http.server"
 # j "jekyll"
 # js "jekyll serve"
-h "hugo"
-he "hugo serve -D --disableFastRender"
+hg "hugo"
+hgs "hugo serve --disableFastRender"
+hgp "hugo server -D --disableFastRender --bind 192.168.0.10 --baseURL 'http://192.168.0.10:1313'"
 
 # ]]] mfs #
 
@@ -689,7 +891,8 @@ mm "printf '\033c' && bear make clean move_mouse_with_head && ./move_mouse_with_
 med "printf '\033c' && bear make clean eye_detector && ./eye_detector"
 mft "printf '\033c' && bear make clean face_detector && ./face_detector"
 rft "~/coding/face-tracker/face_detector > /tmp/move_mouse_with_head.out"
-gpsb "git push bitbucket"
+# gpsb "git push bitbucket"
+gpsb "git push bot"
 
 # ]]] ada-mario #
 
@@ -699,25 +902,91 @@ dea "deactivate"
 whe "watch echo"
 nst "cp ~/Documents/workout-logs/stretching.md /tmp && nvim /tmp/stretching.md"
 
+# Red Discord bot
+rde "pyenv shell red-discord-bot-test"
+rbd "redbot --dev --debug"
+
+lo7 "libreoffice ~/Documents/expenses/2021.ods &"
+
+nps "npm start"
+
+# rarity surf [[[ #
+
+# po "python ~/coding/rarity-sniper/opensea.py | tail -n30"
+# po "python ~/coding/rarity-sniper/opensea.py"
+# poa "python ~/coding/rarity-sniper/opensea.py"
+# pp "python scrape.py"
+# pr "python rarity.py"
+# pu "python ~/coding/rarity-sniper/opensea.py update"
+
+po "python manage.py opensea"
+pr "python manage.py rarity"
+bz "python manage.py rarity -t Bitz -n"
+pmp "python manage.py makemigrations project"
+srs "source ~/.venv/rarity-sniper/bin/activate.fish"
+
+yra "yarn add"
+yrb "yarn build"
+yrbs "yarn build && serve -s build"
+yrr "yarn remove"
+yrs "yarn start"
+sv "serve -s build"
+
+ssrr "mosh root@161.35.107.30"
+ssr "mosh 161.35.107.30"
+
+# ]]] rarity surf #
+
+
+
 # ]]] coding projs  #
 
 # games [[[ #
 
 {{ if eq .chezmoi.hostname "nzxt" }}
 wlm "watson log --all --project=minetest"
-wrm "watson report --all --project=minetest"
+# wrm "watson report --all --project=minetest"
 wamv "watson start minetest +video"
 
+# minetest [[[ #
+
 mtg "minetest"
-ms "minetestserver"
-msc "minetestserver --gameid minetest --worldname Creative --terminal"
-# msh "minetestserver --gameid minetest --worldname Hevin --config ~/.minetest/hevin.conf --terminal"
-msh "minetestserver --gameid mineclone2 --worldname Hevin-MC --config ~/.minetest/hevin-mc.conf --terminal"
-msv "minetestserver --gameid minimal --worldname Test --terminal"
+mts "minetestserver"
+mtsc "minetestserver --gameid minetest --worldname Creative --terminal"
+# mtsh "minetestserver --gameid minetest --worldname Hevin --config ~/.minetest/hevin.conf --terminal"
+mtsh "minetestserver --gameid mineclone2 --worldname Hevin-MC --config ~/.minetest/hevin-mc.conf --terminal"
+mtsv "minetestserver --gameid minimal --worldname Test --terminal"
 # mtrsy "rsync -vr .minetest/ /mnt/linux-files/.minetest/"
 
 tet "pandoc -f markdown -t html twitch-emote-conversion.md | xclip -selection clipboard"
 {{ end }}
+# ]]] minetest #
+
+# tet "pandoc -f markdown -t html twitch-emote-conversion.md | xclip -selection clipboard"
+shrg "printf '¯\\\\\\\\\\_(ツ)_/¯' | xclip -selection clipboard"
+
+dcec "mono DiscordChatExporter.Cli.exe"
+dcec "mono DiscordChatExporter.Cli.exe export -t $DISCORD_TOKEN -c"
+
+ifm "sxiv ~/Documents/fortnite/maps/boat-campfire-slurp.png"
+
+# twitchy [[[ #
+
+tw "twitchy"
+twa "twitchy -a"
+twd "twitchy -d"
+tws "twitchy -s"
+twf "watch -n300 'twitchy-game Fortnite'"
+# mp "mpv --video-zoom=1.5"
+# ufn "source trn-api-key.fish && curl --request GET --url https://api.fortnitetracker.com/v1/profile/pc/Vole%20on%20Mobile --header 'trn-api-key: 584d8eca-30d9-4119-92d8-5067dd301118' --cookie __cfduid=d4f0daac7eee3687b481bd55dcf00f3581581900091 > stats.json"
+
+# ]]] twitchy #
+
+lob "lsd -F --group-dirs first 2020*.mkv"
+wob "watch -n60 'lsd -lF --group-dirs first --size short 2020*.mkv'"
+
+fnp "t timeline FNProgress | sed -n '2p'"
+fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
 
 # ]]] games #
 
@@ -726,12 +995,195 @@ tet "pandoc -f markdown -t html twitch-emote-conversion.md | xclip -selection cl
 # basic
 # wlf "watson log --all --tag=final"
 # wrf "watson report --all --tag=final"
+gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-rk "clear && tmux clear-history && raco test"
-rka "clear && tmux clear-history && raco test hubbub_test_sample.rkt"
-rkr "clear && tmux clear-history && racket"
-# hk "clear && tmux clear-history && runhaskell TestChups.hs"
-hk "clear && tmux clear-history && runhaskell"
+# alg course
+jc "javac -d out *.java"
+jr "java -cp \"$CLASSPATH:out\""
+
+# 263
+wl6 "watson log --all --project=263 --tag=a5"
+wr6 "watson report --all --project=263 --tag=a5"
+z6 "zathura --fork ~/school/263/Introduction-to-Algorithms-CLRs/Introduction\ to\ Algorithms\ -\ 3rd\ Edition.pdf"
+pd6 "pdflatex a5"
+
+spc "source ~/.venv/price-calc/bin/activate.fish"
+scv "source ~/.venv/covid-monitor/bin/activate.fish"
+fr "flask run"
+pmd "python manage.py db"
+pmdm "python manage.py db migrate"
+pmdu "python manage.py db upgrade"
+# pt "pytest --cov"
 
 # ]]] school  #
+
+# red-hat [[[ #
+
+vpu "nmcli con up id '1 - Red Hat Global VPN' --ask"
+vpd "nmcli con down id '1 - Red Hat Global VPN'"
+
+loe "libreoffice ~/Documents/expenses/2021.ods &"
+loi "libreoffice ~/Documents/expenses/investments.ods &"
+
+# laptop
+# gcfr "git config user.email 'kmok@redhat.com' && git config user.signingkey 10B001347552F396"
+gchk "git checkout KOGITO-"
+gchnk "git checkout -b KOGITO-"
+gch3 "git checkout KOGITO-1031-diff-3"
+
+# ssh [[[ #
+
+ssw "mosh $WORK_LAPTOP_IP tmux a"
+ssw2 "mosh $WORK_LAPTOP_IP -- tmux a -t nzxt-2"
+ssi "mosh $WORK_LAPTOP_IP -- tmux a -t weechat"
+scw "scp $WORK_LAPTOP_IP:"
+sfw "sftp $WORK_LAPTOP_IP"
+
+# ]]] ssh #
+
+fp "fpaste"
+ghr "github-release"
+
+# oc [[[ #
+
+o "kubectl"
+oa "kubectl apply -f"
+ocr "kubectl create"
+ocf "kubectl create ns kogito; kubectl config set-context --current --namespace=kogito"
+oct "kubectx"
+od "kubectl describe"
+odd "kubectl describe deployment"
+odp "kubectl describe pod"
+odi "kubectl describe kogitoinfra"
+odr "kubectl describe kogitoruntime"
+odl "kubectl delete"
+odlf "kubectl delete -f"
+odlb "kubectl delete kogitobuild"
+odlc "kubectl delete configmap"
+odlp "kubectl delete pod"
+odlpj "kubectl delete project"
+odlr "kubectl delete kogitoruntime"
+oex "kubectl exec"
+oed "kubectl edit"
+og "kubectl get"
+oga "kubectl get all"
+ogd "kubectl get deployment"
+ogp "kubectl get pods"
+ogw "watch kubectl get pods"
+ogb "kubectl get kogitobuild"
+ogc "kubectl get configmap"
+ogi "kubectl get imagestream"
+ogn "kubectl get"
+ogr "kubectl get kogitoruntime"
+ogs "kubectl get service"
+ogsm "kubectl get servicemonitor"
+ol "kubectl logs -f"
+oli "kubectl login -u kubeadmin -p"
+on "kubectl new-project"
+op "kubectl project"
+opa "kubectl projects | rg kogito"
+opd "kubectl project default"
+ot "kubectl status"
+
+# ]]] oc #
+
+# jenkins [[[ #
+
+jk "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN"
+jkb "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN build -s -v"
+jkc "java -jar ~/java/jenkins-cli.jar -s http://localhost:8090 -auth kevin:$JENKINS_TOKEN console -f"
+
+# ]]] jenkins #
+
+# maven [[[ #
+
+mvc "mvn clean"
+mvci "mvn clean install -Dfull"
+mvi "mvn install -Dfull"
+# mvps "mvn package -DskipTests"
+mvp "mvn clean package -DskipTests"
+mvpr "mvn clean package -DskipTests && ./server-control.sh start"
+# mvt "mvn test"
+# mvct "mvn clean test"
+
+# ]]] maven #
+
+# make [[[ #
+
+mk "make"
+mb4 "make before-pr"
+mbc "make build-cli && scp build/_output/bin/kogito $WORK_LAPTOP_IP:/home/kmok/go/bin"
+mc "make clean"
+mct "make clean test"
+mi "make install"
+ml "make lint"
+mr "make run"
+mt "make test"
+# mvet "make vet"
+# mvett "make vet test"
+mvt "make vet"
+mvtt "make vet test"
+
+# ]]] make #
+
+# kg "kogito"
+
+# minikube [[[ #
+
+# mb "minikube"
+mba "minikube start"
+mbd "minikube delete"
+mbs "minikube stop"
+mbt "minikube status"
+
+# ]]] minikube #
+
+# go [[[ #
+
+gor "go run"
+gom "DEBUG=true go run main.go"
+got "go test"
+gota "go test *"
+gotd "go mod tidy"
+
+# ]]] go #
+
+# docker [[[ #
+
+dk "docker"
+dkb "docker build"
+dki "docker image"
+dkp "docker push"
+dks "docker images"
+
+# ]]] docker #
+
+sb "ansible"
+sbp "ansible-playbook"
+
+# helm [[[ #
+
+# h "helm"
+hd "helm delete"
+hi "helm install"
+him "helm install --set openshift=false"
+ht "helm template"
+hu "helm upgrade"
+
+# ]]] helm #
+
+# ]]] red-hat #
+
+# tet "ticker (cat ~/Documents/expenses/etf.md) | xclip -selection clipboard"
+tet "ticker (xclip -o) | xclip -selection clipboard"
+
+# vpn [[[ #
+
+eip "curl ifconfig.me"
+fdb "firefox -P discord-"
+sip "curl ifconfig.me"
+vpc "nordvpn connect && curl ifconfig.me"
+vpd "nordvpn disconnect"
+
+# ]]] vpn #

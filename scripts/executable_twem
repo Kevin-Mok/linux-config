@@ -1,7 +1,13 @@
-#!/bin/bash
+#!/bin/dash
 
+# for i in {1..4} ; do
+    # xdotool key Left
+# done
 sleep .3
 xdotool type 'https://twem.gq/.png'
-for i in {1..4} ; do
+i=0
+while [ "$i" -ne 4 ]
+do
     xdotool key Left
+    i=$((i + 1))
 done

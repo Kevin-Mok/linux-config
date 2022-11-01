@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat ~/Documents/twitch-emotes.md | dmenu -i | sed -z 's/\n/ /' | xclip -selection clipboard

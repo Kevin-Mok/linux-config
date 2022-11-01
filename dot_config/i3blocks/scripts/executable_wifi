@@ -18,7 +18,6 @@
 
 INTERFACE="${BLOCK_INSTANCE:-wlan0}"
 # echo $INTERFACE
-# INTERFACE="${INSTANCE}"
 
 #------------------------------------------------------------------------
 
@@ -29,7 +28,7 @@ INTERFACE="${BLOCK_INSTANCE:-wlan0}"
 
 #------------------------------------------------------------------------
 
-QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+QUALITY=$(sudo grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 # echo $QUALITY
 W_inter=$(ip link | grep "[1-9]: wlp" | cut -d " " -f2 | tr -d ':')
 W_name=$(nmcli d | grep "$W_inter" | awk '{print $4}')

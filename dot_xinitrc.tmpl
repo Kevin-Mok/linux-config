@@ -1,5 +1,6 @@
 xrandr --setprovideroutputsource modesetting NVIDIA-0
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+# [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 # xrandr --auto
 {{ if .ext_kb }}
 xmodmap ~/.Xmodmap
@@ -7,7 +8,8 @@ xmodmap ~/.Xmodmap
 # xmodmap ~/.Xmodmap-laptop
 xmodmap ~/tmp/.Xmodmap-laptop
 {{ end }}
-redshift -O 2000
+# redshift -O 2000
+redshift -O 3000
 xset r rate $XSET_DELAY $XSET_RATE
 # exec /home/kevin/Downloads/dwm/reload-dwm.sh
 
@@ -19,7 +21,8 @@ numlockx on &
 start-pulseaudio-x11 &
 
 # wal -i "$(/home/kevin/scripts/shuffler \"$HOME/Pictures/Backgrounds/dim/non-editing\")" && /home/kevin/st/make-st.sh &
-wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") &
+# wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") &
+wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editing") &
 {{ end }}
 exec i3
 

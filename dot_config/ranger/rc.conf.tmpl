@@ -166,8 +166,9 @@ set autoupdate_cumulative_size false
 set show_cursor false
 
 # One of: size, natural, basename, atime, ctime, mtime, type, random
-set sort natural
+# set sort natural
 # set sort extension
+set sort mtime
 
 # Additional sorting options
 set sort_reverse false
@@ -666,9 +667,10 @@ set preview_images true
 # * urxvt-full:
 #   The same as urxvt but utilizing not only the preview pane but the
 #   whole terminal window.
-set preview_images_method w3m
+# set preview_images_method w3m
 # set preview_images_method ueberzug
-# set preview_images_method urxvt
+# set preview_images_method kitty
+set preview_images_method urxvt
 # set preview_images_method urxvt-full
 
 #  ]]] image preview # 
@@ -681,7 +683,8 @@ map rr source ~/.config/ranger/rc.conf
 
 #  backgrounds [[[ # 
 
-map w shell /usr/bin/wal -i %f && sudo ~/st/make-st.sh
+# map w shell /usr/bin/wal -i %f && sudo ~/st/make-st.sh
+map w shell /usr/bin/wal -i %f
 map bde shell mv %f /home/kevin/Pictures/Backgrounds/dim/editing
 map bdn shell mv %f /home/kevin/Pictures/Backgrounds/dim/non-editing
 map bbe shell mv %f /home/kevin/Pictures/Backgrounds/bright/editing

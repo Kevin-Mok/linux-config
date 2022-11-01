@@ -14,11 +14,12 @@ set expandtab
 " set foldmethod=indent
 set foldmethod=marker
 set hlsearch
-set ignorecase
+" set ignorecase
 set linebreak
 set linespace=5
 set mouse=a
 " set mouse=c
+set nofixendofline
 " set noswapfile
 set relativenumber
 set shiftwidth=4
@@ -26,11 +27,11 @@ set smartcase
 set tabstop=4
 " set t_Co=256
 " set termguicolors
-" set timeoutlen=350
-set timeoutlen=200
-" set tw=80
+set timeoutlen=350
+" set timeoutlen=200
 " set tw=75
-set tw=70
+" set tw=70
+set tw=60
 set undodir=~/.vim/undo
 set undofile
 " set updatetime=1000
@@ -58,15 +59,19 @@ autocmd CursorHold * if !bufexists("[Command Line]") | checktime | endif
 
 autocmd BufNewFile,BufRead .* set syntax=sh
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-autocmd FileType *css,gitcommit,haskell,htmldjango,html,javascript,json,lisp,
-      \markdown,racket,tex,text,yaml set ts=2 sw=2
+autocmd FileType *css,gitcommit,haskell,htmldjango,html,graphql,javascript,javascriptreact,json,lisp,markdown,
+      \racket,tex,text,yaml set tabstop=2 shiftwidth=2
 " autocmd BufNewFile,BufRead *.md set filetype=markdown
 " autocmd Filetype markdown set textwidth=0
 " autocmd Filetype html set foldmarker=0
 autocmd BufNewFile,BufRead *.gd set expandtab!
-autocmd Filetype go set expandtab! sw=4
-autocmd FileType javascript,python,lua set fdm=indent
-autocmd Filetype markdown set commentstring=<!---\ %s\ -->
+autocmd Filetype go set noexpandtab sw=4
+" autocmd FileType go,html,java,javascript,python,lua set fdm=indent
+" autocmd FileType go,html,java,javascript,javascriptreact,Jenkinsfile,python,lua set fdm=indent
+autocmd FileType go,html,java,Jenkinsfile,python,lua set fdm=indent
+" autocmd FileType html,javascript,Jenkinsfile,python,lua set fdm=indent
+autocmd BufNewFile,BufRead *.gql setfiletype graphql
+autocmd Filetype markdown let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "*":"*"}
 " autocmd Filetype markdown map <F8> :LivedownToggle<CR>
 autocmd Filetype markdown let g:AutoPairs={'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''","*":"*"}
 autocmd Filetype markdown map <F8> :InstantMarkdownPreview<CR>
@@ -77,6 +82,7 @@ autocmd Filetype markdown inoremap < <Esc><<A
 autocmd Filetype markdown inoremap << <
 autocmd Filetype markdown inoremap > <Esc>>>A
 autocmd Filetype markdown inoremap >> >
+" autocmd Filetype markdown set commentstring=<!---\ %s\ -->
 " format options [[[ "
 
 " a = auto-format paragraphs 
@@ -88,16 +94,15 @@ autocmd Filetype markdown inoremap >> >
 " v = break lines in insert 
 " w = whitespace continues paragraph
 " ]]] format options "
-" autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
-autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
-" autocmd FileType tex,text set spell spelllang=en_us formatoptions=acjMqtvw
+" autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=acjMqtvw
+autocmd FileType markdown,tex,text set spell spelllang=en_us formatoptions=cjMqtvw
+autocmd Filetype groovy,Jenkinsfile,taskdata set tw=0
 autocmd Filetype json nnoremap <leader>j :%!python -m json.tool<CR>
 autocmd Filetype json set foldmethod=marker
 autocmd Filetype racket set commentstring=;%s;
-autocmd Filetype racket let g:AutoPairs={'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+autocmd Filetype racket let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 autocmd FileType sh map <F8> :!clear && shellcheck %<CR>
-autocmd Filetype taskdata set tw=0
-autocmd FileType tex set updatetime=1000 timeoutlen=300 tw=65
+autocmd FileType tex set updatetime=1000 timeoutlen=300
 autocmd FileType tex map <F8> :VimtexCompile<CR>
 autocmd VimEnter *.tex VimtexCompile
 autocmd VimLeave *.tex !tex-clean %:p
@@ -132,7 +137,7 @@ autocmd BufNewFile,BufRead key_* map <F1> :w<CR>:silent !sync-shortcuts<CR>
 
 " ]]] commands for specific files "
 
-" vim-plug [[[ 
+" vim-plug [[[
 " plug auto-install
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -172,18 +177,27 @@ Plug 'lervag/vimtex'
 	" au BufWritePost *.tex silent call Tex_RunLaTeX()
 	au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
 	let g:Tex_MultipleCompileFormats = 'dvi,pdf'
+	" let g:vimtex_view_general_viewer = 'evince'
 	let g:vimtex_view_general_viewer = 'zathura'
-    let g:vimtex_quickfix_latexlog = {
-          \ 'overfull' : 0,
-          \ 'underfull' : 0,
-          \ 'global' : 0,
-          \ 'references' : 0,
-          \ 'unused' : 0,
-          \}
+    " let g:vimtex_quickfix_latexlog = {
+          " \ 'overfull' : 0,
+          " \ 'underfull' : 0,
+          " \ 'global' : 0,
+          " \ 'packages' : {
+          " \   'biblatex' : 0,
+          " \   'gensymb' : 0,
+          " \ },
+          " \ 'references' : 0,
+          " \ 'unused' : 0,
+          " \}
+    let g:vimtex_quickfix_ignore_filters = [
+          \'Overfull',
+          \]
     let g:vimtex_quickfix_autoclose_after_keystrokes = 5
-    " let g:vimtex_compiler_latexmk = {
+    let g:vimtex_compiler_latexmk = {
+        \ 'continuous' : 1,
+        \}
         " \ 'continuous' : 0,
-        " \}
 
 {{ if not (eq .chezmoi.username "root") }}
 " auto-completion for various languages
@@ -261,16 +275,19 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'henrik/vim-indexed-search'
 Plug 'PotatoesMaster/i3-vim-syntax'
 " vim file explorer
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-multiple-cursors'
 	" let g:multi_cursor_select_all_word_key='<C-a>'
 	let g:multi_cursor_exit_from_visual_mode=0
 	let g:multi_cursor_exit_from_insert_mode=0
 Plug 'dag/vim-fish'
 " live preview Markdown"
-" Plug 'shime/vim-livedown'
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
   let g:instant_markdown_autostart = 0
+  let g:instant_markdown_port = 8888
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+  " let g:mkdp_auto_start = 1
+  " let g:mkdp_browser = 'firefox'
+  " let g:mkdp_echo_preview_url = 1
 " git helper
 Plug 'tpope/vim-fugitive'
 " auto reload file
@@ -292,11 +309,11 @@ Plug 'kana/vim-textobj-user'
 Plug 'rbonvall/vim-textobj-latex'
 " swap words
 Plug 'tommcdo/vim-exchange'
-Plug 'scrooloose/nerdtree'
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+" Plug 'scrooloose/nerdtree'
+    " let NERDTreeQuitOnOpen=1
+    " let NERDTreeShowHidden=1
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  " Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
     " mappings [[[ "
 
@@ -322,7 +339,23 @@ Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
 Plug 'wlangstroth/vim-racket'
+Plug 'neovimhaskell/haskell-vim'
 Plug 'masukomi/vim-markdown-folding'
+  autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+Plug 'cespare/vim-toml'
+Plug 'dpelle/vim-LanguageTool'
+" increment dates with C-a
+Plug 'tpope/vim-speeddating'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  let g:go_fmt_command = ""
+Plug 'buoto/gotests-vim'
+Plug 'tomlion/vim-solidity'
+Plug 'jparise/vim-graphql'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mlaursen/vim-react-snippets', { 'branch': 'main' }
+Plug 'cristianoliveira/vim-react-html-snippets'
+Plug 'jidn/vim-dbml'
 " ]]] vim-plug "
 
 " Mappings [[[ "
@@ -372,7 +405,8 @@ nnoremap <leader>dg ggdG
 " delete entire line
 nnoremap <leader>dl 0d$
 " delete lines matching pattern
-nnoremap <leader>dls :g//d<left><left>
+" nnoremap <leader>dls :g//d<left><left>
+nnoremap <leader>dls q:ig//d<left><left>
 " show docstring for cur word
 nnoremap <leader>do :YcmCompleter GetDoc<CR>
 " delete line into system clipboard
@@ -392,11 +426,15 @@ nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>ft :se ft?<CR>
 " check todo's
 nnoremap <leader>ftd /TODO<CR>
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+" nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>g :vs \| YcmCompleter GoTo<CR>
+" nnoremap <leader>gb <C-O>
+nnoremap <leader>gb :Git blame<CR>
 " vimdiff split
 nnoremap <leader>gd :Gvdiff 
-nnoremap <leader>gdh :Gvdiff HEAD~
+nnoremap <leader>gdh :Gvdiff HEAD^
 nnoremap <leader>gdm :Gvdiff master<CR>
+nnoremap <leader>gdo :Gvdiff orig/master<CR>
 " toggle search highlighting
 nnoremap <leader>h :set hlsearch! hlsearch?<CR>
 " help
@@ -404,9 +442,13 @@ nnoremap <leader>he :vert help
 nnoremap <leader>ht :set tabstop=2 shiftwidth=2 expandtab<CR>
 nnoremap <leader>vhe :vert help 
 " don't add space when joining lines "
-nnoremap <leader>j gJ
+" nnoremap <leader>j gJ
+" jump forward
+nnoremap <leader>j <C-I>
 " join all paragraphs into single line "
 nnoremap <leader>jl :set tw=9999999<CR>gggqG
+" jump back
+nnoremap <leader>k <C-O>
 " format current line
 nnoremap <leader>l Vgq
 " format this and next line
@@ -416,6 +458,8 @@ nnoremap <leader>ll Vjgq
 nnoremap <leader>m :vert Man 
 " apply normal command to selection
 vnoremap <leader>n q:anorm 
+" turn off autoformat"
+nnoremap <leader>na :set spell spelllang=en_us formatoptions=cjMqtvw<CR>
 nnoremap <leader>nt :NERDTree<CR>
 " check if in neovim
 nnoremap <leader>nv :echo has('nvim')<CR>
@@ -434,17 +478,19 @@ nnoremap <leader>plu :PlugUpdate<CR>
 " don't break lines
 nnoremap <leader>py :set tw=0<CR>
 " replace in next x lines
-nnoremap <leader>r q:i.,.+s///g<ESC>Fsi
+" nnoremap <leader>r q:i.,.+s///g<ESC>Fsi
 " replace in line
-nnoremap <leader>rl q:i.s///g<left><left><left>
+nnoremap <leader>r q:i.s///g<left><left><left>
 " replace in visual selection
-" remove italics tags
-nnoremap <leader>rmi :%s/<\/\?i>//g<CR>
-" reload vim config
-nnoremap <leader>rv :source $MYVIMRC<CR>
 vnoremap <leader>r q:is///g<ESC>3ha
 " replace in entire file
-nnoremap <leader>R q:i%s///g<ESC>2F/i
+" nnoremap <leader>R q:i%s///g<ESC>2F/i
+nnoremap <leader>ra q:i%s///g<ESC>2F/i
+" remove italics tags
+nnoremap <leader>rmi :%s/<\/\?i>//g<CR>
+nnoremap <leader>rs :res 
+" reload vim config
+nnoremap <leader>rv :source $MYVIMRC<CR>
 vnoremap <leader>s :sort<CR>
 nnoremap <leader>sc :set spell spelllang=en_us<CR>
 " run current file in shell
@@ -460,6 +506,10 @@ nnoremap <leader>sys :set syn=sh<CR>
 vnoremap <leader>t :!tac<CR>
 " capitalize letter
 nnoremap <leader>u vU
+" comment visual block
+" nnoremap <leader>vcc V<leader>cc
+" uncomment visual block
+" nnoremap <leader>vcu V<leader>cu
 " horizontal split "
 nnoremap <leader>vs :vs 
 " open vimrc in vertical split
@@ -560,21 +610,38 @@ autocmd Filetype c inoremap <localleader>uc unsigned char
 
 autocmd BufNewFile,BufRead *.h nnoremap <localleader>x 0iextern <Esc>f{hc$;<Esc>
 
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>d Gy3kGp5e<C-V>3j<C-a>$rnj.j.j$.
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>n $rn
+autocmd BufNewFile,BufRead ~/.habitctl/log nnoremap <localleader>y $ry
+
 autocmd Filetype fish inoremap <localleader>1 $argv[1]
 autocmd Filetype fish inoremap <localleader>2 $argv[2]
 
 autocmd Filetype javascript inoremap <localleader>x process.exit()
 
-" autocmd Filetype markdown inoremap bc because
-autocmd Filetype markdown inoremap <localleader>cb - [ ] 
+autocmd Filetype markdown inoremap <localleader>c - [ ] 
+autocmd Filetype markdown nnoremap <localleader>e 0f[lr<Space>
+autocmd Filetype markdown inoremap <localleader>t TODO: 
+autocmd Filetype markdown vnoremap <localleader>r q:is/\[x/[ /g<Esc><CR>:set nohlsearch<CR>
+autocmd Filetype markdown vnoremap <localleader>x q:is/\[ /[x/g<Esc><CR>:set nohlsearch<CR>
 autocmd Filetype markdown nnoremap <localleader>x 0f[lrx
 " nnoremap <localleader>x 0f[lrx
+
+autocmd Filetype go nnoremap <localleader>f :GoTestFunc<CR>
+autocmd Filetype go nnoremap <localleader>l :GoLint<CR>
+autocmd Filetype go nnoremap <localleader>m :GoTests<CR>
+autocmd Filetype go nnoremap <localleader>r yawq:iGoRename <Esc>p
+autocmd Filetype go nnoremap <localleader>t :GoTest<CR>
 
 autocmd Filetype go-template inoremap <localleader>e {{"{{ else }}"}}
 autocmd Filetype go-template inoremap <localleader>hd {{"{{ .chezmoi.homeDir }}"}}
 autocmd Filetype go-template nnoremap <localleader>fp :%s/{{"{{{"}}/[[[/g<CR>:%s/}}}/]]]/g<CR>
 
+autocmd Filetype Jenkinsfile nnoremap <localleader>q :.s/"/'/g<CR>
+autocmd Filetype Jenkinsfile vnoremap <localleader>q :s/"/'/g<CR>
+
 autocmd Filetype python inoremap <localleader>bp breakpoint()
+autocmd Filetype python inoremap <localleader>ip from pprint import pprint
 autocmd Filetype python inoremap <localleader>s self.
 
 " ]]] Local Mappings "

@@ -1,0 +1,7 @@
+clear Lock
+
+keycode 22 = Caps_Lock
+keycode 66 = BackSpace
+keycode 78 = End
+
+pointer = 1 10 3 6 7 4 5 2 11 12 8 9

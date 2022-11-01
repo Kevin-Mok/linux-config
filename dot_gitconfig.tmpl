@@ -1,7 +1,7 @@
 [user]
-	email = kevin.mok@live.ca
+	email = kevin.mok@mail.utoronto.ca
 	name = Kevin Mok
-	signingkey = AEA75288DC135CF5
+	signingkey = C072BD80DB66DE18
 [color]
 	ui = auto
 [core]
@@ -32,3 +32,10 @@
 	s = status
 	st = stash
 	r = remote
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

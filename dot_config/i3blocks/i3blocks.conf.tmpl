@@ -13,6 +13,25 @@ color=#cbe4ff
 
 #  ]]] global # 
 
+#  ticker [[[ #
+
+# [ticker]
+# label=BTC 
+# TICKER=BTC-USD
+# interval=30
+
+[ticker]
+label=ETH 
+TICKER=ETH-USD
+interval=30
+
+# [ticker]
+# label=DAQ 
+# TICKER=^IXIC
+# interval=30
+
+#  ]]] ticker #
+
 #  volume/spotify [[[ # 
 
 {{ if eq .chezmoi.hostname "nzxt" }}
@@ -21,10 +40,21 @@ interval=once
 signal=1
 interval=60
 
+# [spotify]
+# label=
+# LONG_NAME=
+# SHORT_NAME=
+# interval=5
+
 [spotify]
+# command=python ~/linux-config/configs/i3blocks-scripts/spotify.py
+# label=
 label= 
-LONG_NAME=
-SHORT_NAME=
+# label=🎧
+# green
+# color=#198c19
+# aqua
+# color=#2d7272
 interval=5
 {{ end }}
 
@@ -47,6 +77,13 @@ label=
 interval=5
 {{ end }}
 
+# {{ if eq .chezmoi.hostname "nzxt" }}
+# [wifi]
+# label=
+# instance=wlp4s0
+# interval=10
+# {{ end }}
+
 #  ]]] laptop # 
 
 #  time [[[ # 
@@ -54,11 +91,12 @@ interval=5
 [calendar]
 interval=30
 label= 
-{{ if eq .chezmoi.hostname "nzxt" }}
-DATEFMT=+%H:%M
-{{ else }}
+# {{ if eq .chezmoi.hostname "nzxt" }}
+# DATEFMT=+%H:%M
+# {{ else }}
+# DATEFMT=+%H:%M.%a-%m-%d
+# {{ end }}
 DATEFMT=+%H:%M.%a-%m-%d
-{{ end }}
 # SHORTFMT=+%H:%M:%S
 HEIGHT=180
 WIDTH=220
@@ -68,31 +106,18 @@ WIDTH=220
 #  sys.monitoring [[[ # 
 
 {{ if eq .chezmoi.hostname "nzxt" }}
-# [wifi]
-# label=
-# instance=wlp4s0
-# interval=10
-
-[temperature]
-label= 
-interval=5
-
-# unbold this?
-# [load_average]
-# label=
+# [temperature]
+# label=
 # interval=5
-# color=#990000
-{{ end }}
 
-[cpu_usage]
-label= 
-interval=5
+# [cpu_usage]
+# label=
+# interval=5
 
-{{ if eq .chezmoi.hostname "nzxt" }}
-[memory]
-label= 
-# color=#3da061
-interval=5
+# [memory]
+# label=
+# # color=#3da061
+# interval=5
 
 #  ]]] sys.monitoring # 
 

@@ -1,0 +1,34 @@
+[Default Applications]
+text/html=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-DQE3YZ.desktop
+message/rfc822=userapp-Thunderbird-DQE3YZ.desktop
+image/jpeg=sxiv.desktop
+image/png=sxiv.desktop
+x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+
+[Added Associations]
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+text/html=firefox.desktop;
+application/pdf=org.gnome.Evince.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
+text/plain=nvim.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-DQE3YZ.desktop;
+message/rfc822=userapp-Thunderbird-DQE3YZ.desktop;
+text/x-python=nvim.desktop;gvim.desktop;
+application/json=firefox.desktop;
+image/jpeg=gimp.desktop;imv.desktop;
+text/markdown=nvim.desktop;
+image/png=imv.desktop;
