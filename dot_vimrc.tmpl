@@ -488,6 +488,7 @@ vnoremap <leader>r q:is///g<ESC>3ha
 nnoremap <leader>ra q:i%s///g<ESC>2F/i
 " remove italics tags
 nnoremap <leader>rmi :%s/<\/\?i>//g<CR>
+nnoremap <leader>rn :YcmCompleter RefactorRename 
 nnoremap <leader>rs :res 
 " reload vim config
 nnoremap <leader>rv :source $MYVIMRC<CR>
@@ -566,9 +567,14 @@ let maplocalleader="\\"
 
 " tex [[[ "
 
+autocmd Filetype tex noremap i$ :<C-u>normal! T$vt$<CR>
+autocmd Filetype tex noremap i$ :normal vi$<CR>
+autocmd Filetype tex xnoremap a$ :<C-u> normal!F$vf$<CR>
+autocmd Filetype tex onoremap a$ :normal va$<CR>
+
 autocmd Filetype tex inoremap <localleader>bt \bowtie
 autocmd Filetype tex inoremap <localleader>c \checkmark
-autocmd Filetype tex inoremap <localleader>d \delta
+autocmd Filetype tex inoremap <localleader>d \div 
 autocmd Filetype tex inoremap <localleader>D \Delta
 autocmd Filetype tex inoremap <localleader>e \exists
 autocmd Filetype tex inoremap <localleader>ep \epsilon
@@ -579,6 +585,7 @@ autocmd Filetype tex inoremap <localleader>la \leftarrow
 autocmd Filetype tex inoremap <localleader>le \leq
 autocmd Filetype tex inoremap <localleader>ln \log n
 autocmd Filetype tex inoremap <localleader>lr \Leftrightarrow
+autocmd Filetype tex inoremap <localleader>m \mu 
 " autocmd Filetype tex inoremap <localleader>n \neg
 autocmd Filetype tex inoremap <localleader>n \neq
 autocmd Filetype tex inoremap <localleader>N \mathbb{N}
@@ -587,10 +594,11 @@ autocmd Filetype tex inoremap <localleader>ph [,phantom]
 autocmd Filetype tex inoremap <localleader>q \qquad
 autocmd Filetype tex inoremap <localleader>r \rightarrow
 autocmd Filetype tex inoremap <localleader>R \Rightarrow
-autocmd Filetype tex inoremap <localleader>s \subset
+" autocmd Filetype tex inoremap <localleader>s \subset
+autocmd Filetype tex inoremap <localleader>s \text{s}
 autocmd Filetype tex inoremap <localleader>st such that
 autocmd Filetype tex inoremap <localleader>S \Sigma
-autocmd Filetype tex inoremap <localleader>t \times
+autocmd Filetype tex inoremap <localleader>t \times 
 " autocmd Filetype tex inoremap <localleader>T $T$
 autocmd Filetype tex inoremap <localleader>T \Theta
 " replace bars/underscores in URL

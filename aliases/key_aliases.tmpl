@@ -432,6 +432,7 @@ kt "killall thunderbird"
 m "mpv"
 mp "mpv --volume=50"
 # lo "libreoffice"
+lop "libreoffice --headless --convert-to pdf --outdir ."
 m "mpv"
 mpvv "mpv --volume=50"
 mpl "mpv --loop"
@@ -477,6 +478,8 @@ tarh "tmux a -t red-hat || tmux new -s red-hat"
 tar2 "tmux a -t red-hat-2 || tmux new -s red-hat-2"
 tas "tmux a -t school || tmux new -s school"
 tas2 "tmux a -t school-2 || tmux new -s school-2"
+tas3 "tmux a -t school-3 || tmux new -s school-3"
+tas4 "tmux a -t school-4 || tmux new -s school-4"
 tal "tmux a"
 tc "clear && tmux clear-history"
 tk "tmux kill-server"
@@ -575,7 +578,8 @@ tt "timetrace"
 tta "timetrace start"
 ttaa "timetrace start a3@300"
 tte "timetrace edit record latest"
-ttc "timetrace create"
+# ttc "timetrace create"
+ttc "timetrace create project"
 ttp "timetrace create project"
 ttlp "timetrace list projects"
 ttlr "timetrace list records today"
@@ -920,7 +924,7 @@ nps "npm start"
 # pu "python ~/coding/rarity-sniper/opensea.py update"
 
 po "python manage.py opensea"
-pr "python manage.py rarity"
+# pr "python manage.py rarity"
 bz "python manage.py rarity -t Bitz -n"
 pmp "python manage.py makemigrations project"
 srs "source ~/.venv/rarity-sniper/bin/activate.fish"
@@ -937,7 +941,10 @@ ssr "mosh 161.35.107.30"
 
 # ]]] rarity surf #
 
-
+stb "source ~/.venv/twitter-bot/bin/activate.fish"
+pr "python retweet.py"
+prg "python retweet.py --giveaway"
+prm "python retweet.py --mentions | bat"
 
 # ]]] coding projs  #
 
@@ -988,6 +995,9 @@ wob "watch -n60 'lsd -lF --group-dirs first --size short 2020*.mkv'"
 fnp "t timeline FNProgress | sed -n '2p'"
 fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
 
+mip "ifuse /mnt/ipad"
+umip "fusermount -u /mnt/ipad"
+
 # ]]] games #
 
 # school  [[[ #
@@ -998,15 +1008,7 @@ fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
 gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-# alg course
-jc "javac -d out *.java"
-jr "java -cp \"$CLASSPATH:out\""
-
-# 263
-wl6 "watson log --all --project=263 --tag=a5"
-wr6 "watson report --all --project=263 --tag=a5"
-z6 "zathura --fork ~/school/263/Introduction-to-Algorithms-CLRs/Introduction\ to\ Algorithms\ -\ 3rd\ Edition.pdf"
-pd6 "pdflatex a5"
+# 301 [[[ #
 
 spc "source ~/.venv/price-calc/bin/activate.fish"
 scv "source ~/.venv/covid-monitor/bin/activate.fish"
@@ -1015,6 +1017,21 @@ pmd "python manage.py db"
 pmdm "python manage.py db migrate"
 pmdu "python manage.py db upgrade"
 # pt "pytest --cov"
+
+# ]]] 301 #
+
+# 458 [[[ #
+
+ssm "ssh -p 2222 mininet@localhost"
+rs "rsync *.c *.h -Pave 'ssh -p 2222' mininet@127.0.0.1:~/pa1/router/"
+rsw "rsync -PavIe 'ssh -p 2222' mininet@127.0.0.1:~/pa1/router/sr-.pcap ."
+trm "tar czf pa1.tar.gz *"
+# trm "make compress"
+trxm "tar xf pa1.tar.gz"
+cpt "cp pa1.tar.gz /home/kevin/school/458/a1/router"
+xcd "date | xclip -selection clipboard"
+
+# ]]] 458 #
 
 # ]]] school  #
 

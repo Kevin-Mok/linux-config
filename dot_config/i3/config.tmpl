@@ -21,7 +21,7 @@ exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editi
 # exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
-exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
+# exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
 exec --no-startup-id i3-msg workspace $ws6; exec discord
 # exec --no-startup-id i3-msg workspace $ws1; exec $term -e fish -c 'tmux-attach school'
 
@@ -333,8 +333,8 @@ set $main "HDMI-0"
 workspace $ws1 output $secondary
 bindsym $mod+F1 workspace $ws1; exec $term
 bindsym Mod4+$mod+F1 workspace $ws1; exec chatterino
-# bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach school'
-bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach nft'
+bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach school'
+# bindsym Control+Shift+F1 workspace $ws1; exec $term -e fish -c 'tmux-attach nft'
 
 set $ws2 "2 "
 set $work_laptop_ip "192.168.0.11"
@@ -342,8 +342,8 @@ workspace $ws2 output $secondary
 bindsym $mod+F2 workspace $ws2; exec $term
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt
 # bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach fortnite'
-bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach nft-2'
-# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach school-2'
+# bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach nft-2'
+bindsym Control+Shift+F2 workspace $ws2; exec $term -e fish -c 'tmux-attach school-2'
 bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip -- tmux a -t nzxt-2
 
 #  ws3 [[[ # 

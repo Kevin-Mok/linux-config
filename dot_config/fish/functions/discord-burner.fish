@@ -2,8 +2,8 @@ function discord-burner
     # echo nordvpn connect ca1$argv[1] && curl ifconfig.me
     # nordvpn connect ca1$argv[1] && \
     # nordvpn connect ca10$argv[1]
-    nordvpn connect
-    curl ifconfig.me
+    # nordvpn connect
+    # curl ifconfig.me
     if test (count $argv) -gt 1
         firefox -P discord-$argv[2] $argv[1] &
     else

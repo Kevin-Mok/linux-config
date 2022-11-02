@@ -84,8 +84,8 @@ context.sch=project:sch
 
 # context=home
 # context=out
-# context=sch
-context=mny
+context=sch
+# context=mny
 # context=pey
 # context=not-pey
 #  }}} context # 
