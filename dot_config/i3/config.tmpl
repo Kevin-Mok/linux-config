@@ -4,10 +4,10 @@ set $term kitty
 # set $term st
 # set $term_alt urxvt
 {{ if eq .chezmoi.hostname "x1-carbon" }}
-# set $term urxvt
+set $term urxvt
 # set $term_alt kitty
-# set $term_alt st
-set $term_alt urxvt
+set $term_alt st
+# set $term_alt urxvt
 exec dunst
 exec compton
 exec imwheel
