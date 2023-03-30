@@ -463,7 +463,8 @@ set $ws11 "11 "
 workspace $ws11 output $secondary
 # bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_CPU
 bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_MEM
-bindsym Mod4+$mod+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach obs'
+# bindsym Mod4+$mod+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
+bindsym Control+Shift+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
 bindsym Mod4+t workspace $ws11; exec nordvpn connect && transmission-gtk
 # bindsym $mod+F11 workspace $ws11; exec $term -e gotop -m
 # bindsym Mod4+a workspace $ws11; exec antimicro

@@ -118,6 +118,7 @@ sfpx "sftp -rP 8022 $PIXEL_IP"
 rspx "rsync --ignore-existing -Ptre 'ssh -p 8022' $PIXEL_IP:"
 
 # ]]] pixel #
+ssl "mosh --ssh='ssh -p 399' kevin@$LAPTOP_IP"
 
 # vultr
 ssa "mosh atxadmin@45.32.87.10"
@@ -198,8 +199,8 @@ uzl "unzip -l"
 # power options  [[[ #
 
 s "systemctl suspend"
-sl "i3lock-fancy && systemctl suspend"
-so "xset dpms force off"
+# sl "i3lock-fancy && systemctl suspend"
+# so "xset dpms force off"
 xx "exit"
 sof "xset dpms force off"
 son "xset s off -dpms"
@@ -304,7 +305,8 @@ spipi "sudo pip install"
 
 # internet [[[ #
 
-pg "ping -c 2 -W 1 8.8.8.8"
+pg2 "ping -c 2 -W 1 8.8.8.8"
+pgt "ping -c 50 -W 1 8.8.8.8"
 wpg "watch ping -c 2 -W 1 8.8.8.8"
 pgc "ping 8.8.8.8"
 dh "sudo dhcpcd"
@@ -378,7 +380,7 @@ ay "task sync"
 # buku [[[ #
 
 # b "buku"
-bd "buku -a '"
+# bd "buku -a '"
 bdb "sqlitebrowser ~/.local/share/buku/bookmarks.db &"
 bh "buku -h | bat"
 bi "buku --immutable 1 -zu"
@@ -442,6 +444,7 @@ mra "man ranger"
 n "nvim"
 nl "nload devices wlp4s0 -u M"
 nm "nomacs ."
+nmd "nomacs ."
 np "nvim --"
 ndu "ncdu"
 p3 "python3"
@@ -465,7 +468,7 @@ sn "sudo nvim"
 sqlb "sqlitebrowser"
 # ss "mosh"
 stp "termdown"
-h "termdown"
+# h "termdown"
 # sw "swex"
 # t  "tmux"#[[[
 # ta "tmux a -t"
@@ -511,7 +514,7 @@ trx "tar xvzf"
 # pass  [[[ #
 
 # p "pass"
-pc "pass -c"
+# pc "pass -c"
 pe "pass edit"
 pi "pass insert -m"
 pg "pass generate -c"
@@ -581,8 +584,8 @@ tte "timetrace edit record latest"
 # ttc "timetrace create"
 ttc "timetrace create project"
 ttp "timetrace create project"
+ttl "timetrace list records today"
 ttlp "timetrace list projects"
-ttlr "timetrace list records today"
 ttr "timetrace report"
 tts "timetrace stop"
 ttt "timetrace status"
@@ -942,7 +945,7 @@ ssr "mosh 161.35.107.30"
 # ]]] rarity surf #
 
 stb "source ~/.venv/twitter-bot/bin/activate.fish"
-pr "python retweet.py"
+# pr "python retweet.py"
 prg "python retweet.py --giveaway"
 prm "python retweet.py --mentions | bat"
 
@@ -1008,30 +1011,7 @@ umip "fusermount -u /mnt/ipad"
 gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
-# 301 [[[ #
-
-spc "source ~/.venv/price-calc/bin/activate.fish"
-scv "source ~/.venv/covid-monitor/bin/activate.fish"
-fr "flask run"
-pmd "python manage.py db"
-pmdm "python manage.py db migrate"
-pmdu "python manage.py db upgrade"
-# pt "pytest --cov"
-
-# ]]] 301 #
-
-# 458 [[[ #
-
-ssm "ssh -p 2222 mininet@localhost"
-rs "rsync *.c *.h -Pave 'ssh -p 2222' mininet@127.0.0.1:~/pa1/router/"
-rsw "rsync -PavIe 'ssh -p 2222' mininet@127.0.0.1:~/pa1/router/sr-.pcap ."
-trm "tar czf pa1.tar.gz *"
-# trm "make compress"
-trxm "tar xf pa1.tar.gz"
-cpt "cp pa1.tar.gz /home/kevin/school/458/a1/router"
-xcd "date | xclip -selection clipboard"
-
-# ]]] 458 #
+zs "zathura --fork syllabus.pdf"
 
 # ]]] school  #
 
@@ -1200,7 +1180,9 @@ tet "ticker (xclip -o) | xclip -selection clipboard"
 eip "curl ifconfig.me"
 fdb "firefox -P discord-"
 sip "curl ifconfig.me"
-vpc "nordvpn connect && curl ifconfig.me"
+# vpc "nordvpn connect && curl ifconfig.me"
+vpc "nordvpn connect"
 vpd "nordvpn disconnect"
+vpt "nordvpn status"
 
 # ]]] vpn #

@@ -1,0 +1,8 @@
+price=$(curl -s "https://api.kraken.com/0/public/Ticker?pair=$1" | jq -r ".result.$1.b[0]")
+# echo $price
+if (( $(echo "$price < 10" | bc -l) )); then
+    printf "%0.3f\n" "$price" | cut -c 3-
+    # printf "%0.3f\n" "$price"
+elif (( $(echo "$price < 10000" | bc -l) )); then
+    printf "%'0.0f\n" "$price" | sed 's/,//'
+fi

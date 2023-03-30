@@ -27,7 +27,7 @@ abbr hum "cd $mfs_dir && hugo serve -D --disableFastRender"
 # system [[[
 set -x HASTE_SERVER https://pste.gq
 {{ if eq .chezmoi.hostname "nzxt" }}
-set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
+# set -x CALCURSE_CALDAV_PASSWORD (pass show technology/linux/baikal | head -n1)
 {{ end }}
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
@@ -70,12 +70,15 @@ set -xU XSET_DELAY 200
 xset r rate $XSET_DELAY $XSET_RATE
 {{ end }}#]]]
 
+# [[[ universal var's #
+
 set -xU BROWSER "firefox"
 # set -U BROWSER "chromium"
 
 set -xU FZF_DEFAULT_COMMAND "find ."
 
-set -x PHONE_IP "192.168.0.12"
+set -x LAPTOP_IP "192.168.0.19"
+set -x PHONE_IP "192.168.0.13"
 set -x PIXEL_IP "192.168.0.18"
 set -x WORK_LAPTOP_IP "kmok@192.168.0.11"
 
@@ -91,6 +94,8 @@ set -xU LOCAL_KOGITO_SERVICE_PORT "32000"
 
 set -x FLASK_DEBUG 1
 set -x DB_NAME "covid_monitor"
+
+set -x FULLNODE_API_INFO wss://api.chain.love
 
 # ]]] universal var's #
 
@@ -182,6 +187,7 @@ abbr ff "fzf-cd"
 # abbr fr "fzf-ranger"
 abbr fv "fzf-vim"
 abbr fvft "find-vim-filetype"
+abbr gif "video-to-gif"
 # git [[[ #
 
 abbr gcamp "git-amend-push"
@@ -239,6 +245,7 @@ abbr wga "wget-all"
 abbr wag "watson-add-game"
 abbr waf "watson-add-game fortnite"
 abbr wap "watson-add-game pokemon-go"
+abbr wgn "wget-name"
 abbr xya "export-pkgs"
 
 # school [[[ #
