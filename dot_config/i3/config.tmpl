@@ -370,7 +370,9 @@ bindsym Mod4+$mod+b layout tabbed; exec $term -e fish -c "buku-fzf fq"
 
 set $ws4 "4 "
 workspace $ws4 output $secondary
-bindsym $mod+F4 workspace $ws4; exec $term
+# bindsym $mod+F4 workspace $ws4; exec $term
+# bindsym Control+Shift+F4 workspace $ws4; exec $term -e fish -c 'tmux-attach misc'
+bindsym $mod+F4 workspace $ws4; exec $term -e fish -c 'tmux-attach misc'
 bindsym Mod4+$mod+F4 workspace $ws4; exec urxvt -e ranger $screenshot_folder
 bindsym Mod4+e workspace $ws4; exec libreoffice ~/Documents/expenses/investments.ods
 bindsym Mod4+g workspace $ws4; layout tabbed; exec gimp

@@ -7,7 +7,7 @@
 # clear screen
 c "printf '\033c'"
 d "cd ~/Downloads && printf '\033c'"
-e "echo \$"
+# e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
 nfth "printf '\033c' && neofetch"
@@ -84,10 +84,11 @@ ctltd "sudo systemctl status dhcpcd"
 ctlas "sudo systemctl start sshd"
 
 nc "sudo netctl"
-ncd "sudo ip link set dev wlp3s0 down"
-ncu "sudo ip link set dev wlp3s0 up"
+ncd "sudo ip link set dev wlp4s0 down"
+ncu "sudo ip link set dev wlp4s0 up"
 ncr "sudo systemctl restart netctl-auto@wlp3s0.service"
 ncs "sudo systemctl stop netctl-auto@wlp3s0.service"
+ncn "netctl start"
 
 # ]]] systemctl  #
 
@@ -425,12 +426,14 @@ ia "sxiv -a"
 it "sxiv -t *"
 kill "kill -9"
 ka "killall"
+kc "killall chromium"
 kd "killall Discord && killall Discord"
 ke "killall electron"
 kf "killall firefox"
 kag "killall gopls"
 kai "killall imwheel && imwheel"
 kt "killall thunderbird"
+kz "killall zoom"
 m "mpv"
 mp "mpv --volume=50"
 # lo "libreoffice"
@@ -485,9 +488,9 @@ tas3 "tmux a -t school-3 || tmux new -s school-3"
 tas4 "tmux a -t school-4 || tmux new -s school-4"
 tal "tmux a"
 tc "clear && tmux clear-history"
-tk "tmux kill-server"
-tk "tmux kill-session -t"
-tks "tmux kill-server"
+# tk "tmux kill-server"
+tks "tmux kill-session -t"
+tksv "tmux kill-server"
 tl "tmux ls"
 tn "tmux new -s"
 tnb "tmux new -s backup"
@@ -635,14 +638,15 @@ gru "git branch --set-upstream-to=origin/main main"
 
 # ]]] branch  #
 
-gt "git tag"
+# gt "git tag"
 gta "git tag -as"
 gtd "git tag -d"
 
 # add/remove [[[ #
 
 ga "git add -A && git status -u"
-gac "git add -A && git commit -S"
+# gac "git add -A && git commit -S"
+gac "git add -A && git commit -S --no-verify"
 gaf "git add -f"
 gal "git lfs track"
 # unsigned commt
@@ -1000,6 +1004,9 @@ fnu "sxiv ~/Documents/fortnite/pics/maps/upgrade.png &"
 
 mip "ifuse /mnt/ipad"
 umip "fusermount -u /mnt/ipad"
+fd1 "fd --changed-within 1d > cp.txt"
+
+ttrtk "timetrace report -s 2023-04-20 -p totk"
 
 # ]]] games #
 
@@ -1012,6 +1019,9 @@ gpa "column -ts',' ~/Documents/gpa.md"
 ssc "mosh mokkar@teach.cs.utoronto.ca"
 
 zs "zathura --fork syllabus.pdf"
+
+pvabn "npm run serve:localhost"
+pvafn "npm run start:localhost"
 
 # ]]] school  #
 
@@ -1151,6 +1161,8 @@ gotd "go mod tidy"
 dk "docker"
 dkb "docker build"
 dki "docker image"
+dkka "docker kill \$(docker ps -q)"
+dkl "docker ps"
 dkp "docker push"
 dks "docker images"
 
