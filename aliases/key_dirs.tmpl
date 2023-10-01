@@ -1,4 +1,4 @@
-#  vim: fdm=marker ft=sh.go-template syntax=sh
+#  Vim: Fdm=MaRkEr Ft=Sh.Go-TeMpLaTe SyNtAx=Sh
 
 # sys [[[ #
 
@@ -16,8 +16,10 @@ lc ~/linux-config
 lf /mnt/linux-files
 lf2 /mnt/linux-files-2
 lfp /mnt/linux-files/Pictures
+lfp2 /mnt/linux-files-2/Pictures
 lfv /mnt/linux-files/Videos
 lfv2 /mnt/linux-files-2/Videos
+lfv2s /mnt/linux-files-2/Videos/shows
 lfy /mnt/linux-files/Videos/yt
 me /run/media/kevin
 o /
@@ -70,7 +72,7 @@ ft ~/coding/face-tracker
 hv ~/Documents/hevin
 hvs ~/Documents/hevin/shopping
 j ~/Documents/journal
-jt ~/Documents/journal/todo
+jt ~/Documents/journal/todo/23
 # lh ~/Documents/listening-history
 mmd ~/coding/move-mouse-with-head
 mh ~/coding/mf-site/layouts
@@ -129,7 +131,7 @@ tkp ~/Pictures/totk
 
 # codm [[[ #
 
-cm ~/Documents/codm
+# cm ~/Documents/codm
 cs ~/Documents/codm/site
 csi ~/Documents/codm/site/static/images
 Css ~/Pictures/screenshots/mobile/codm
@@ -143,6 +145,7 @@ fnc /mnt/linux-files/Videos/yt/fortnite/clips/4
 fni /mnt/ipad/DCIM/100APPLE
 fnm ~/Documents/fortnite/pics/maps
 fnn ~/Documents/fortnite/notes
+fnp ~/Documents/fortnite/pics
 fns ~/Documents/fortnite/stats/api
 fnsp ~/Documents/fortnite/stats/pics
 fnv /mnt/linux-files/Videos/personal-fortnite-games/review
@@ -164,62 +167,19 @@ wo ~/Documents/workout-logs/7
 dap /mnt/linux-files-2/Pictures/ipad
 dau /mnt/linux-files-2/Videos/ipad/unsorted
 
+sdvm ~/.local/share/Steam/steamapps/common/Stardew\ Valley/Mods/
+sdvss ~/.local/share/StardewValley/Screenshots/
+sdvsv ~/.config/StardewValley/Saves
+sdvsvg ~/Documents/stardew-valley-sdv-saves/hevintales
+
 # ]]] gaming #
-
-# sch [[[ #
-
-sc ~/school
-lt ~/school/latex-notes
-
-ltc ~/coding/leetcode
-
-sl ~/
-es ~/coding/estuary
-esw ~/coding/estuary-www
-
-4 ~/school/494
-4d ~/school/494/design
-4dm ~/school/494/design/meetings
-4dp ~/school/494/design/provotu
-4p ~/school/494/papers
-vt ~/coding/dao-voting
-ovn ~/coding/dao-voting/anonymousvoting/contracts
-
-# provotum [[[ #
-
-pv ~/coding/dao-voting/provotum-v2
-pva ~/coding/dao-voting/provotum-v2/voting-authority
-pvab ~/coding/dao-voting/provotum-v2/voting-authority/backend
-pvaf ~/coding/dao-voting/provotum-v2/voting-authority/frontend
-pvac ~/coding/dao-voting/provotum-v2/access-provider-backend
-pvf ~/coding/dao-voting/provotum-v2/voter-frontend/src
-pvc ~/coding/dao-voting/provotum-v2/contracts/contracts/FiniteField
-pvs ~/coding/dao-voting/provotum-v2/sealer
-pvsb ~/coding/dao-voting/provotum-v2/sealer/backend/src
-pvsf ~/coding/dao-voting/provotum-v2/sealer/frontend/src
-pvs1 /mnt/linux-files-2/coding/dao-voting/sealer-1/sealer/backend
-pvs1f /mnt/linux-files-2/coding/dao-voting/sealer-1/sealer/frontend
-pvs2 /mnt/linux-files-2/coding/dao-voting/sealer-2/sealer/backend
-pvs2f /mnt/linux-files-2/coding/dao-voting/sealer-2/sealer/frontend
-pvs3 /mnt/linux-files-2/coding/dao-voting/sealer-3/sealer/backend
-pvs3f /mnt/linux-files-2/coding/dao-voting/sealer-3/sealer/frontend
-
-pvg ~/coding/dao-voting/pv-ganache
-bd ~/coding/dao-voting/besu-deploy
-gt ~/coding/dao-voting/ganache-tx
-
-# ]]] provotum #
-
-e ~/school/ess
-
-# ]]] sch #
 
 # pey [[[ #
 
 atx ~/Documents/ataraxy-venture
 em ~/Documents/emails
 li ~/Documents/linkedin
-lic ~/Documents/linkedin/msgs
+lim ~/Documents/linkedin/msgs
 rh ~/Documents/red-hat
 rhc ~/Documents/red-hat/chat
 rhe ~/Documents/red-hat/emails
@@ -288,10 +248,83 @@ nxo ~/coding/kogito/nexus-operator
 mb ~/coding/mint-bot
 pfps ~/Pictures/profile-pics/sappy-seals
 pfpk ~/Pictures/profile-pics/gm-cafe/keek
+pfpr ~/Pictures/profile-pics/reddit-avatars
 nft ~/Documents/nft
 
 # ]]] nft #
 
+# sch [[[ #
+
+sc ~/school
+lt ~/school/latex-notes
+
+ltc ~/coding/leetcode
+
+# 494 [[[ #
+
+4 ~/school/494
+4d ~/school/494/design
+4dm ~/school/494/design/meetings
+4dp ~/school/494/design/provotu
+4p ~/school/494/papers
+vt ~/coding/dao-voting
+ovn ~/coding/dao-voting/anonymousvoting/contracts
+
+# provotum [[[ #
+
+pv ~/coding/dao-voting/provotum-v2
+pva ~/coding/dao-voting/provotum-v2/voting-authority
+pvab ~/coding/dao-voting/provotum-v2/voting-authority/backend
+pvaf ~/coding/dao-voting/provotum-v2/voting-authority/frontend
+pvac ~/coding/dao-voting/provotum-v2/access-provider-backend
+pvf ~/coding/dao-voting/provotum-v2/voter-frontend/src
+pvc ~/coding/dao-voting/provotum-v2/contracts/contracts/FiniteField
+pvs ~/coding/dao-voting/provotum-v2/sealer
+pvsb ~/coding/dao-voting/provotum-v2/sealer/backend/src
+pvsf ~/coding/dao-voting/provotum-v2/sealer/frontend/src
+pvs1 /mnt/linux-files-2/coding/dao-voting/sealer-1/sealer/backend
+pvs1f /mnt/linux-files-2/coding/dao-voting/sealer-1/sealer/frontend
+pvs2 /mnt/linux-files-2/coding/dao-voting/sealer-2/sealer/backend
+pvs2f /mnt/linux-files-2/coding/dao-voting/sealer-2/sealer/frontend
+pvs3 /mnt/linux-files-2/coding/dao-voting/sealer-3/sealer/backend
+pvs3f /mnt/linux-files-2/coding/dao-voting/sealer-3/sealer/frontend
+
+pvg ~/coding/dao-voting/pv-ganache
+bd ~/coding/dao-voting/besu-deploy
+gt ~/coding/dao-voting/ganache-tx
+
+# ]]] provotum #
+
+# ]]] 494 #
+
+# ess [[[ #
+
+e ~/school/ess
+en ~/school/ess/notes
+er ~/school/ess/rough-draft
+ern ~/school/ess/rough-draft/notes
+ei ~/school/ess/individ-map
+es ~/school/ess/story
+
+# ess ]]] #
+
+arc ~/school/arc
+egy ~/school/egypt
+ggr ~/school/ggr
+
+jf ~/school/job-fair
+
+# ]]] sch #
+
+# personal [[[ #
+
 lw ~/Documents/lawrence
 
 hih /mnt/linux-files-2/Videos/hot-in-herre
+bb /mnt/linux-files-2/Pictures/bball
+dh ~/Pictures/drake-hoodie
+mt /mnt/linux-files-2/Pictures/mutant-tees
+sm /mnt/linux-files-2/Videos/sam-smith/named
+wg /mnt/linux-files-2/Pictures/weed-grow-23
+
+# ]]] personal #
