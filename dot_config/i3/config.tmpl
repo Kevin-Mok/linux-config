@@ -320,7 +320,7 @@ bindsym Control+$mod+y exec wal -i $($scripts_path/shuffler "$HOME/Pictures/Back
 
 #  ws names [[[ # 
 
-set $ws1 "1 "
+set $ws1 "1  "
 {{ if eq .chezmoi.hostname "x1-carbon" }}
 set $secondary "HDMI2"
 set $main "eDP1"
@@ -543,8 +543,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # bar vars [[[ # 
 
 # set $sb_font Hack NF Bold
+set $sb_font Hack Nerd Font Mono Bold
 # set $sb_font EmojiOne
-set $sb_font DejaVuSansMono Nerd Font Mono Bold
+# set $sb_font DejaVuSansMono Nerd Font Mono Bold
 set $black #000000
 set $white #ffffff
 for_window [class="Yad"] floating enable
@@ -602,7 +603,9 @@ bar {
   {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 18
   {{ else }}
-  font pango:$sb_font 20
+  font pango:$sb_font 21
+  # font pango:$sb_font 20
+  # font pango:$sb_font 17
   {{ end }}
   # output $main
   i3bar_command i3bar -t
