@@ -1,5 +1,43 @@
 # vim: fdm=marker ft=fish.go-template
 
+# aliases [[[ #
+
+# personal [[[ #
+
+# dirs [[[ #
+
+abbr cvt "cd ~/Pictures/profile-pics/conviction"
+abbr ets "cd /mnt/linux-files-2/Videos/eras-taylor-swift-movie"
+abbr hv "cd /mnt/linux-files-2/Pictures/hevin"
+abbr hvn "cd ~/coding/hevin-nft"
+abbr lon "libreoffice ~/Documents/expenses/net-worth.ods &"
+abbr lfs2 "cd /mnt/linux-files-2/Videos/shows"
+abbr mj "cd /mnt/linux-files-2/Pictures/midjourney"
+abbr pdg "cd ~/Pictures/profile-pics/pudgy-penguins/test"
+abbr snp "cd /mnt/linux-files-2/Videos/ipad/marvel-snap"
+abbr tr "cd ~/.local/share/Terraria"
+abbr da "cd /mnt/ipad/DCIM/102APPLE"
+
+# ]]] dirs #
+
+abbr ncy "nvim ~/Documents/journal/hobbies/courtyard-drop.md"
+abbr njt "nvim ~/Documents/journal/todo/24/1.md"
+
+abbr rsn "rsync -e 'ssh -p 399' -r . 165.22.239.234:/home/kevin/hevin/art -acvv"
+
+# ]]] personal #
+
+# school [[[ #
+
+abbr js "cd ~/Documents/job-search"
+abbr ssa "ssh -i ~/coding/aws.pem admin@ec2-18-223-241-198.us-east-2.compute.amazonaws.com"
+
+# ]]] school #
+
+abbr nej "nvim ~/Documents/emojis.md"
+
+# ]]] aliases #
+
 # login to X [[[ #
 
 {{ if eq .chezmoi.username "kevin" }}
@@ -183,6 +221,7 @@ abbr cff "create-fish-function"
 abbr ctr "systemctl-restart"
 abbr def "define"
 abbr drs "dump-rarity-check"
+abbr fd1 "fd --changed-within 1d"
 abbr ens "enable-site"
 abbr ev "evince-silent"
 abbr ff "fzf-cd"
@@ -215,6 +254,7 @@ abbr mat "math"
 abbr mi "mpv-ipad"
 abbr mn "man-vim"
 abbr mdf "mkdir-cd"
+abbr mps "mpv-sub"
 abbr mtm "maven-test-method"
 abbr pgr "grep-pdf"
 abbr pgrf "grep-pdf-file"
@@ -260,12 +300,6 @@ abbr xya "export-pkgs"
 # ]]] school #
 
 # ]]] fxn abbr's #
-
-# aliases [[[ #
-
-abbr ets "cd /mnt/linux-files-2/Videos/eras-taylor-swift-movie"
-
-# ]]] aliases #
 
 # task sync > /dev/null 2>&1
 # ~/scripts/xmodmap-custom
