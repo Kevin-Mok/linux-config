@@ -18,6 +18,7 @@ audit
 autoconf
 automake
 avahi
+ayatana-ido
 base
 base-devel
 bash
@@ -35,6 +36,7 @@ cairo
 cantarell-fonts
 chezmoi
 chromium
+colordiff
 coreutils
 cryptsetup
 curl
@@ -52,6 +54,7 @@ diffutils
 dmenu
 double-conversion
 duktape
+dunst
 e2fsprogs
 efibootmgr
 efivar
@@ -210,6 +213,8 @@ libass
 libassuan
 libasyncns
 libavc1394
+libayatana-appindicator
+libayatana-indicator
 libbluray
 libbpf
 libbs2b
@@ -219,8 +224,11 @@ libcloudproviders
 libcolord
 libconfig
 libcups
+libcurl-gnutls
 libdaemon
 libdatrie
+libdbusmenu-glib
+libdbusmenu-gtk3
 libdeflate
 libdovi
 libdrm
@@ -263,6 +271,7 @@ libnghttp3
 libnice
 libnl
 libnm
+libnotify
 libnsl
 libogg
 libomxil-bellagio
@@ -278,6 +287,7 @@ libproxy
 libpsl
 libptytty
 libpulse
+libqalculate
 libraqm
 libraw1394
 librsvg
@@ -408,6 +418,7 @@ pam
 pambase
 pango
 pass
+passff-host
 patch
 pciutils
 pcre
@@ -432,6 +443,7 @@ pyenv
 python
 python-attrs
 python-cffi
+python-colorama
 python-cryptography
 python-greenlet
 python-msgpack
@@ -440,7 +452,10 @@ python-pip
 python-ply
 python-pycparser
 python-pynvim
+python-shtab
+python-termcolor
 python-wheel
+qalculate-gtk
 qt5-base
 qt5-translations
 ranger
@@ -478,6 +493,7 @@ tdb
 texinfo
 timetrace-bin
 timetrace-bin-debug
+tldr
 tmux
 tpm2-tss
 tracker3
@@ -495,6 +511,8 @@ v4l-utils
 vapoursynth
 vi
 vid.stab
+vim
+vim-runtime
 vmaf
 vulkan-icd-loader
 wayland
@@ -514,6 +532,7 @@ xcb-util-xrm
 xclip
 xdg-user-dirs
 xdg-utils
+xdotool
 xf86-input-libinput
 xf86-video-vesa
 xkeyboard-config
