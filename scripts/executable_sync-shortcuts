@@ -26,7 +26,7 @@ ranger_mappings="$HOME/.config/ranger/key_mappings.conf"
 # ensure sourcing new file in orig. config file
 ensure "source $aliases" "$bashrc"
 ensure "source $aliases" "$zshrc"
-ensure "source $fish_abbr" "$fish_config > /dev/null"
+ensure "source $fish_abbr" "$fish_config" > /dev/null
 ensure "source $ranger_mappings" "$ranger_config"
 
 # key files
