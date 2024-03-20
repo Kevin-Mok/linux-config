@@ -8,6 +8,10 @@ case $1 in
 		backup_dest="$mount_dir/nzxt"
 		# backup_dest="$mount_dir/backup-usb/nzxt"
 		;;
+	arch-2 )
+		backup_dest="$mount_dir/arch-2"
+		# backup_dest="$mount_dir/backup-usb/nzxt"
+		;;
 	x1 )
 		backup_dest="$mount_dir/laptop"
 		;;

@@ -159,6 +159,8 @@ bindsym Control+$mod+q exec sudo systemctl stop netctl-auto@wlp3s0.service
 for_window [class="chatterino"] floating enable
 for_window [class="Peek"] floating enable
 for_window [title="Qalculate!"] floating enable
+for_window [window_role="alert"] floating enable
+no_focus [window_role="alert"]
 
 #  ]]] applications # 
 
