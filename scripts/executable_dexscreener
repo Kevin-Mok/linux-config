@@ -1,0 +1,1 @@
+curl -s https://api.dexscreener.com/latest/dex/pairs/$1/$2| jq -r '.pairs | .[] | .priceUsd'
