@@ -6,7 +6,7 @@
 
 # clear screen
 c "printf '\033c'"
-d "cd ~/Downloads && printf '\033c'"
+dn "cd ~/Downloads && printf '\033c'"
 # e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
@@ -190,7 +190,7 @@ rsy "rsync --ignore-existing -Ptr"
 lhd "sudo fdisk -l"
 # get disc space for mounted drives
 # ds "df -h | tee >(head -n 1) >(grep sd) >/dev/null"
-ds "df -h | head -n 1 && df -h | grep sd"
+dsp "df -h | head -n 1 && df -h | grep sd"
 chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
@@ -1127,6 +1127,14 @@ kpd "kubectl project default"
 kt "kubectl status"
 
 # ]]] kubectl #
+
+tf "terraform"
+tfa "terraform apply"
+tfds "terraform destroy"
+tfi "terraform init"
+tfo "terraform output"
+tfp "terraform plan"
+tfs "terraform show"
 
 # jenkins [[[ #
 
