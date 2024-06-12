@@ -333,6 +333,8 @@ id "identify"
 mst "sudo rm ~/st/config.h && sudo bear make -C ~/st install"
 # mst "sudo ~/st/make-st.sh"
 
+mlf2 "sudo mount /dev/sdd1 /mnt/linux-files-2"
+
 #  system ]]]
 
 # applications  [[[ #
@@ -504,6 +506,7 @@ usn "usernames --num 20"
 vmd "vimdiff"
 # wg "wego"
 ytd "youtube-dl"
+wal "wal -i"
 wc "wc -l"
 wcw "wc -w"
 wch "weechat"
@@ -529,7 +532,7 @@ pi "pass insert -m"
 pg "pass generate -c"
 ps "pass show"
 psi "pass show info | bat"
-pev "pass edit finances/visa"
+pev "pass edit finances/visa-cash"
 
 xc "xclip -selection clipboard"
 xo "xclip -o >"
@@ -639,7 +642,8 @@ gmgt "git mergetool"
 gr "git remote -v"
 gra "git remote add origin"
 grao "git remote add orig"
-grag "git remote add gitea ssh://git@git.kevin-mok.com:399/Kevin-Mok/"
+# grag "git remote add gitea ssh://git@git.kevin-mok.com:399/Kevin-Mok/"
+grag "git remote add github"
 
 grr "git remote remove origin"
 gru "git branch --set-upstream-to=origin/main main"
@@ -765,7 +769,8 @@ psgi "git add -A && git commit -m 'Update' -S && git push"
 gps "git push"
 gpso "git push origin"
 gpsoh "git push -f origin HEAD:"
-gpsg "git push gitea"
+# gpsg "git push gitea"
+gpsg "git push github"
 gpsk "git push kevin"
 gpsdl "git push origin --delete"
 # gpsi "git config credential.helper store && git push"
@@ -1224,6 +1229,8 @@ ht "helm template"
 hu "helm upgrade"
 
 # ]]] helm #
+
+zr "zathura --fork ~/coding/mf-site/static/pdf/kevin-mok-resume.pdf"
 
 # ]]] red-hat #
 

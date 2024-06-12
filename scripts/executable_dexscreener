@@ -1,1 +1,12 @@
-curl -s https://api.dexscreener.com/latest/dex/pairs/$1/$2| jq -r '.pairs | .[] | .priceUsd'
+# /bin/bash
+
+# curl -s https://api.dexscreener.com/latest/dex/pairs/$1/$2| jq -r '.pairs | .[] | .priceUsd'
+raw=$(curl -s "https://api.dexscreener.com/latest/dex/pairs/$1/$2")
+price=$(echo "$raw" | jq -r ".pairs | .[] | .priceUsd")
+# if (( $(echo "$price < .05" | bc -l) )); then
+    # printf "%0.4f\n" "$price" | cut -c 4-
+# elif (( $(echo "$price < .1" | bc -l) )); then
+    # printf "%0.3f\n" "$price" | cut -c 4-
+if (( $(echo "$price < .1" | bc -l) )); then
+    printf "%0.4f\n" "$price" | cut -c 4-
+fi
