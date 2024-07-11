@@ -261,6 +261,8 @@ Plug 'dkarter/bullets.vim'
 
 " coordinate Vim color scheme with terminal color scheme
 Plug 'dylanaraps/wal.vim'
+" Plug 'morhetz/gruvbox'
+Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
 
 " repeat plugin commands
 Plug 'tpope/vim-repeat'
@@ -365,7 +367,9 @@ Plug 'jidn/vim-dbml'
 call plug#end()
 
 {{ if .gui }}
-colorscheme wal
+" colorscheme wal
+" autocmd vimenter * ++nested colorscheme gruvbox
+colorscheme nightfly
 {{ else }}
 colorscheme gotham256
 {{ end }}

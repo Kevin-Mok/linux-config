@@ -1,12 +1,14 @@
 #  startup [[[ # 
 
 set $term kitty
+set $term_alt urxvt
+# set $term urxvt
+# set $term_alt kitty
 # set $term st
-# set $term_alt urxvt
 {{ if eq .chezmoi.hostname "x1-carbon" }}
 set $term urxvt
-# set $term_alt kitty
-set $term_alt st
+set $term_alt kitty
+# set $term_alt st
 # set $term_alt urxvt
 exec dunst
 exec compton
@@ -370,7 +372,7 @@ bindsym Mod4+$mod+b layout tabbed; exec $term -e fish -c "buku-fzf fq"
 
 #  ]]] ws3 # 
 
-set $ws4 "4 "
+set $ws4 "4 󱓧"
 workspace $ws4 output $secondary
 # bindsym $mod+F4 workspace $ws4; exec $term
 # bindsym Control+Shift+F4 workspace $ws4; exec $term -e fish -c 'tmux-attach misc'
