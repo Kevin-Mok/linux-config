@@ -6,7 +6,8 @@
 
 # clear screen
 c "printf '\033c'"
-dn "cd ~/Downloads && printf '\033c'"
+d "cd ~/Downloads && printf '\033c'"
+# dn "cd ~/Downloads && printf '\033c'"
 # e "echo \$"
 hst "history"
 # nft "printf '\033c' && neofetch | lolcat"
@@ -335,6 +336,8 @@ mst "sudo rm ~/st/config.h && sudo bear make -C ~/st install"
 
 mlf2 "sudo mount /dev/sdd1 /mnt/linux-files-2"
 
+kgpg "kill -9 gpg-agent && gpg-agent"
+
 #  system ]]]
 
 # applications  [[[ #
@@ -515,7 +518,7 @@ wch "weechat"
 # wg "curl -L wthr.ml"
 wgm "curl -L wthr.ml/m"
 wgt "curl -L wthr.ml/t"
-yt "youtube-dl"
+yt "yt-dlp -vU"
 z "zathura --fork"
 
 lz "unzip -l"
@@ -1071,7 +1074,7 @@ ghr "github-release"
 
 # docker [[[ #
 
-d "docker"
+do "docker"
 db "docker build"
 dc "docker-compose"
 dcu "docker-compose up -d"
@@ -1231,6 +1234,7 @@ hu "helm upgrade"
 # ]]] helm #
 
 zr "zathura --fork ~/coding/mf-site/static/pdf/kevin-mok-resume.pdf"
+zrw "zathura --fork ~/coding/mf-site/static/pdf/kevin-mok-resume-web-dev.pdf"
 
 # ]]] red-hat #
 
