@@ -96,8 +96,11 @@ handle_extension() {
             jq --color-output '.' "${FILE_PATH}" && exit 5
             python -m json.tool -- "${FILE_PATH}" && exit 5
             
-        # txt)
-            # cat "${FILE_PATH}" && exit 5
+        js)
+            bat "${FILE_PATH}" && exit 5
+            
+        txt)
+            bat "${FILE_PATH}" && exit 5
     esac
 }
 

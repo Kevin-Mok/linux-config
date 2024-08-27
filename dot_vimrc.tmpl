@@ -233,27 +233,8 @@ Plug 'Kevin-Mok/vim-snippets'
 Plug 'ervandew/supertab'
 	" make YCM compatible with UltiSnips (using supertab)
 	let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-	let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-	let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" easily comment/uncomment lines
-Plug 'scrooloose/nerdcommenter'
-	let g:NERDTrimTrailingWhitespace = 1
-	let g:NERDSpaceDelims = 1
-
-" add quotes/brackets around chunks of text easily
-Plug 'tpope/vim-surround'
-    nmap S ys
-
-" navigate around file easily and precisely
-Plug 'easymotion/vim-easymotion'
-	map <Space> <Plug>(easymotion-prefix)
-
-" status bar displaying various info about the current buffer
-Plug 'vim-airline/vim-airline'
-	let g:airline_section_c = '%F'
-Plug 'vim-airline/vim-airline-themes'
-	let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme='supernova'
 
 " continue Markdown lists when started
 " arc

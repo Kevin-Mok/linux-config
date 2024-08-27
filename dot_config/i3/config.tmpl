@@ -1,14 +1,12 @@
 #  startup [[[ # 
 
 set $term kitty
-set $term_alt urxvt
-# set $term urxvt
-# set $term_alt kitty
 # set $term st
+# set $term_alt urxvt
 {{ if eq .chezmoi.hostname "x1-carbon" }}
 set $term urxvt
-set $term_alt kitty
-# set $term_alt st
+# set $term_alt kitty
+set $term_alt st
 # set $term_alt urxvt
 exec dunst
 exec compton
@@ -24,7 +22,8 @@ exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editi
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
-# exec --no-startup-id i3-msg workspace $ws6; exec discord
+exec --no-startup-id i3-msg workspace $ws6; exec discord
+exec --no-startup-id i3-msg 'workspace $ws6; exec signal-desktop'
 # exec --no-startup-id i3-msg workspace $ws1; exec $term -e fish -c 'tmux-attach school'
 
 #  ]]] startup # 
@@ -420,10 +419,11 @@ workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 bindsym Mod4+d workspace $ws6; exec discord
 bindsym Mod4+$mod+d workspace $ws6; exec element-desktop
+bindsym Mod4+i workspace $ws6; exec signal-desktop
 # bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
 # bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'
-bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'
+# bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'
 # bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'tmux-attach weechat'
 
 #  ]]] ws6 # 
@@ -596,6 +596,7 @@ bar {
   # status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
   status_command 2>/tmp/i3blocks.err i3blocks -vvv -c ~/.config/i3blocks/i3blocks.conf | tee /tmp/i3blocks.out
   output $main
+  # output $secondary
   wheel_up_cmd nop
   wheel_down_cmd nop
 }
@@ -605,12 +606,13 @@ bar {
 #  secondary bar [[[ # 
 
 bar {
+  # output $main
   output $secondary
   {{ if eq .chezmoi.hostname "x1-carbon" }}
   font pango:$sb_font 18
   {{ else }}
-  font pango:$sb_font 21
-  # font pango:$sb_font 20
+  # font pango:$sb_font 21
+  font pango:$sb_font 20
   # font pango:$sb_font 17
   {{ end }}
   # output $main

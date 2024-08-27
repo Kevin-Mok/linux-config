@@ -1,0 +1,5 @@
+- cmatrix
+- pipes.sh
+- jp2a
+- {pacman,invaders,colors}.sh, c screenfetch, archy, toilet/figlet, doge, etc. 
+- cbonsai
