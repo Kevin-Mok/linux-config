@@ -57,6 +57,7 @@ autocmd CursorHold * if !bufexists("[Command Line]") | checktime | endif
 
 " commands for file types [[[ "
 
+filetype plugin indent on
 autocmd BufNewFile,BufRead .* set syntax=sh
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 autocmd FileType *css,gitcommit,haskell,htmldjango,html,graphql,javascript,javascriptreact,json,lisp,markdown,
@@ -342,6 +343,7 @@ Plug 'cristianoliveira/vim-react-html-snippets'
 Plug 'jidn/vim-dbml'
 " Plug 'FuDesign2008/emoji-snippets.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 " ]]] vim-plug "
 
 " Mappings [[[ "
