@@ -43,8 +43,8 @@ TICKER=BTCUSDC
 interval=30
 
 # [ticker]
-# label=BTC 
-# TICKER=BTC-USD
+# label=btc 
+# ticker=btc-usd
 # interval=30
 
 [kraken]
@@ -63,6 +63,18 @@ TICKER=SOLUSD
 interval=30
 
 [dexscreener]
+label=GOAT 
+CHAIN=solana
+PAIR=9Tb2ohu5P16BpBarqd3N27WnkF51Ukfs8Z1GzzLDxVZW
+interval=15
+
+[dexscreener]
+label=LOCK 
+CHAIN=solana
+PAIR=AtWMAA6T9t8cq8XCccCFPGDNNQYXhScuNuY6WVRi7FKe
+interval=30
+
+[dexscreener]
 label=PIXL 
 CHAIN=ethereum
 PAIR=0x31c0ba10e4e12be6cdceb612e5e829d977532bfc
@@ -72,12 +84,6 @@ interval=30
 # label=BLAST
 # CHAIN=blast
 # PAIR=0x9A0AA28d999a21d3cf6F2703CDBba9FeAF4a32F7
-# interval=30
-
-# [dexscreener]
-# label=LOCK
-# CHAIN=solana
-# PAIR=AtWMAA6T9t8cq8XCccCFPGDNNQYXhScuNuY6WVRi7FKe
 # interval=30
 
 # [dexscreener]
@@ -114,16 +120,16 @@ interval=60
 # SHORT_NAME=
 # interval=5
 
-[spotify]
-# command=python ~/linux-config/configs/i3blocks-scripts/spotify.py
-# label=
-label= 
-# label=🎧
-# green
-# color=#198c19
-# aqua
-# color=#2d7272
-interval=5
+# [spotify]
+# # command=python ~/linux-config/configs/i3blocks-scripts/spotify.py
+# # label=
+# label= 
+# # label=🎧
+# # green
+# # color=#198c19
+# # aqua
+# # color=#2d7272
+# interval=5
 {{ end }}
 
 #  ]]] volume/spotify # 
@@ -157,7 +163,7 @@ interval=5
 #  time [[[ # 
 
 [calendar]
-interval=30
+interval=5
 label= 
 # {{ if eq .chezmoi.hostname "nzxt" }}
 # DATEFMT=+%H:%M
@@ -191,9 +197,9 @@ WIDTH=220
 
 #  name [[[ # 
 
-[name]
-label= 
-interval=30
+# [name]
+# label= 
+# interval=30
 {{ end }}
 
 #  ]]] name # 
