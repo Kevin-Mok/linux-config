@@ -8,7 +8,8 @@ set $term urxvt
 # set $term_alt kitty
 set $term_alt st
 # set $term_alt urxvt
-exec dunst
+#exec dunst
+exec /usr/lib/notification-daemon-1.0/notification-daemon
 exec compton
 exec imwheel
 exec numlockx on
@@ -23,7 +24,7 @@ exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
 exec --no-startup-id i3-msg workspace $ws6; exec discord
-# exec --no-startup-id i3-msg 'workspace $ws6; exec signal-desktop'
+ exec --no-startup-id i3-msg 'workspace $ws6; exec signal-desktop'
 # exec --no-startup-id i3-msg workspace $ws1; exec $term -e fish -c 'tmux-attach school'
 
 #  ]]] startup # 
@@ -57,7 +58,8 @@ bindsym Mod4+Return exec /home/kevin/scripts/dmenu-history -nb "$fg" -nf "$bg" -
 # bindsym Mod4+b layout tabbed; exec zathura
 # bindsym Mod4+c exec $browser
 # bindsym Mod4+$mod+c exec chatterino
-bindsym Mod4+c exec chatterino
+#bindsym Mod4+c exec chatterino
+bindsym Mod4+c exec pass -c finances/metamask
 bindsym Mod4+$mod+c exec $browser
 # bindsym Mod4+e exec notify-send "HPS Word Count" "$(pdftotext /home/kevin/school/latex-notes/hps/essay.pdf - | wc -w)"
 # bindsym Mod4+e exec emacs
@@ -419,7 +421,7 @@ workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
 bindsym Mod4+d workspace $ws6; exec discord
 bindsym Mod4+$mod+d workspace $ws6; exec element-desktop
-# bindsym Mod4+i workspace $ws6; exec signal-desktop
+bindsym Mod4+i workspace $ws6; exec signal-desktop
 # bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
 bindsym Mod4+k workspace $ws6; exec slack
 # bindsym Mod4+i workspace $ws6; exec $term -e fish -c 'mosh kmok@$work_laptop_ip -- tmux a -t weechat'

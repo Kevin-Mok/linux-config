@@ -14,7 +14,8 @@ xset r rate $XSET_DELAY $XSET_RATE
 # exec /home/kevin/Downloads/dwm/reload-dwm.sh
 
 {{ if eq .chezmoi.hostname "nzxt" }}
-dunst &
+# dunst &
+/usr/lib/notification-daemon-1.0/notification-daemon &
 compton -b
 imwheel &
 numlockx on &
