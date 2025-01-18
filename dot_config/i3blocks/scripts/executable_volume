@@ -152,7 +152,7 @@ function print_format {
 			SINK_SYMB=""
 			;;
 		*"pci"*)
-			SINK_SYMB=""
+			SINK_SYMB=" "
 			;;
 	esac
     # echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
