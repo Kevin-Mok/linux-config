@@ -1,5 +1,6 @@
 #!/bin/bash
 
 . "/home/kevin/.cache/wal/colors.sh"
-ticker=$(~/scripts/kraken $TICKER)
+#ticker=$(~/scripts/kraken $TICKER)
+ticker=$(~/scripts/kraken $1)
 printf "%s\n\n%s\n" "$ticker" "$color7"

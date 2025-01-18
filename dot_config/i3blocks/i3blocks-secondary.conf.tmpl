@@ -19,20 +19,18 @@ color=#cbe4ff
 
 #  sys.monitoring [[[ # 
 
-{{ if eq .chezmoi.hostname "nzxt" }}
 [temperature]
 label= 
 interval=5
 
 [cpu_usage]
-label= 
-interval=2
+label=  
+interval=5
 
 [memory]
-label= 
+label=  
 # color=#3da061
 interval=2
-{{ end }}
 
 #  ]]] sys.monitoring # 
 
@@ -67,11 +65,8 @@ interval=60
 [calendar]
 interval=30
 label= 
-# {{ if eq .chezmoi.hostname "nzxt" }}
 # DATEFMT=+%H:%M.%a-%m-%d
-# {{ else }}
 # DATEFMT=+%H:%M
-# {{ end }}
 #DATEFMT=+%H:%M
 # SHORTFMT=+%H:%M:%S
 #SHORTFMT=+%H:%M.%a-%m-%d
