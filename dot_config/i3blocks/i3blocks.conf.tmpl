@@ -15,8 +15,6 @@ color=#cbe4ff
 
 #  ticker [[[ #
 
-{{ if eq .chezmoi.hostname "nzxt" }}
-
 # [ticker]
 # label=SOL 
 # TICKER=SOL-USD
@@ -39,7 +37,8 @@ color=#cbe4ff
 
 [kraken]
 label=BTC 
-TICKER=BTCUSDC
+#TICKER=BTCUSDC
+command=/home/kevin/scripts/kraken BTCUSDC
 interval=30
 
 # [ticker]
@@ -49,7 +48,8 @@ interval=30
 
 [kraken]
 label=SOL 
-TICKER=SOLUSD
+#TICKER=SOLUSD
+command=/home/kevin/scripts/kraken SOLUSD
 interval=30
 
 # [kraken]
@@ -59,24 +59,27 @@ interval=30
 
 [dexscreener]
 label=PIXL 
-CHAIN=ethereum
-PAIR=0x31c0ba10e4e12be6cdceb612e5e829d977532bfc
+#CHAIN=ethereum
+#PAIR=0x31c0ba10e4e12be6cdceb612e5e829d977532bfc
+command=/home/kevin/scripts/dexscreener ethereum 0x31c0ba10e4e12be6cdceb612e5e829d977532bfc
 interval=30
 
-[kraken]
-label=ETH 
-TICKER=ETHUSDC
-interval=30
+#[kraken]
+#label=ETH 
+#TICKER=ETHUSDC
+#interval=30
 
 [dexscreener]
 label=PENGU 
-CHAIN=solana
-PAIR=B4Vwozy1FGtp8SELXSXydWSzavPUGnJ77DURV2k4MhUV
+#CHAIN=solana
+#PAIR=B4Vwozy1FGtp8SELXSXydWSzavPUGnJ77DURV2k4MhUV
+command=/home/kevin/scripts/dexscreener solana B4Vwozy1FGtp8SELXSXydWSzavPUGnJ77DURV2k4MhUV
 interval=5
 
 [kraken]
 label=AVAX 
-TICKER=AVAXUSD
+#TICKER=AVAXUSD
+command=/home/kevin/scripts/kraken AVAXUSD
 interval=30
 
 #[dexscreener]
@@ -95,13 +98,10 @@ interval=30
 # TICKER=^IXIC
 # interval=30
 
-{{ end }}
-
 #  ]]] ticker #
 
 #  volume/spotify [[[ # 
 
-{{ if eq .chezmoi.hostname "nzxt" }}
 [volume]
 interval=once
 signal=1
@@ -123,7 +123,6 @@ interval=60
 # # aqua
 # # color=#2d7272
 # interval=5
-{{ end }}
 
 #  ]]] volume/spotify # 
 
@@ -144,12 +143,10 @@ label=
 interval=5
 {{ end }}
 
-# {{ if eq .chezmoi.hostname "nzxt" }}
 # [wifi]
 # label=
 # instance=wlp4s0
 # interval=10
-# {{ end }}
 
 #  ]]] laptop # 
 
@@ -157,22 +154,17 @@ interval=5
 
 [calendar]
 interval=5
-label= 
-# {{ if eq .chezmoi.hostname "nzxt" }}
+label=  
 # DATEFMT=+%H:%M
-# {{ else }}
 # DATEFMT=+%H:%M.%a-%m-%d
-# {{ end }}
-DATEFMT=+%H:%M.%a-%m-%d
 # SHORTFMT=+%H:%M:%S
-HEIGHT=180
-WIDTH=220
+#HEIGHT=180
+#WIDTH=220
 
 #  ]]] time # 
 
 #  sys.monitoring [[[ # 
 
-{{ if eq .chezmoi.hostname "nzxt" }}
 # [temperature]
 # label=
 # interval=5
@@ -193,7 +185,6 @@ WIDTH=220
 # [name]
 # label= 
 # interval=30
-{{ end }}
 
 #  ]]] name # 
 

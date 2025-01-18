@@ -57,8 +57,9 @@ b "bat"
 # ba "bat *"
 awkp "awk -F',' '{print \$0}'"
 cpr "cp -r"
-fdc "fd -i"
-fde "fd -e"
+fd "fdfind"
+fdc "fdfind -i"
+fde "fdfind -e"
 grep "grep --color=auto -n"
 grpr "grep -r"
 rgc "rg -i"
@@ -288,6 +289,12 @@ xpk "pkg list-installed | awk -F/ '{print \$1}' > ~/{{ .chezmoi.os }}-config/txt
 ap "apt install"
 apr "apt remove"
 apu "apt upgrade"
+{{ end }}
+
+{{ if eq .linux_os "ubuntu" }}
+ai "sudo apt install"
+ar "sudo apt remove"
+au "sudo apt upgrade"
 {{ end }}
 
 # ]]] apt # 

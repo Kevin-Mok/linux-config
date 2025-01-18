@@ -71,7 +71,7 @@ set -x HASTE_SERVER https://pste.gq
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
 # set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin /home/kevin/.linuxbrew/bin ~/.fnm/current/bin
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 # Java [[[ #
@@ -86,6 +86,13 @@ set -x JAVA_HOME $GRAALVM_HOME
 set -x PATH $JAVA_HOME/bin $PATH
 
 # ]]] Java #
+
+# pnpm
+set -gx PNPM_HOME "/home/kevin/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
 
 # system ]]]
 
@@ -117,7 +124,7 @@ set -xU BROWSER "firefox"
 set -xU FZF_DEFAULT_COMMAND "find ."
 
 set -x LAPTOP_IP "192.168.0.19"
-set -x PHONE_IP "192.168.0.101"
+set -x PHONE_IP "192.168.0.104"
 set -x PIXEL_IP "192.168.0.18"
 set -x WORK_LAPTOP_IP "kmok@192.168.0.11"
 
@@ -138,7 +145,7 @@ set -x FULLNODE_API_INFO wss://api.chain.love
 
 set -x IPAD_IMG 18
 
-source /home/kevin/coding/aws.fish
+#source /home/kevin/coding/aws.fish
 
 set -x LIBVIRT_DEFAULT_URI qemu:///system
 

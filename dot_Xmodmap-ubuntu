@@ -1,0 +1,8 @@
+clear Lock
+
+keycode 66 = Caps_Lock
+keycode 9 = Escape
+
+pointer = 1 2 3 6 7 4 5 10 11 12 8 9
+! side thumb button as middle click
+! pointer = 1 10 3 6 7 4 5 2 11 12 8 9

@@ -7,12 +7,22 @@ price=$(echo "$raw" | jq -r ".pairs | .[] | .priceUsd")
     # printf "%0.4f\n" "$price" | cut -c 4-
 # elif (( $(echo "$price < .1" | bc -l) )); then
     # printf "%0.3f\n" "$price" | cut -c 4-
-if (( $(echo "$price < .09" | bc -l) )); then
+#if (( $(echo "$price < .09" | bc -l) )); then
+    #printf "%0.4f\n" "$price" | cut -c 4-
+#elif (( $(echo "$price < .1" | bc -l) )); then
+    #printf "%0.3f\n" "$price" | cut -c 4-
+#elif (( $(echo "$price < 1" | bc -l) )); then
+    #printf "%0.3f\n" "$price" | cut -c 3-
+#elif (( $(echo "$price < 10" | bc -l) )); then
+    #printf "%0.2f\n" "$price"
+#fi
+
+if [ $(echo "$price < 0.09" | bc -l) -eq 1 ]; then
     printf "%0.4f\n" "$price" | cut -c 4-
-elif (( $(echo "$price < .1" | bc -l) )); then
+elif [ $(echo "$price < 0.1" | bc -l) -eq 1 ]; then
     printf "%0.3f\n" "$price" | cut -c 4-
-elif (( $(echo "$price < 1" | bc -l) )); then
+elif [ $(echo "$price < 1" | bc -l) -eq 1 ]; then
     printf "%0.3f\n" "$price" | cut -c 3-
-elif (( $(echo "$price < 10" | bc -l) )); then
+elif [ $(echo "$price < 10" | bc -l) -eq 1 ]; then
     printf "%0.2f\n" "$price"
 fi
