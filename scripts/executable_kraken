@@ -28,7 +28,8 @@ if (( $(echo "$price < 1" | bc -l) )); then
 elif (( $(echo "$price < 10" | bc -l) )); then
     printf "%0.3f\n" "$price" | cut -c 3-
 elif (( $(echo "$price < 100" | bc -l) )); then
-    echo "$price" | numfmt --grouping | cut -c -2
+    #echo "$price" | numfmt --grouping | cut -c -2
+    echo "$price" | tr -d '.' | awk '{print substr($0, 1, 3)}'
 elif (( $(echo "$price < 1000" | bc -l) )); then
     echo "$price" | numfmt --grouping | cut -c -3
 elif (( $(echo "$price < 10000" | bc -l) )); then
