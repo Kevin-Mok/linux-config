@@ -9,6 +9,8 @@ case "$BLOCK_BUTTON" in
 esac
 
 . "/home/kevin/.cache/wal/colors.sh"
-long_title=$(spotify-now -i "$LONG_NAME" -p '' -e '' | sed 's/&/&amp;/g')
-short_title=$(spotify-now -i "$SHORT_NAME" -p '' -e '' | sed 's/&/&amp;/g')
+#long_title=$(spotify-now -i "$LONG_NAME" -p '' -e '' | sed 's/&/&amp;/g')
+#short_title=$(spotify-now -i "$SHORT_NAME" -p '' -e '' | sed 's/&/&amp;/g')
+long_title=$(spotify-now)
+short_title=$(spotify-now)
 printf "$long_title\n$short_title\n%s\n" "$color7"
