@@ -234,3 +234,9 @@ handle_mime "${MIMETYPE}"
 handle_fallback
 
 exit 1
+
+#if [ "$KITTY_WINDOW_ID" ]; then
+    #kitty +kitten icat --transfer-mode file --stdin yes
+    #exit 1
+#fi
+preview_images_method="ueberzug"

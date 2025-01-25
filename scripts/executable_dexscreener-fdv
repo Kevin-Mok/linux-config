@@ -1,8 +1,12 @@
 # /bin/bash
 
 # curl -s https://api.dexscreener.com/latest/dex/pairs/$1/$2| jq -r '.pairs | .[] | .priceUsd'
-raw=$(curl -s "https://api.dexscreener.com/latest/dex/pairs/$1/$2")
-price=$(echo "$raw" | jq -r ".pairs | .[] | .priceUsd")
+#raw=$(curl -s "https://api.dexscreener.com/latest/dex/pairs/$1/$2")
+#price=$(echo "$raw" | jq '.pairs[0].marketCap / 1000000000 | . as $marketCap | "\($marketCap | floor).$(($marketCap * 10 | floor % 10))"')
+#price=$(echo "$raw" | jq -r '.pairs[0].marketCap / 1000000000 | "\(floor).\( (. * 10 | floor % 10) )B"')
+#curl -s "https://api.dexscreener.com/latest/dex/pairs/$1/$2" | jq -r '.pairs[0].marketCap / 1000000000 | "\(floor).\( (. * 10 | floor % 10) )"'
+curl -s "https://api.dexscreener.com/latest/dex/pairs/$1/$2" | jq -r '.pairs[0].fdv / 1000000000 | "\(floor).\( (. * 10 | floor % 10) )"' | jq -r 'tostring | gsub("\\.";"")'
+
 # if (( $(echo "$price < .05" | bc -l) )); then
     # printf "%0.4f\n" "$price" | cut -c 4-
 # elif (( $(echo "$price < .1" | bc -l) )); then
@@ -17,15 +21,4 @@ price=$(echo "$raw" | jq -r ".pairs | .[] | .priceUsd")
     #printf "%0.2f\n" "$price"
 #fi
 
-if [ $(echo "$price < 0.09" | bc -l) -eq 1 ]; then
-    printf "%0.4f\n" "$price" | cut -c 4-
-elif [ $(echo "$price < 0.1" | bc -l) -eq 1 ]; then
-    printf "%0.3f\n" "$price" | cut -c 4-
-elif [ $(echo "$price < 1" | bc -l) -eq 1 ]; then
-    printf "%0.3f\n" "$price" | cut -c 3-
-elif [ $(echo "$price < 10" | bc -l) -eq 1 ]; then
-    printf "%0.2f\n" "$price"
-elif [ $(echo "$price < 100" | bc -l) -eq 1 ]; then
-    #printf "%0.2f\n" "$price"
-    echo "$price" | awk '{print int($1*10)}'
-fi
+

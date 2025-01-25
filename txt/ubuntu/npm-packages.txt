@@ -1,0 +1,5 @@
+/home/kevin/.local/share/fnm/node-versions/v23.6.0/installation/lib
+├── corepack@0.30.0
+├── node-gyp@11.0.0
+└── npm@10.9.2
+
