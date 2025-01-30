@@ -477,7 +477,8 @@ set $ws11 "11  "
 # assign [class="Summoners War Exporter"] $ws11
 workspace $ws11 output $secondary
 # bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_CPU
-bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_MEM
+#bindsym $mod+F11 workspace $ws11; exec $term -e htop -s PERCENT_MEM
+bindsym $mod+F11 workspace $ws11; exec $term -e btop
 # bindsym Mod4+$mod+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
 bindsym Control+Shift+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
 bindsym Mod4+t workspace $ws11; exec nordvpn connect && transmission-gtk

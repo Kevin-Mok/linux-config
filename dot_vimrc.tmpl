@@ -61,7 +61,7 @@ filetype plugin indent on
 autocmd BufNewFile,BufRead .* set syntax=sh
 autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 autocmd FileType *css,gitcommit,haskell,htmldjango,html,graphql,javascript,javascriptreact,json,lisp,markdown,
-      \racket,tex,text,yaml set tabstop=2 shiftwidth=2
+      \racket,tex,text,typescript,typescriptreact,yaml set tabstop=2 shiftwidth=2
 " autocmd BufNewFile,BufRead *.md set filetype=markdown
 " autocmd Filetype markdown set textwidth=0
 " autocmd Filetype html set foldmarker=0
@@ -345,6 +345,9 @@ Plug 'jidn/vim-dbml'
 Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdcommenter'
+"Plug 'vimwiki/vimwiki'
+  "let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+"Plug 'tools-life/taskwiki'
 " ]]] vim-plug "
 
 " Mappings [[[ "

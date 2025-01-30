@@ -20,7 +20,7 @@ data.location=~/.task
 # Color theme (uncomment one to use){{{
 #include /usr/share/doc/task/rc/light-16.theme
 #include /usr/share/doc/task/rc/light-256.theme
-include /usr/share/doc/task/rc/dark-16.theme
+# include /usr/share/doc/task/rc/dark-16.theme
 # include /usr/share/doc/task/rc/dark-256.theme
 #include /usr/share/doc/task/rc/dark-red-256.theme
 #include /usr/share/doc/task/rc/dark-green-256.theme
@@ -82,9 +82,10 @@ context.mny=project:mny
 context.pey=project:pey 
 context.sch=project:sch
 
+context=none
 # context=home
 # context=out
-context=sch
+#context=sch
 # context=mny
 # context=pey
 # context=not-pey
