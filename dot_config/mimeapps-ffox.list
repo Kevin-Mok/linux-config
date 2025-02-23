@@ -1,9 +1,9 @@
 [Default Applications]
-text/html=firefox.desktop
-x-scheme-handler/http=firefox.desktop
-x-scheme-handler/https=firefox.desktop
-x-scheme-handler/about=chromium.desktop
-x-scheme-handler/unknown=chromium.desktop
+text/html=firefox_firefox.desktop
+x-scheme-handler/http=firefox_firefox.desktop
+x-scheme-handler/https=firefox_firefox.desktop
+x-scheme-handler/about=firefox_firefox.desktop
+x-scheme-handler/unknown=firefox_firefox.desktop
 x-scheme-handler/ftp=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
 application/x-extension-htm=firefox.desktop
@@ -17,6 +17,8 @@ message/rfc822=userapp-Thunderbird-DQE3YZ.desktop
 image/jpeg=sxiv.desktop
 image/png=sxiv.desktop
 x-scheme-handler/discord-409416265891971072=discord-409416265891971072.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+video/mp4=mpv.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -31,3 +33,4 @@ application/json=firefox.desktop;
 image/jpeg=gimp.desktop;imv.desktop;
 text/markdown=nvim.desktop;
 image/png=imv.desktop;
+video/mp4=mpv.desktop;

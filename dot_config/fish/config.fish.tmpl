@@ -139,7 +139,6 @@ set -xU LOCAL_KOGITO_SERVICE_PORT "32000"
 # set -xU LOCAL_KOGITO_SERVICE_URL "$MINIKUBE_IP:$LOCAL_KOGITO_SERVICE_PORT"
 
 set -x FLASK_DEBUG 1
-set -x DB_NAME "covid_monitor"
 
 set -x FULLNODE_API_INFO wss://api.chain.love
 
@@ -148,6 +147,8 @@ set -x IPAD_IMG 18
 #source /home/kevin/coding/aws.fish
 
 set -x LIBVIRT_DEFAULT_URI qemu:///system
+
+set --erase DB_NAME 
 
 # ]]] universal var's #
 
@@ -224,8 +225,8 @@ abbr bun "backup nzxt"
 abbr bupp "backup-phone-pics"
 #abbr ca "cad-to-us"
 abbr cccs "sync-alt-cal class"
-abbr cl "clip"
-abbr cli "clip-ipad"
+#abbr cl "clip"
+#abbr cli "clip-ipad"
 abbr cpc "copy cat"
 abbr cpe "copy echo"
 abbr cpp "copy echo (pwd)"

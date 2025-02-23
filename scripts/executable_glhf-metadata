@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import requests
+
+def get_tier_value(num):
+    url = f"https://www.glhfers.com/api/rom-metadata/{num}"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes
+        data = response.json()
+        
+        # Find the Tier trait value
+        for attribute in data.get("attributes", []):
+            if attribute.get("trait_type") == "Tier":
+                return attribute.get("value")
+                # value = attribute.get("value")
+        
+        return "Tier not found"
+    except requests.exceptions.RequestException as e:
+        return f"Error fetching data: {e}"
+
+def main():
+    while True:
+        try:
+            num = input("Enter a number: ")
+            if num.lower() == 'exit':
+                break
+            
+            num = int(num)  # Convert input to integer
+            tier_value = get_tier_value(num)
+            print(f"{tier_value}")
+        except ValueError:
+            print("Invalid input. Please enter a number or 'exit' to quit.")
+
+if __name__ == "__main__":
+    main()

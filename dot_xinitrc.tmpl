@@ -13,10 +13,9 @@ redshift -O 3000
 xset r rate $XSET_DELAY $XSET_RATE
 # exec /home/kevin/Downloads/dwm/reload-dwm.sh
 
-{{ if eq .chezmoi.hostname "nzxt" }}
 # dunst &
 /usr/lib/notification-daemon-1.0/notification-daemon &
-compton -b
+picom &
 imwheel &
 numlockx on &
 start-pulseaudio-x11 &
@@ -24,8 +23,6 @@ start-pulseaudio-x11 &
 # wal -i "$(/home/kevin/scripts/shuffler \"$HOME/Pictures/Backgrounds/dim/non-editing\")" && /home/kevin/st/make-st.sh &
 # wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") &
 wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editing") &
-{{ end }}
-exec i3
 
 # # Statusbar loop
 # while true; do

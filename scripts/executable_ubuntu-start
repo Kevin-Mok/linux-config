@@ -1,0 +1,16 @@
+#!/bin/bash
+
+picom &
+pulseaudio --start
+imwheel
+xmodmap ~/.Xmodmap
+
+redshift -O 3000
+xset r rate $XSET_DELAY $XSET_RATE
+/usr/lib/notification-daemon-1.0/notification-daemon &
+picom &
+imwheel &
+numlockx on &
+start-pulseaudio-x11 &
+
+wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editing") &
