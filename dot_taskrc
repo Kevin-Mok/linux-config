@@ -81,8 +81,11 @@ context.out=project:out
 context.mny=project:mny 
 context.pey=project:pey 
 context.sch=project:sch
+#context.sniper=project:sniper project:job 
+context.sniper=(project:sniper or project:job)
 
-context=none
+#context=none
+context=sniper
 # context=home
 # context=out
 #context=sch

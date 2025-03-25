@@ -357,7 +357,8 @@ am "antimicro"
 # task [[[ #
 
 a "task"
-aa "task add proj:anp"
+#aa "task add proj:anp"
+aa "task add proj:sniper"
 aan "task add"
 aal "task add proj:lnx"
 aap "task add proj:"
@@ -371,7 +372,7 @@ aaj "task add proj:pey +jira []"
 aapp "task add proj:pogo"
 aas "task add proj:sch"
 aay "task add proj:pey"
-ac "task context"
+acx "task context"
 acn "task context none && task"
 ach "task context home && task"
 acm "task context mny && task"
@@ -485,7 +486,7 @@ pipes "pipes.sh -t 3"
 pcp "pycp"
 pmv "pymv"
 py "python"
-q "qalc '"
+#q "qalc '"
 #qe "qalc -e '1USD to CAD'"
 qg "qalculate-gtk"
 r "ranger"
@@ -938,8 +939,7 @@ mm "printf '\033c' && bear make clean move_mouse_with_head && ./move_mouse_with_
 #med "printf '\033c' && bear make clean eye_detector && ./eye_detector"
 mft "printf '\033c' && bear make clean face_detector && ./face_detector"
 rft "~/coding/face-tracker/face_detector > /tmp/move_mouse_with_head.out"
-# gpsb "git push bitbucket"
-gpsb "git push bot"
+gpsb "git push bitbucket"
 
 # ]]] ada-mario #
 
@@ -1047,6 +1047,8 @@ ttrtk "timetrace report -s 2023-04-20 -p totk"
 
 cpsdv "cp * /home/kevin/Documents/stardew-valley-sdv-saves/hevintales"
 
+rclh "rclone copy --progress hevin:/ ."
+
 # ]]] games #
 
 # work  [[[ #
@@ -1062,13 +1064,17 @@ ttle "timetrace start leetcode@job"
 
 ts "npx tsc"
 njs "node src/download-json.js"
-xi "npx ts-node src/index.ts"
-xs "npx ts-node src/sync.ts"
+xi "npx ts-node src/index.ts 2>&1 | tee logs/index.log"
+xd "npm run dev 2>&1 | tee logs/index.log"
+xs "npx ts-node src/sync.ts 2>&1 | tee logs/sync.log"
+xt "npm run type-check | tee logs/type-check.log"
 #xsv "nodemon --exec node --loader ts-node/esm src/server.ts"
 #xsv "npx nodemon"
-xsv "nodemon --exec tsx src/server.ts"
+#xsv "nodemon --exec tsx src/server.ts"
+xsv "npx nodemon --exitcrash --exec tsx src/server.ts"
 cl "npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 clw "watch npx ts-node src/cli.ts list-nfts -p 5 -t 100"
+vp "vercel --prod"
 
 # ]]] work  #
 

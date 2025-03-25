@@ -1,0 +1,127 @@
+#!/usr/bin/env fish
+
+# Find a random image
+#set image (fdfind -e jpg -e jpeg -e png -e webp . /mnt/linux-files-2/Pictures/hevin | shuf -n 1)
+
+## Create blurred lock image
+#convert "$image" -resize 1920x1080^ -gravity center -extent 1920x1080 /tmp/lock.png
+
+## Lock with i3lock-color
+#i3lock -n -i /tmp/lock.png
+
+# --------------------
+#!/usr/bin/env fish
+
+#set WALLPAPER_DIR "/mnt/linux-files-2/Pictures/hevin"
+#set CYCLE_TIME 5  # Seconds between image changes
+#set LOCK_AFTER 500 # Activate real lock after 30 seconds of screensaver
+
+## Use a transparent window to cover everything
+#while true
+    #set image (fdfind -e jpg -e jpeg -e png -e webp . $WALLPAPER_DIR | shuf -n 1)
+    
+    ## Create fullscreen image
+    #convert "$image" -resize (xrandr | grep '*' | head -1 | awk '{print $1}')^ \
+                    #-gravity center -extent (xrandr | grep '*' | head -1 | awk '{print $1}') \
+                    #/tmp/screensaver.png
+    
+    ## Display fullscreen using feh
+    #feh --fullscreen --hide-pointer --no-fehbg /tmp/screensaver.png &
+    #set feh_pid $last_pid
+    
+    ## Wait for timeout or mouse movement
+    #sleep $CYCLE_TIME
+    #kill $feh_pid
+    
+    ## After longer timeout, activate real lock
+    #if test (math $CYCLE_TIME \* $count) -ge $LOCK_AFTER
+        #i3lock -n -i /tmp/screensaver.png
+        #set count 0
+    #else
+        #set count (math $count + 1)
+    #end
+#end
+
+# --------------------
+#!/usr/bin/env fish
+
+# Configuration
+set WALLPAPER_DIR "/mnt/linux-files-2/Pictures/hevin"
+set CYCLE_TIME 2          # Seconds between image changes
+#set BLUR_AMOUNT "0x5"     # Set to "0x0" for no blur
+set BLUR_AMOUNT "0x0"     # Set to "0x0" for no blur
+
+# Get monitor information - sanitize names by replacing hyphens with underscores
+set monitors (xrandr --query | grep " connected" | awk '{print $1}' | string replace -a '-' '_')
+set geometries (xrandr --query | grep -A1 " connected" | grep -v " connected" | awk '{print $1}')
+
+# Verify we found monitors
+if test (count $monitors) -eq 0
+    echo "Error: No monitors detected!"
+    exit 1
+end
+
+# Create monitor geometry mapping
+set -g monitor_geometries
+for i in (seq (count $monitors))
+    set monitor $monitors[$i]
+    set geo $geometries[$i]
+    if test -z "$geo"
+        echo "Warning: Could not get geometry for monitor $monitor, using default 1920x1080"
+        set geo "1920x1080"
+    end
+    set monitor_geometries $monitor_geometries "$monitor:$geo"
+end
+
+while true
+    # Use only the first monitor's geometry
+    set entry $monitor_geometries[1]
+    set monitor (echo $entry | cut -d':' -f1)
+    set geo (echo $entry | cut -d':' -f2)
+    set width (echo $geo | cut -d'x' -f1)
+    set height (echo $geo | cut -d'x' -f2)
+    
+    # Select and process image
+    set image (fdfind -e jpg -e jpeg -e png -e webp . $WALLPAPER_DIR | shuf -n 1)
+    if test -n "$image"
+        echo "Found image: $image"
+        
+        # Get image dimensions
+        set img_info (identify -format "%wx%h" "$image")
+        set img_width (echo $img_info | cut -d'x' -f1)
+        set img_height (echo $img_info | cut -d'x' -f2)
+        
+        # Process image based on orientation
+        if test $img_height -gt $img_width
+            # Vertical image - fit to height with black background
+            convert "$image" \
+                -resize x{$height}^ \
+                -gravity center \
+                -background black \
+                -extent {$width}x{$height} \
+                -blur $BLUR_AMOUNT \
+                "/tmp/screensaver-$monitor.png"
+        else
+            # Horizontal image - fit to width
+            convert "$image" \
+                -resize {$width}x^ \
+                -gravity center \
+                -extent {$width}x{$height} \
+                -blur $BLUR_AMOUNT \
+                "/tmp/screensaver-$monitor.png"
+        end
+        
+        # Display image on single monitor
+        feh --no-fehbg --hide-pointer --fullscreen --title 'screensaver' "/tmp/screensaver-$monitor.png" &
+        set feh_pid $last_pid
+
+        # Wait for cycle time
+        sleep $CYCLE_TIME
+        
+        # Kill feh process
+        kill $feh_pid 2>/dev/null
+    else
+        echo "Error: No images found in $WALLPAPER_DIR"
+        exit 1
+    end
+end
