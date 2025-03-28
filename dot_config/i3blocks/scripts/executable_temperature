@@ -2,6 +2,6 @@
 
 . "/home/kevin/.cache/wal/colors.sh"
 
-temps="$(sensors | rg 'temp1:.*' | awk '{ print $2 }' | rg -o '\d{2}' | \
-    sort -r | sed 's/$/°C/' | tr '\n' ' ' | xargs)"
-printf "%s\n\n%s\n" "$temps" "$color7"
+# Read from k10temp's Tctl sensor for AMD CPU temperature
+temp="$(sensors | rg 'Tctl:' | awk '{ print $2 }' | rg -o '\d{2}' | sed 's/$/°C/')"
+printf "%s\n\n%s\n" "$temp" "$color7"
