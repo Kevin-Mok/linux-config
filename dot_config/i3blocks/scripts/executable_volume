@@ -37,9 +37,9 @@ AUDIO_DELTA=${AUDIO_DELTA:-3}
 # AUDIO_DELTA=${AUDIO_DELTA:-1}
 
 # LONG_FORMAT=${LONG_FORMAT:-'${SYMB} ${VOL}% [${INDEX}:${NAME}]'}
-LONG_FORMAT=${SHORT_FORMAT:-'${SINK_SYMB} ${VOL}%'}
+LONG_FORMAT=${SHORT_FORMAT:-'${SINK_SYMB}  ${VOL}%'}
 # SHORT_FORMAT=${SHORT_FORMAT:-'${SYMB} ${VOL}%[${INDEX}]'}
-SHORT_FORMAT=${SHORT_FORMAT:-'${SINK_SYMB} ${VOL}%'}
+SHORT_FORMAT=${SHORT_FORMAT:-'${SINK_SYMB}  ${VOL}%'}
 
 # flags {{{ #
 
@@ -142,21 +142,18 @@ esac
 # print_format  {{{ #
 
 function print_format {
-	# echo $NAME
-	case $NAME in
-		# *"USB"*)
-		*"Fiio"*)
-			SINK_SYMB=""
-			;;
-		*"hdmi"*)
-			SINK_SYMB=""
-			;;
-		*"pci"*)
-			SINK_SYMB=" "
-			;;
-	esac
-    # echo "$1" | envsubst '${SYMB}${VOL}${INDEX}${NAME}'
-	echo "$1" | envsubst '${SINK_SYMB}${VOL}${INDEX}${NAME}'
+    case $NAME in
+        *"Fiio"*)
+            SINK_SYMB=""
+            ;;
+        *"hdmi"*)
+            SINK_SYMB=""
+            ;;
+        *"pci"*)
+            SINK_SYMB=" "
+            ;;
+    esac
+    eval "echo \"$1\""
 }
 
 # }}} print_format  #
@@ -164,34 +161,37 @@ function print_format {
 # print_block  {{{ #
 
 function print_block {
-    for name in INDEX NAME VOL MUTED; do
-        read $name
-    done < <(pacmd list-sinks | grep "index:\|name:\|volume: front\|muted:" | grep -A3 '*')
-    INDEX=$(echo "$INDEX" | grep -o '[0-9]\+')
-    VOL=$(echo "$VOL" | grep -o "[0-9]*%" | head -1 )
-    VOL="${VOL%?}"
+    # Use pactl instead of pacmd to get sink information
+    SINK_INFO=$(pactl list sinks | awk '
+        /^Sink #/{sink=$2}
+        /Volume: front-left/{volume=$5}
+        /Mute:/{muted=$2}
+        /Name:/{name=$2}
+        /Description:/{description=$0; sub(/Description: /, "", description)}
+        /Active Port:/{port=$3}
+        /^\s*$/{if (sink && sink ~ /\*/) {print sink; print name; print volume; print muted; exit}}
+    ')
 
-	NAME=$(echo "$NAME")
-    # NAME=$(echo "$NAME" | sed \
-# 's/.*<.*\.\(.*\)>.*/\1/; t;'\
-# 's/.*<\(.*\)>.*/\1/; t;'\
-# 's/.*/unknown/')
-	# NAME=$(echo "$NAME" | sed \
-# 's/.*<.*\.\(.*\)\..*>.*/\1/; t;')
+    # Parse the output
+    INDEX=$(echo "$SINK_INFO" | sed -n '1p' | tr -d '#*')
+    NAME=$(echo "$SINK_INFO" | sed -n '2p')
+    VOL=$(echo "$SINK_INFO" | sed -n '3p' | grep -o "[0-9]*%" | head -1)
+    VOL="${VOL%?}"
+    MUTED=$(echo "$SINK_INFO" | sed -n '4p')
 
     if [[ $USE_ALSA_NAME == 1 ]] ; then
-        ALSA_NAME=$(pacmd list-sinks |\
-awk '/^\s*\*/{f=1}/^\s*index:/{f=0}f' |\
-grep "alsa.name\|alsa.mixer_name" |\
-head -n1 |\
-sed 's/.*= "\(.*\)".*/\1/')
+        ALSA_NAME=$(pactl list sinks | awk '
+            /^Sink #/{sink=$2}
+            /alsa.name =/{alsa_name=$3; gsub(/"/, "", alsa_name)}
+            /^\s*$/{if (sink && sink ~ /\*/) {print alsa_name; exit}}
+        ')
         NAME=${ALSA_NAME:-$NAME}
     elif [[ $USE_DESCRIPTION == 1 ]] ; then
-        DESCRIPTION=$(pacmd list-sinks |\
-awk '/^\s*\*/{f=1}/^\s*index:/{f=0}f' |\
-grep "device.description" |\
-head -n1 |\
-sed 's/.*= "\(.*\)".*/\1/')
+        DESCRIPTION=$(pactl list sinks | awk '
+            /^Sink #/{sink=$2}
+            /Description:/{description=$0; sub(/Description: /, "", description)}
+            /^\s*$/{if (sink && sink ~ /\*/) {print description; exit}}
+        ')
         NAME=${DESCRIPTION:-$NAME}
     fi
 
@@ -222,3 +222,141 @@ if [[ $SUBSCRIBE == 1 ]] ; then
         print_block
     done < <(pactl subscribe | stdbuf -oL grep change)
 fi
+
+# Hardware Configuration
+#CARD=2
+#SINK="alsa_output.pci-0000_30_00.6.analog-stereo"
+#FRONT="Front Playback Switch"
+#REAR="Surround Playback Switch"
+#FRONT_VOL="Front Playback Volume"
+#REAR_VOL="Surround Playback Volume"
+
+## Debugging output
+#LOG_FILE=~/.audio-toggle.log
+#echo "=== $(date) ===" >> $LOG_FILE
+
+## Get current active output (PulseAudio fallback)
+#get_active_output() {
+    ## Get full sink info for debugging
+    #SINK_INFO=$(pacmd list-sinks)
+    #echo "Full sink info:" >> $LOG_FILE
+    #echo "$SINK_INFO" >> $LOG_FILE
+    
+    ## Try alternative port detection method
+    #PORT=$(echo "$SINK_INFO" | awk -v sink="$SINK" '
+        #$1 == "name:" && $2 == "<"sink">" {active=1}
+        #active && /active port:/ {
+            ## Extract port name between angle brackets
+            #match($0, /<[^>]+>/)
+            #port = substr($0, RSTART+1, RLENGTH-2)
+            #print port
+            #exit
+        #}
+    #')
+    
+    #echo "Raw port detection: $PORT" >> $LOG_FILE
+    
+    #if [[ "$PORT" == "analog-output-headphones" ]]; then
+        #echo "front"
+    #elif [[ "$PORT" == "analog-output-lineout" ]]; then
+        #echo "rear"
+    #else
+        #echo "unknown"
+    #fi
+#}
+
+## Switch outputs with hardware-level control
+#switch_output() {
+    #echo "Starting switch to $1" >> $LOG_FILE
+    
+    ## First disable both outputs
+    #echo "Disabling both outputs" >> $LOG_FILE
+    ## ALSA controls
+    #amixer -c $CARD set "$FRONT" mute >/dev/null
+    #amixer -c $CARD set "$FRONT_VOL" 0% >/dev/null
+    #amixer -c $CARD set "$REAR" mute >/dev/null
+    #amixer -c $CARD set "$REAR_VOL" 0% >/dev/null
+    ## PulseAudio controls
+    #pactl set-sink-mute "$SINK" 1 >/dev/null
+    #sleep 0.2
+
+    #if [[ "$1" == "front" ]]; then
+        #echo "Enabling front output" >> $LOG_FILE
+        ## Check if headphones port exists
+        #if echo "$SINK_INFO" | grep -q "analog-output-headphones"; then
+            #echo "Attempting to set port to analog-output-headphones" >> $LOG_FILE
+            #if ! pacmd set-sink-port "$SINK" "analog-output-headphones" 2>>$LOG_FILE; then
+                #echo "Port switch failed, trying alternative method" >> $LOG_FILE
+                #pactl set-sink-port "$SINK" "analog-output-headphones" 2>>$LOG_FILE || true
+            #fi
+        #else
+            #echo "Headphones port not available, using hardware controls only" >> $LOG_FILE
+        #fi
+        ## Additional hardware control
+        #amixer -c $CARD set 'Headphone' unmute >/dev/null
+        #amixer -c $CARD set 'Speaker' mute >/dev/null
+        #pactl set-sink-mute "$SINK" 0 >/dev/null
+        ## ALSA controls
+        #amixer -c $CARD set "$FRONT" unmute >/dev/null
+        #amixer -c $CARD set "$FRONT_VOL" 100% >/dev/null
+        #OUTPUT=" FRONT"
+    #else
+        #echo "Enabling rear output" >> $LOG_FILE
+        ## PulseAudio controls
+        #echo "Attempting to set port to analog-output-lineout" >> $LOG_FILE
+        #if ! pacmd set-sink-port "$SINK" "analog-output-lineout" 2>>$LOG_FILE; then
+            #echo "Port switch failed, trying alternative method" >> $LOG_FILE
+            #pactl set-sink-port "$SINK" "analog-output-lineout" 2>>$LOG_FILE || true
+        #fi
+        ## Additional hardware control
+        #amixer -c $CARD set 'Speaker' unmute >/dev/null
+        #amixer -c $CARD set 'Headphone' mute >/dev/null
+        #pactl set-sink-mute "$SINK" 0 >/dev/null
+        ## ALSA controls
+        #amixer -c $CARD set "$REAR" unmute >/dev/null
+        #amixer -c $CARD set "$REAR_VOL" 100% >/dev/null
+        #OUTPUT=" REAR"
+    #fi
+
+    ## Reset audio pipeline
+    #echo "Resetting audio pipeline" >> $LOG_FILE
+    #{ pactl suspend-sink "$SINK" 1 && sleep 0.2 && pactl suspend-sink "$SINK" 0; } >/dev/null 2>&1
+
+    ## Verify switch
+    #echo "Verifying switch..." >> $LOG_FILE
+    #CURRENT=$(get_active_output)
+    #echo "Current output: $CURRENT" >> $LOG_FILE
+    #if [[ "$CURRENT" != "$1" ]]; then
+        #echo "Switch verification failed!" >> $LOG_FILE
+        ## Force hardware-level switch
+        #echo "Forcing hardware-level switch..." >> $LOG_FILE
+        #if [[ "$1" == "front" ]]; then
+            #amixer -c $CARD set 'Headphone' unmute >/dev/null
+            #amixer -c $CARD set 'Speaker' mute >/dev/null
+        #else
+            #amixer -c $CARD set 'Speaker' unmute >/dev/null
+            #amixer -c $CARD set 'Headphone' mute >/dev/null
+        #fi
+    #fi
+
+    #echo "Switch complete" >> $LOG_FILE
+    #echo "$OUTPUT"  # Output to i3blocks
+#}
+
+## Main execution
+#case "${BLOCK_BUTTON:-}" in
+    #1)
+        #CURRENT=$(get_active_output)
+        #if [[ "$CURRENT" == "front" ]]; then
+            #switch_output "rear"
+        #else
+            #switch_output "front"
+        #fi
+        #;;
+    #*)
+        #CURRENT=$(get_active_output)
+        #[[ "$CURRENT" == "front" ]] && echo " FRONT" || echo " REAR"
+        #;;
+#esac
+
+#exit 0

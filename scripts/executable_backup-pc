@@ -18,6 +18,9 @@ case $1 in
 	ubuntu )
 		backup_dest="$mount_dir/ubuntu"
 		;;
+	ubuntu-h7 )
+		backup_dest="$mount_dir/ubuntu-h7"
+		;;
 esac
 exclude_dirs_list="/home/kevin/txt/exclude-dirs-backup.txt"
 exclude_dirs_list_full="/home/kevin/txt/exclude-dirs-backup-full.txt"
