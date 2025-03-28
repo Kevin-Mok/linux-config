@@ -177,7 +177,8 @@ function print_block {
         NAME=${DESCRIPTION:-$NAME}
     fi
 
-    if [[ $MUTED =~ "\[on\]" ]] ; then
+    # Fix mute status check
+    if [[ $MUTED == "[on]" ]] ; then
         SYMB=$AUDIO_HIGH_SYMBOL
         [[ $VOL -le $AUDIO_MED_THRESH ]] && SYMB=$AUDIO_MED_SYMBOL
         [[ $VOL -le $AUDIO_LOW_THRESH ]] && SYMB=$AUDIO_LOW_SYMBOL
