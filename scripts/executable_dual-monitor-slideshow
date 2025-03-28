@@ -1,58 +1,13 @@
 #!/usr/bin/env fish
 
-# Find a random image
-#set image (fdfind -e jpg -e jpeg -e png -e webp . /mnt/linux-files-2/Pictures/hevin | shuf -n 1)
-
-## Create blurred lock image
-#convert "$image" -resize 1920x1080^ -gravity center -extent 1920x1080 /tmp/lock.png
-
-## Lock with i3lock-color
-#i3lock -n -i /tmp/lock.png
-
-# --------------------
-#!/usr/bin/env fish
-
-#set WALLPAPER_DIR "/mnt/linux-files-2/Pictures/hevin"
-#set CYCLE_TIME 5  # Seconds between image changes
-#set LOCK_AFTER 500 # Activate real lock after 30 seconds of screensaver
-
-## Use a transparent window to cover everything
-#while true
-    #set image (fdfind -e jpg -e jpeg -e png -e webp . $WALLPAPER_DIR | shuf -n 1)
-    
-    ## Create fullscreen image
-    #convert "$image" -resize (xrandr | grep '*' | head -1 | awk '{print $1}')^ \
-                    #-gravity center -extent (xrandr | grep '*' | head -1 | awk '{print $1}') \
-                    #/tmp/screensaver.png
-    
-    ## Display fullscreen using feh
-    #feh --fullscreen --hide-pointer --no-fehbg /tmp/screensaver.png &
-    #set feh_pid $last_pid
-    
-    ## Wait for timeout or mouse movement
-    #sleep $CYCLE_TIME
-    #kill $feh_pid
-    
-    ## After longer timeout, activate real lock
-    #if test (math $CYCLE_TIME \* $count) -ge $LOCK_AFTER
-        #i3lock -n -i /tmp/screensaver.png
-        #set count 0
-    #else
-        #set count (math $count + 1)
-    #end
-#end
-
-# --------------------
-#!/usr/bin/env fish
-
 # Configuration
 set WALLPAPER_DIR "/mnt/linux-files-2/Pictures/hevin"
-set CYCLE_TIME 2          # Seconds between image changes
+set CYCLE_TIME 5          # Seconds between image changes
 #set BLUR_AMOUNT "0x5"     # Set to "0x0" for no blur
 set BLUR_AMOUNT "0x0"     # Set to "0x0" for no blur
 
-# Get monitor information - sanitize names by replacing hyphens with underscores
-set monitors (xrandr --query | grep " connected" | awk '{print $1}' | string replace -a '-' '_')
+# Get monitor information - use exact names from xrandr
+set monitors (xrandr --query | grep " connected" | awk '{print $1}')
 set geometries (xrandr --query | grep -A1 " connected" | grep -v " connected" | awk '{print $1}')
 
 # Verify we found monitors
@@ -73,13 +28,29 @@ for i in (seq (count $monitors))
     set monitor_geometries $monitor_geometries "$monitor:$geo"
 end
 
+# Function to restore monitor layout
+function restore_monitors
+    xrandr --auto
+    xrandr --output HDMI-0 --right-of DVI-I-1
+end
+
+# Trap to restore monitors on exit
+trap restore_monitors EXIT
+
 while true
     # Use only the first monitor's geometry
     set entry $monitor_geometries[1]
-    set monitor (echo $entry | cut -d':' -f1)
+    set primary_monitor (echo $entry | cut -d':' -f1)
     set geo (echo $entry | cut -d':' -f2)
     set width (echo $geo | cut -d'x' -f1)
     set height (echo $geo | cut -d'x' -f2)
+    
+    # Turn off all other monitors
+    for monitor in $monitors
+        if test "$monitor" != "$primary_monitor"
+            xrandr --output $monitor --off 2>/dev/null || echo "Warning: Could not turn off monitor $monitor"
+        end
+    end
     
     # Select and process image
     set image (fdfind -e jpg -e jpeg -e png -e webp . $WALLPAPER_DIR | shuf -n 1)
@@ -100,7 +71,7 @@ while true
                 -background black \
                 -extent {$width}x{$height} \
                 -blur $BLUR_AMOUNT \
-                "/tmp/screensaver-$monitor.png"
+                "/tmp/screensaver-$primary_monitor.png"
         else
             # Horizontal image - fit to width
             convert "$image" \
@@ -108,11 +79,11 @@ while true
                 -gravity center \
                 -extent {$width}x{$height} \
                 -blur $BLUR_AMOUNT \
-                "/tmp/screensaver-$monitor.png"
+                "/tmp/screensaver-$primary_monitor.png"
         end
         
         # Display image on single monitor
-        feh --no-fehbg --hide-pointer --fullscreen --title 'screensaver' "/tmp/screensaver-$monitor.png" &
+        feh --no-fehbg --hide-pointer --fullscreen --title 'screensaver' "/tmp/screensaver-$primary_monitor.png" &
         set feh_pid $last_pid
 
         # Wait for cycle time
@@ -120,6 +91,13 @@ while true
         
         # Kill feh process
         kill $feh_pid 2>/dev/null
+        
+        # Turn other monitors back on
+        for monitor in $monitors
+            if test "$monitor" != "$primary_monitor"
+                xrandr --output $monitor --auto 2>/dev/null || echo "Warning: Could not turn on monitor $monitor"
+            end
+        end
     else
         echo "Error: No images found in $WALLPAPER_DIR"
         exit 1

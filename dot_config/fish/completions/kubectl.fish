@@ -364,7 +364,7 @@ function __fish_kubectl_print_resource -d 'Print a list of resources' -a resourc
   end
 
   set args $args get "$resource"
-  __fish_kubectl $args --no-headers 2>/dev/null | awk '{print $1}' | string replace -r '(.*)/' ''
+  __fish_kubectl $args --no-headers 2>/dev/null | gawk '{print $1}' | string replace -r '(.*)/' ''
 end
 
 function __fish_kubectl_get_config -a type
