@@ -92,14 +92,13 @@ done
 # functions {{{ #
 
 if [[ -z "$MIXER" ]] ; then
+    # Use the default ALSA mixer
     MIXER="default"
-    if amixer -D pulse info >/dev/null 2>&1 ; then
-        MIXER="pulse"
-    fi
 fi
 
 if [[ -z "$SCONTROL" ]] ; then
-    SCONTROL=$(amixer -D "$MIXER" scontrols | sed -n "s/Simple mixer control '\([^']*\)',0/\1/p" | head -n1)
+    # Use the 'Master' control
+    SCONTROL="Master"
 fi
 
 CAPABILITY=$(amixer -D $MIXER get $SCONTROL | sed -n "s/  Capabilities:.*cvolume.*/Capture/p")
@@ -161,41 +160,24 @@ function print_format {
 # print_block  {{{ #
 
 function print_block {
-    # Use pactl instead of pacmd to get sink information
-    SINK_INFO=$(pactl list sinks | awk '
-        /^Sink #/{sink=$2}
-        /Volume: front-left/{volume=$5}
-        /Mute:/{muted=$2}
-        /Name:/{name=$2}
-        /Description:/{description=$0; sub(/Description: /, "", description)}
-        /Active Port:/{port=$3}
-        /^\s*$/{if (sink && sink ~ /\*/) {print sink; print name; print volume; print muted; exit}}
-    ')
-
-    # Parse the output
-    INDEX=$(echo "$SINK_INFO" | sed -n '1p' | tr -d '#*')
-    NAME=$(echo "$SINK_INFO" | sed -n '2p')
-    VOL=$(echo "$SINK_INFO" | sed -n '3p' | grep -o "[0-9]*%" | head -1)
+    # Use amixer to get volume and mute status
+    VOL_INFO=$(amixer -D $MIXER get $SCONTROL | grep -m1 -oE '[0-9]+%|\[on\]|\[off\]')
+    VOL=$(echo "$VOL_INFO" | grep -oE '[0-9]+%' | head -1)
     VOL="${VOL%?}"
-    MUTED=$(echo "$SINK_INFO" | sed -n '4p')
+    MUTED=$(echo "$VOL_INFO" | grep -oE '\[on\]|\[off\]')
+
+    # Default name for ALSA
+    NAME=$(amixer -D $MIXER scontrols | sed -n "s/Simple mixer control '\([^']*\)',0/\1/p" | head -n1)
 
     if [[ $USE_ALSA_NAME == 1 ]] ; then
-        ALSA_NAME=$(pactl list sinks | awk '
-            /^Sink #/{sink=$2}
-            /alsa.name =/{alsa_name=$3; gsub(/"/, "", alsa_name)}
-            /^\s*$/{if (sink && sink ~ /\*/) {print alsa_name; exit}}
-        ')
+        ALSA_NAME=$(amixer -D $MIXER scontrols | sed -n "s/Simple mixer control '\([^']*\)',0/\1/p" | head -n1)
         NAME=${ALSA_NAME:-$NAME}
     elif [[ $USE_DESCRIPTION == 1 ]] ; then
-        DESCRIPTION=$(pactl list sinks | awk '
-            /^Sink #/{sink=$2}
-            /Description:/{description=$0; sub(/Description: /, "", description)}
-            /^\s*$/{if (sink && sink ~ /\*/) {print description; exit}}
-        ')
+        DESCRIPTION=$(amixer -D $MIXER scontrols | sed -n "s/Simple mixer control '\([^']*\)',0/\1/p" | head -n1)
         NAME=${DESCRIPTION:-$NAME}
     fi
 
-    if [[ $MUTED =~ "no" ]] ; then
+    if [[ $MUTED =~ "\[on\]" ]] ; then
         SYMB=$AUDIO_HIGH_SYMBOL
         [[ $VOL -le $AUDIO_MED_THRESH ]] && SYMB=$AUDIO_MED_SYMBOL
         [[ $VOL -le $AUDIO_LOW_THRESH ]] && SYMB=$AUDIO_LOW_SYMBOL
