@@ -1,7 +1,6 @@
 #!/bin/bash
 
 picom &
-pulseaudio --start
 imwheel
 xmodmap ~/.Xmodmap
 
@@ -11,6 +10,9 @@ xset r rate $XSET_DELAY $XSET_RATE
 picom &
 imwheel &
 numlockx on &
-start-pulseaudio-x11 &
+
+#start-pulseaudio-x11 &
+#sudo alsa force-reload
+#pulseaudio --start
 
 wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editing") &

@@ -206,7 +206,8 @@ uzl "unzip -l"
 
  #s "systemctl suspend"
 #s "xset dpms force off"
-s "~/linux-config/scripts/executable_dual-monitor-slideshow"
+#s "~/linux-config/scripts/executable_dual-monitor-slideshow"
+s "fdfind -t f -e jpg -e png -e jpeg -e gif -e webp . /mnt/linux-files-2/Pictures/hevin | shuf | sxiv -S 5 -s f -i &"
 # sl "i3lock-fancy && systemctl suspend"
 # so "xset dpms force off"
 xx "exit"
@@ -343,7 +344,7 @@ id "identify"
 mst "sudo rm ~/st/config.h && sudo bear make -C ~/st install"
 # mst "sudo ~/st/make-st.sh"
 
-mlf2 "sudo mount /dev/sdd1 /mnt/linux-files-2"
+mlf2 "sudo mount /dev/sdc1 /mnt/linux-files-2"
 bkuh "sudo rsync -PraAX --exclude-from='/home/kevin/txt/exclude-dirs-backup-full.txt' /home '/mnt/linux-files-2/arch-2/full'"
 
 kgpg "kill -9 gpg-agent && gpg-agent"
@@ -1076,6 +1077,8 @@ xsv "npx nodemon --exitcrash --exec tsx src/server.ts"
 cl "npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 clw "watch npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 vp "vercel --prod"
+
+cr "~/Applications/cursor.AppImage --no-sandbox &"
 
 # ]]] work  #
 
