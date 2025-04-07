@@ -33,7 +33,7 @@ whi "whereis"
 # nvt "nvidia-settings --assign CurrentMetaMode='DVI-I-1: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}, HDMI-0: nvidia-auto-select +3840+0 {ForceCompositionPipeline=On}'"
 
 xra "xrandr --auto"
-xrs "xrandr --auto && xrandr --output HDMI-0 --right-of DVI-I-1"
+xrs "xrandr --auto && xrandr --output HDMI-0 --right-of DVI-D-0"
 xrn "xrandr --output HDMI-0 --rotate normal && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
 xrr "xrandr --output HDMI-0 --rotate right && grep wallpaper ~/.cache/wal/colors.sh | cut -d\' -f2 | xargs wal -i > /dev/null" 
 
@@ -134,6 +134,8 @@ ssaw "ssh -t kevin@3.147.85.36 tmux a"
 # postgres ssh tunnel
 sdt "ssh kevin@165.22.239.234 -L 5433:localhost:5432"
 
+ssu "ssh -p 399 kevin@192.168.0.100"
+
 # ]]] ssh #
 
 wh "watch"
@@ -192,7 +194,7 @@ rsy "rsync --ignore-existing -Ptr"
 lhd "sudo fdisk -l"
 # get disc space for mounted drives
 # ds "df -h | tee >(head -n 1) >(grep sd) >/dev/null"
-dsp "df -h | head -n 1 && df -h | grep sd"
+dsp "df -h | head -n 1 && df -h | grep nvm"
 chownw "sudo chown -R kevin:wheel"
 chwnm "sudo chown -R kevin:wheel /run/media/{{ .chezmoi.username }}"
 # cd into backup folder and show backup sizes
@@ -207,7 +209,8 @@ uzl "unzip -l"
  #s "systemctl suspend"
 #s "xset dpms force off"
 #s "~/linux-config/scripts/executable_dual-monitor-slideshow"
-s "fdfind -t f -e jpg -e png -e jpeg -e gif -e webp . /mnt/linux-files-2/Pictures/hevin | shuf | sxiv -S 5 -s f -i &"
+s "systemctl suspend"
+ss "xset s off -dpms && fdfind -t f -e jpg -e png -e jpeg -e gif -e webp . ~/Pictures/hevin | shuf | sxiv -S 5 -s f -i &"
 # sl "i3lock-fancy && systemctl suspend"
 # so "xset dpms force off"
 xx "exit"
@@ -1074,7 +1077,7 @@ xt "npm run type-check | tee logs/type-check.log"
 #xsv "npx nodemon"
 #xsv "nodemon --exec tsx src/server.ts"
 xsv "npx nodemon --exitcrash --exec tsx src/server.ts"
-cl "npx ts-node src/cli.ts list-nfts -p 5 -t 100"
+#cl "npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 clw "watch npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 vp "vercel --prod"
 

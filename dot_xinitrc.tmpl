@@ -18,7 +18,8 @@ xset r rate $XSET_DELAY $XSET_RATE
 picom &
 imwheel &
 numlockx on &
-start-pulseaudio-x11 &
+#start-pulseaudio-x11 &
+#sudo alsa force-reload
 
 # wal -i "$(/home/kevin/scripts/shuffler \"$HOME/Pictures/Backgrounds/dim/non-editing\")" && /home/kevin/st/make-st.sh &
 # wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/non-editing") &

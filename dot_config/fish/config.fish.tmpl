@@ -71,7 +71,7 @@ set -x HASTE_SERVER https://pste.gq
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
 # set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin ~/.linuxbrew/bin ~/.fnm/current/bin ~/.nimble/bin
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin ~/.linuxbrew/bin ~/.fnm/current/bin ~/.nimble/bin ~/miniconda3/bin
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 # Java [[[ #
@@ -142,7 +142,7 @@ set -x FLASK_DEBUG 1
 
 set -x FULLNODE_API_INFO wss://api.chain.love
 
-set -x IPAD_IMG 18
+set -x IPAD_IMG 34
 
 #source /home/kevin/coding/aws.fish
 
@@ -226,7 +226,7 @@ abbr bun "backup nzxt"
 abbr bupp "backup-phone-pics"
 #abbr ca "cad-to-us"
 abbr cccs "sync-alt-cal class"
-#abbr cl "clip"
+abbr cl "clip"
 #abbr cli "clip-ipad"
 abbr cpc "copy cat"
 abbr cpe "copy echo"
@@ -298,6 +298,7 @@ abbr tan "tmux-attach nft"
 abbr tan2 "tmux-attach nft-2"
 abbr tao "tmux-attach obs"
 abbr thes "thesaurus"
+abbr ubs "ubuntu-start"
 # abbr usc "us-to-cad"
 #abbr us "us-to-cad"
 abbr ut "unix-timestamp"
@@ -334,3 +335,16 @@ cat /home/kevin/.cache/wal/sequences
 #ssh-add ~/.ssh/ai16z-test.pem > /dev/null
 # keychain --agents ssh id_rsa
 #set -Ux SSH_AUTH_SOCK (keychain --eval --agents ssh id_rsa | grep setenv | sed -E 's/setenv (\S+) (\S+);/\2/')
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#if test -f /home/kevin/miniconda3/bin/conda
+    #eval /home/kevin/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+#else
+    #if test -f "/home/kevin/miniconda3/etc/fish/conf.d/conda.fish"
+        #. "/home/kevin/miniconda3/etc/fish/conf.d/conda.fish"
+    #else
+        #set -x PATH "/home/kevin/miniconda3/bin" $PATH
+    #end
+#end
+# <<< conda initialize <<<
