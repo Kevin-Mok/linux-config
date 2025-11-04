@@ -1,7 +1,3 @@
-".*"
-/* None,      Up,   Button4, 3 */
-/* None,      Down, Button5, 3 */
-/* None,      Up,   Button4, .5 */
-/* None,      Down, Button5, .5 */
-None,      Up,   Button4, .01
-None,      Down, Button5, .01
+"^.*"
+None, Up,   Button4, 7
+None, Down, Button5, 7

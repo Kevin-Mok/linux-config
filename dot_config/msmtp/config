@@ -1,0 +1,16 @@
+
+defaults
+logfile ~/.config/msmtp/msmtp.log
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account firemail
+host mail.cock.li
+port 465
+auth on
+user vole@firemail.cc
+password iavli3JYQT0bmuJlvL82ShQ
+tls_starttls off
+from vole@firemail.cc
+
+account default : firemail

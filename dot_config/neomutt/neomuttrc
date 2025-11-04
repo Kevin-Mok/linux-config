@@ -1,0 +1,18 @@
+set from = "vole@firemail.cc"
+set realname = "Vole"
+
+set mbox_type = Maildir
+set folder = "~/mail/firemail"
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set postponed = "+Drafts"
+set trash = "+Trash"
+
+set sendmail = "/usr/bin/msmtp"
+set sendmail_wait = 0
+set editor = "nano"
+set charset = "utf-8"
+auto_view text/html
+alternative_order text/plain text/html
+
+macro index <F5> "<shell-escape>mbsync firemail<enter><enter>" "Sync mail"

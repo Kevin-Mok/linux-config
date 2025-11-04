@@ -124,7 +124,7 @@ set -xU BROWSER "firefox"
 set -xU FZF_DEFAULT_COMMAND "find ."
 
 set -x LAPTOP_IP "192.168.0.19"
-set -x PHONE_IP "192.168.0.104"
+set -x PHONE_IP "192.168.0.241"
 set -x PIXEL_IP "192.168.0.18"
 set -x WORK_LAPTOP_IP "kmok@192.168.0.11"
 
@@ -142,13 +142,16 @@ set -x FLASK_DEBUG 1
 
 set -x FULLNODE_API_INFO wss://api.chain.love
 
-set -x IPAD_IMG 34
+set -x IPAD_IMG 55
 
 #source /home/kevin/coding/aws.fish
 
 set -x LIBVIRT_DEFAULT_URI qemu:///system
 
 set --erase DB_NAME 
+
+#set -x NODE_OPTIONS '--loader ts-node/esm'
+#set NODE_OPTIONS '--loader ts-node/esm'
 
 # ]]] universal var's #
 
@@ -266,6 +269,7 @@ abbr lo "libreoffice-silent"
 abbr ma "man-vim task"
 abbr mat "math"
 abbr mi "mpv-ipad"
+abbr mm "mpv-ipad-mov"
 abbr mn "man-vim"
 abbr mdf "mkdir-cd"
 abbr mps "mpv-sub"
@@ -282,6 +286,7 @@ abbr rl "readlink-cp"
 abbr rds "redshift-set"
 abbr rmi "rm-ipad"
 abbr rsi "rsync-ipad-vid"
+abbr rsm "rsync-ipad-vid-mov"
 abbr scf "scp-vid fn"
 abbr sma "smol-add"
 abbr smd "smol-delete"
@@ -297,8 +302,10 @@ abbr tam "tmux-attach misc"
 abbr tan "tmux-attach nft"
 abbr tan2 "tmux-attach nft-2"
 abbr tao "tmux-attach obs"
+abbr ttl "timetrace-list"
 abbr thes "thesaurus"
 abbr ubs "ubuntu-start"
+abbr umip "unmount-ipad"
 # abbr usc "us-to-cad"
 #abbr us "us-to-cad"
 abbr ut "unix-timestamp"

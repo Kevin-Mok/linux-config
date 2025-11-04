@@ -1,6 +1,7 @@
 #  startup [[[ # 
 
 set $term kitty
+#set $term gnome-terminal
 # set $term st
 # set $term_alt urxvt
 {{ if eq .chezmoi.hostname "x1-carbon" }}
@@ -21,6 +22,7 @@ exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editi
 # exec --no-startup-id i3-msg 'workspace $ws1; exec $term'
 # exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
+exec --no-startup-id i3-msg 'workspace $ws6; exec vesktop'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
 #exec --no-startup-id i3-msg workspace $ws6; exec discord
@@ -115,7 +117,8 @@ set $scripts_path "/home/kevin/scripts"
 # bindsym Mod4+x exec ~/scripts/xmodmap-custom
 bindsym Mod4+x exec notify-send "xmodmap" "$(~/scripts/xmodmap-custom)"
 # bindsym Mod4+e exec notify-send "HPS Word Count" "$(pdftotext /home/kevin/school/latex-notes/hps/essay.pdf - | wc -w)"
-# bindsym Print --release exec "scrot -s $screenshot_folder/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+ #bindsym Print --release exec "scrot -s $screenshot_folder/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+#bindsym Print --release exec --no-startup-id scrot -s "/home/kevin/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png" -e 'xclip -selection c -t image/png < $f'
 bindsym Print --release exec "maim -su | tee ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png | xclip -selection clipboard -t image/png"
 bindsym Control+Print --release exec "scrot -u ~/Pictures/screenshots/desktop/unsorted/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 {{ else }}
