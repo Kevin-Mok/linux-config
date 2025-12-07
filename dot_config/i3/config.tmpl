@@ -23,6 +23,7 @@ exec wal -i $(/home/kevin/scripts/shuffler "$HOME/Pictures/Backgrounds/dim/editi
 # exec --no-startup-id i3-msg 'workspace $ws2; exec $term -e fish -c "tmux-attach fortnite"'
 exec --no-startup-id i3-msg 'workspace $ws3; exec $browser'
 exec --no-startup-id i3-msg 'workspace $ws6; exec vesktop'
+exec --no-startup-id i3-msg 'workspace $ws6; exec signal-desktop'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec $term -e twitchy'
 # exec --no-startup-id i3-msg 'workspace $ws5; exec firefox -P nft'
 #exec --no-startup-id i3-msg workspace $ws6; exec discord
@@ -362,8 +363,8 @@ bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip --
 
 #  ws3 [[[ # 
 
-set $ws3 "3  "
-# set $ws3 "3 "
+#set $ws3 "3  "
+ set $ws3 "3 "
 # workspace $ws3 output $main
 # bindsym $mod+F3 workspace $ws3; exec $browser
 # bindsym $mod+F3 exec $browser; move container to workspace $ws3; workspace $ws3
@@ -428,7 +429,7 @@ for_window [class="ada-mario"] move absolute position 640 0
 set $ws6 "6  "
 workspace $ws6 output $secondary
 assign [class="Slack"] $ws6
-bindsym Mod4+d workspace $ws6; exec discord
+bindsym Mod4+d workspace $ws6; exec vesktop
 bindsym Mod4+$mod+d workspace $ws6; exec element-desktop
 bindsym Mod4+i workspace $ws6; exec signal-desktop
 # bindsym Mod4+d workspace $ws6; exec firefox -new-window https://riot.im/app
@@ -485,7 +486,7 @@ workspace $ws11 output $secondary
 bindsym $mod+F11 workspace $ws11; exec $term -e btop
 # bindsym Mod4+$mod+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
 bindsym Control+Shift+F11 workspace $ws11; exec $term -e fish -c 'tmux-attach backup'
-bindsym Mod4+t workspace $ws11; exec nordvpn connect && transmission-gtk
+#bindsym Mod4+t workspace $ws11; exec nordvpn connect && transmission-gtk
 # bindsym $mod+F11 workspace $ws11; exec $term -e gotop -m
 # bindsym Mod4+a workspace $ws11; exec antimicro
 
@@ -592,6 +593,7 @@ bar {
   font pango:$sb_font 17
   {{ else }}
   # font pango:$sb_font 17
+  #font pango:$sb_font 16:pixelsize=5
   font pango:$sb_font 16
   {{ end }}
   colors {

@@ -1,6 +1,21 @@
 #!/bin/bash
 
-. "/home/kevin/.cache/wal/colors.sh"
-printf "$(date '+%H:%M.%a-%m-%d')\n\n%s\n" "$color7"
+#. "/home/kevin/.cache/wal/colors.sh"
+#printf " $(date '+%H:%M.%a-%m-%d')\n\n%s\n" "$color7"
 # echo "<span foreground=\"%s\">$(date '+%H:%M.%a-%m-%d')%s</span>" "$color2"
 # printf "%s" "$color2"
+
+# Load colors from pywal cache
+. "/home/kevin/.cache/wal/colors.sh"
+
+# Define the date format matching the output in your screenshot (e.g., Sat 12/06 12:46)
+DATE_FORMAT='+%a %m/%d %H:%M' 
+
+# Use Pango markup to wrap the entire string, applying the color, 
+# and explicitly defining the icon () and the date output.
+# The icon is U+F017.
+printf "<span foreground=\"%s\"> %s</span>\n" "$color7" "$(date "$DATE_FORMAT")"
+
+# The next two lines are optional for i3blocks but usually required for color output:
+printf "\n" # Short text (optional)
+printf "%s\n" "$color7" # Color (optional, but good practice)

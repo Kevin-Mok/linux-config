@@ -1,9 +1,25 @@
-clear Lock
-
-keycode 9 = Caps_Lock
-keycode 66 = Escape
-keycode 22 = BackSpace
-
-pointer = 1 2 3 6 7 4 5 10 11 12 8 9
+! clear Lock
+ 
+! keycode 9 = Caps_Lock
+! keycode 66 = Escape
+! keycode 22 = BackSpace
+ 
+! pointer = 1 2 3 6 7 4 5 10 11 12 8 9
 ! side thumb button as middle click
 ! pointer = 1 10 3 6 7 4 5 2 11 12 8 9
+
+! Clear the Caps Lock modifier logic first
+clear Lock
+
+! Map the physical Caps Lock key (66) to Escape
+keycode 66 = Escape
+
+! Optional: Map physical Escape (9) to Caps Lock if you really want to swap.
+! If you comment out the line below, you will have two Escape keys (Safer).
+! keycode 9 = Caps_Lock
+
+! Important: If you did swap (uncommented line above), you must add the Lock modifier back
+! add Lock = Caps_Lock
+
+! Keep your mouse settings
+pointer = 1 2 3 6 7 4 5 10 11 12 8 9

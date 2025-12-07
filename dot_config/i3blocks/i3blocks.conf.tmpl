@@ -30,17 +30,12 @@ color=#cbe4ff
 # TICKER=ARBUSD
 # interval=30
 
-# [ticker]
-# label=ETH
-# TICKER=ETH-USD
-# interval=30
-
-[dexscreener]
-label=HERO 
-#CHAIN=solana
-#PAIR=B4Vwozy1FGtp8SELXSXydWSzavPUGnJ77DURV2k4MhUV
-command=/home/kevin/.config/i3blocks/scripts/dexscreener abstract 0x3771b51b5a705338fa19702f249afcaa94b0cd8c
-interval=5
+#[dexscreener]
+#label=HERO 
+##CHAIN=solana
+##PAIR=B4Vwozy1FGtp8SELXSXydWSzavPUGnJ77DURV2k4MhUV
+#command=/home/kevin/.config/i3blocks/scripts/dexscreener abstract 0x3771b51b5a705338fa19702f249afcaa94b0cd8c
+#interval=5
 
 #[kraken]
 #label=BTC 
@@ -49,11 +44,11 @@ interval=5
 #command=/home/kevin/.config/i3blocks/scripts/kraken BTCUSDC
 #interval=30
 
-#[kraken]
-#label=ETH 
-##TICKER=ETHUSDC
-#command=/home/kevin/.config/i3blocks/scripts/kraken ETHUSDC
-#interval=30
+[kraken]
+label=ETH 
+#TICKER=ETHUSDC
+command=/home/kevin/.config/i3blocks/scripts/kraken ETHUSDC
+interval=30
 
 ## [ticker]
 ## label=btc 
@@ -178,7 +173,7 @@ interval=5
 
 [calendar]
 interval=1
-label=  
+#label=
 # DATEFMT=+%H:%M
 # DATEFMT=+%H:%M.%a-%m-%d
 # SHORTFMT=+%H:%M:%S

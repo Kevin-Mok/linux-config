@@ -1,0 +1,39 @@
+[
+    // Map the physical 'CapsLock' key to act as the 'Escape' key
+    {
+        "key": "capslock",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\u001b" // ASCII code for Escape
+        },
+        // Optional: you can restrict this to the terminal or use no 'when' condition
+        // "when": "terminalFocus" 
+    },
+    {
+        "key": "capslock",
+        "command": "workbench.action.closeMessages",
+        "when": "notificationVisible"
+    },
+    {
+        "key": "capslock",
+        "command": "closeCommandCenter",
+        "when": "commandCenterVisible"
+    },
+    // The most important one: to exit common modes/menus/widgets
+    {
+        "key": "capslock",
+        "command": "workbench.action.closeAllGroups",
+        "when": "editorFocus"
+    },
+    {
+        "key": "capslock",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorFocus"
+    },
+    {
+        "key": "capslock",
+        "command": "workbench.action.closePanel",
+        "when": "panelFocus"
+    }
+    // ... you may need to map it to several common "escape" actions
+]
