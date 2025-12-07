@@ -1,243 +1,97 @@
 {
+    // --- General Editor Settings ---
     "keyboard.dispatch": "keyCode",
-    // For the code editor
     "editor.fontFamily": "'Hack', 'Droid Sans Mono', monospace",
-    "workbench.colorTheme": "GitHub Dark Default",
+    "editor.lineNumbers": "relative",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 60,
+    "editor.cursorSurroundingLines": 5,
+    "editor.mouseWheelZoom": true,
+    "files.insertFinalNewline": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
     
-    // For the integrated terminal
-    "terminal.integrated.fontFamily": "'Hack', monospace"
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "<Esc>"
-            ],
-            "after": [
-                "<Esc>"
-            ],
-            "commands": [
-                "workbench.action.files.save"
-            ]
-        }
-    ],
+    // --- Terminal ---
+    "terminal.integrated.fontFamily": "'Hack', monospace",
 
-    // Optional: If you use the non-recursive version (recommended for most simple mappings):
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<Esc>"
-            ],
-            "after": [
-                "<Esc>"
-            ],
-            "commands": [
-                "workbench.action.files.save"
-            ]
-        }
-    ],
+    // --- Theme & Colors (Universal Red Mode) ---
+    // This forces the red theme on top of ANY dark theme you select
+    "workbench.colorTheme": "Bearded Theme Monokai Black",
     "workbench.colorCustomizations": {
-    "[GitHub Dark]": {
-        // Activity Bar (Left side)
-        "activityBar.background": "#1f2428", // Keep dark to blend
-        "activityBar.activeBorder": "#f85149", // Bright GitHub Red
+        // Global Red Overrides
+        "activityBar.background": "#1f2428",
+        "activityBar.activeBorder": "#f85149", 
         "activityBar.foreground": "#f85149",
         "activityBar.inactiveForeground": "#6e7681",
-
-        // Status Bar (Bottom)
-        "statusBar.background": "#da3633", // Deep GitHub Red
+        
+        "statusBar.background": "#da3633",
         "statusBar.foreground": "#ffffff",
         
-        // Title Bar & Tabs
         "titleBar.activeBackground": "#1f2428",
         "tab.activeBorderTop": "#f85149",
         
-        // Lists & Trees (File explorer highlights)
         "list.activeSelectionForeground": "#f85149",
         "textLink.foreground": "#f85149",
         "progressBar.background": "#f85149"
-    }
     },
-    // Vim
-    {
-    // --- General Editor Settings (matching 'set' commands) ---
-    "editor.lineNumbers": "relative",             // set relativenumber
-    "vim.useSystemClipboard": true,               // set clipboard+=unnamedplus
-    "editor.tabSize": 4,                          // set tabstop=4 shiftwidth=4
-    "editor.insertSpaces": true,                  // set expandtab
-    "editor.wordWrap": "wordWrapColumn",          // set tw=60 (approximate behavior)
-    "editor.wordWrapColumn": 60,
-    "editor.cursorSurroundingLines": 5,           // set linespace / scrolloff behavior
-    "files.autoSave": "afterDelay",               // Replaces vim-auto-save plugin
-    "files.autoSaveDelay": 1000,                  // set updatetime=1000
 
-    // --- Vim Extension Configuration ---
-    "vim.leader": "<space>",                      // let mapleader="\<Space>"
-    "vim.hlsearch": true,                         // set hlsearch
-    "vim.timeout": 350,                           // set timeoutlen=350
-
-    // --- Key Rebinding (Core) ---
-    // Handle Ctrl key conflicts so Vim handles them, not VS Code
+    // --- Vim Settings ---
+    "vim.leader": " ",
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.smartcase": true,
+    "vim.timeout": 350,
+    "vim.undofile": true,
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false,
-        "<C-p>": false // Let VS Code handle Quick Open (like fzf)
+        "<C-p>": false
     },
 
-    // --- Core Editor Settings (from 'set' commands) ---
-
-    // set background=dark
-    
-    // set relativenumber
-    "editor.lineNumbers": "relative",
-    
-    // set expandtab
-    "editor.insertSpaces": true,
-    
-    // set tabstop=4, set shiftwidth=4
-    "editor.tabSize": 4,
-
-    // set tw=60
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 60,
-
-    // set nofixendofline (this is the opposite of VS Code's default, so we disable the default)
-    "files.insertFinalNewline": false,
-
-    // set mouse=a
-    "editor.mouseWheelZoom": true, // VS Code equivalent for mouse interaction
-
-    // --- Language-Specific Settings (from 'autocmd FileType...') ---
-
-    // autocmd FileType *css,...,typescriptreact,yaml set tabstop=2 shiftwidth=2
-    "[css]": {
-        "editor.tabSize": 2
-    },
-    "[scss]": {
-        "editor.tabSize": 2
-    },
-    "[html]": {
-        "editor.tabSize": 2
-    },
-    "[javascript]": {
-        "editor.tabSize": 2
-    },
-    "[javascriptreact]": {
-        "editor.tabSize": 2
-    },
-    "[json]": {
-        "editor.tabSize": 2
-    },
-    "[typescript]": {
-        "editor.tabSize": 2
-    },
-    "[typescriptreact]": {
-        "editor.tabSize": 2
-    },
-    "[yaml]": {
-        "editor.tabSize": 2
-    },
-
-    // autocmd FileType go set noexpandtab sw=4
-    "[go]": {
-        "editor.insertSpaces": false,
-        "editor.tabSize": 4
-    },
-    
-    // autocmd Filetype markdown set textwidth=55, formatoptions=...
-    "[markdown]": {
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 55,
-        // The rest of 'formatoptions' (like cjMqtvw) is handled by extensions/VSCodeVim
-    },
-
-    // autocmd Filetype groovy,Jenkinsfile,taskdata set tw=0
-    "[groovy]": {
-        "editor.wordWrap": "off"
-    },
-    "[jenkinsfile]": {
-        "editor.wordWrap": "off"
-    },
-
-    // --- VSCodeVim Settings (from 'vim.useSystemClipboard', 'let mapleader', 'nnoremap', etc.) ---
-    
-    // set clipboard+=unnamedplus
-    "vim.useSystemClipboard": true,
-
-    // set hlsearch
-    "vim.hlsearch": true,
-
-    // set smartcase
-    "vim.smartcase": true,
-
-    // set timeoutlen=350
-    "vim.timeout": 350,
-
-    // set undofile
-    "vim.undofile": true,
-
-    // let mapleader="\<Space>"
-    "vim.leader": " ",
-
-    // nnoremap Q @@
-    "vim.normalModeKeyBindingsNonRecursive": [
+    // --- Key Bindings ---
+    "vim.insertModeKeyBindings": [
         {
-            "before": ["Y"],
-            "after": ["y", "$"], // Changed from 'yy' to 'y$' which is more idiomatic Vim
-            "silent": true
-        },
-        {
-            "before": ["Q"],
-            "after": ["@", "@"], // Last macro
-            "silent": true
-        },
-        {
-            "before": [","],
-            "after": ["z", "a"], // Toggle fold
-            "silent": true
-        },
-        {
-            "before": ["'"],
-            "after": ["`"], // Jump to horizontal position for mark
-            "silent": true
-        },
-        // nnoremap <leader>d d$
-        {
-            "before": ["<leader>", "d"],
-            "after": ["d", "$"]
-        },
-        // nnoremap <leader>dl 0d$
-        {
-            "before": ["<leader>", "d", "l"],
-            "after": ["0", "d", "$"]
-        },
-        // nnoremap <leader>k <C-O> (Jump back)
-        {
-            "before": ["<leader>", "k"],
-            "after": ["<C-o>"]
-        },
-        // nnoremap <leader>j <C-I> (Jump forward)
-        {
-            "before": ["<leader>", "j"],
-            "after": ["<C-i>"]
-        },
-        // nnoremap <leader>sp :sp
-        {
-            "before": ["<leader>", "s", "p"],
-            "commands": [":split"]
-        },
-        // nnoremap <leader>vs :vs
-        {
-            "before": ["<leader>", "v", "s"],
-            "commands": [":vsplit"]
-        },
-        // nnoremap <leader>vv :vsp ~/.vimrc<CR> (Translated to open settings.json)
-        {
-            "before": ["<leader>", "v", "v"],
-            "commands": ["workbench.action.openSettingsJson"]
-        },
-        // nnoremap <leader>yo :Goyo<CR> (Translated to Zen Mode)
-        {
-            "before": ["<leader>", "y", "o"],
-            "commands": ["workbench.action.toggleZenMode"]
+            "before": ["<Esc>"],
+            "after": ["<Esc>"],
+            "commands": ["workbench.action.files.save"]
         }
-    ]
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<Esc>"],
+            "after": ["<Esc>"],
+            "commands": ["workbench.action.files.save"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["Y"], "after": ["y", "$"], "silent": true },
+        { "before": ["Q"], "after": ["@", "@"], "silent": true },
+        { "before": [","], "after": ["z", "a"], "silent": true },
+        { "before": ["'"], "after": ["`"], "silent": true },
+        { "before": ["<leader>", "d"], "after": ["d", "$"] },
+        { "before": ["<leader>", "d", "l"], "after": ["0", "d", "$"] },
+        { "before": ["<leader>", "k"], "after": ["<C-o>"] },
+        { "before": ["<leader>", "j"], "after": ["<C-i>"] },
+        { "before": ["<leader>", "s", "p"], "commands": [":split"] },
+        { "before": ["<leader>", "v", "s"], "commands": [":vsplit"] },
+        { "before": ["<leader>", "v", "v"], "commands": ["workbench.action.openSettingsJson"] },
+        { "before": ["<leader>", "y", "o"], "commands": ["workbench.action.toggleZenMode"] }
+    ],
+
+    // --- Language Specific Settings ---
+    "[css]": { "editor.tabSize": 2 },
+    "[scss]": { "editor.tabSize": 2 },
+    "[html]": { "editor.tabSize": 2 },
+    "[javascript]": { "editor.tabSize": 2 },
+    "[javascriptreact]": { "editor.tabSize": 2 },
+    "[json]": { "editor.tabSize": 2 },
+    "[typescript]": { "editor.tabSize": 2 },
+    "[typescriptreact]": { "editor.tabSize": 2 },
+    "[yaml]": { "editor.tabSize": 2 },
+    "[go]": { "editor.insertSpaces": false, "editor.tabSize": 4 },
+    "[markdown]": { "editor.wordWrap": "wordWrapColumn", "editor.wordWrapColumn": 55 },
+    "[groovy]": { "editor.wordWrap": "off" },
+    "[jenkinsfile]": { "editor.wordWrap": "off" }
 }
