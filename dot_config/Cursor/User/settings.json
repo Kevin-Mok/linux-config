@@ -1,0 +1,97 @@
+{
+    // --- General Editor Settings ---
+    "keyboard.dispatch": "keyCode",
+    "editor.fontFamily": "'Hack', 'Droid Sans Mono', monospace",
+    "editor.lineNumbers": "relative",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 60,
+    "editor.cursorSurroundingLines": 5,
+    "editor.mouseWheelZoom": true,
+    "files.insertFinalNewline": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    
+    // --- Terminal ---
+    "terminal.integrated.fontFamily": "'Hack', monospace",
+
+    // --- Theme & Colors (Universal Red Mode) ---
+    // This forces the red theme on top of ANY dark theme you select
+    "workbench.colorTheme": "Bearded Theme Monokai Black",
+    "workbench.colorCustomizations": {
+        // Global Red Overrides
+        "activityBar.background": "#1f2428",
+        "activityBar.activeBorder": "#f85149", 
+        "activityBar.foreground": "#f85149",
+        "activityBar.inactiveForeground": "#6e7681",
+        
+        "statusBar.background": "#da3633",
+        "statusBar.foreground": "#ffffff",
+        
+        "titleBar.activeBackground": "#1f2428",
+        "tab.activeBorderTop": "#f85149",
+        
+        "list.activeSelectionForeground": "#f85149",
+        "textLink.foreground": "#f85149",
+        "progressBar.background": "#f85149"
+    },
+
+    // --- Vim Settings ---
+    "vim.leader": " ",
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.smartcase": true,
+    "vim.timeout": 350,
+    "vim.undofile": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-p>": false
+    },
+
+    // --- Key Bindings ---
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["<Esc>"],
+            "after": ["<Esc>"],
+            "commands": ["workbench.action.files.save"]
+        }
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<Esc>"],
+            "after": ["<Esc>"],
+            "commands": ["workbench.action.files.save"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["Y"], "after": ["y", "$"], "silent": true },
+        { "before": ["Q"], "after": ["@", "@"], "silent": true },
+        { "before": [","], "after": ["z", "a"], "silent": true },
+        { "before": ["'"], "after": ["`"], "silent": true },
+        { "before": ["<leader>", "d"], "after": ["d", "$"] },
+        { "before": ["<leader>", "d", "l"], "after": ["0", "d", "$"] },
+        { "before": ["<leader>", "k"], "after": ["<C-o>"] },
+        { "before": ["<leader>", "j"], "after": ["<C-i>"] },
+        { "before": ["<leader>", "s", "p"], "commands": [":split"] },
+        { "before": ["<leader>", "v", "s"], "commands": [":vsplit"] },
+        { "before": ["<leader>", "v", "v"], "commands": ["workbench.action.openSettingsJson"] },
+        { "before": ["<leader>", "y", "o"], "commands": ["workbench.action.toggleZenMode"] }
+    ],
+
+    // --- Language Specific Settings ---
+    "[css]": { "editor.tabSize": 2 },
+    "[scss]": { "editor.tabSize": 2 },
+    "[html]": { "editor.tabSize": 2 },
+    "[javascript]": { "editor.tabSize": 2 },
+    "[javascriptreact]": { "editor.tabSize": 2 },
+    "[json]": { "editor.tabSize": 2 },
+    "[typescript]": { "editor.tabSize": 2 },
+    "[typescriptreact]": { "editor.tabSize": 2 },
+    "[yaml]": { "editor.tabSize": 2 },
+    "[go]": { "editor.insertSpaces": false, "editor.tabSize": 4 },
+    "[markdown]": { "editor.wordWrap": "wordWrapColumn", "editor.wordWrapColumn": 55 },
+    "[groovy]": { "editor.wordWrap": "off" },
+    "[jenkinsfile]": { "editor.wordWrap": "off" }
+}
