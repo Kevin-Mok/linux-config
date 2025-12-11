@@ -9,7 +9,8 @@
 . "/home/kevin/.cache/wal/colors.sh"
 
 # Define the date format matching the output in your screenshot (e.g., Sat 12/06 12:46)
-DATE_FORMAT='+%a %m/%d %H:%M' 
+#DATE_FORMAT='+%a %m/%d %H:%M' 
+DATE_FORMAT='%H:%M' 
 
 # Use Pango markup to wrap the entire string, applying the color, 
 # and explicitly defining the icon () and the date output.

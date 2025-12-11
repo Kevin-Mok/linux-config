@@ -721,6 +721,7 @@ gds "git diff --stat"
 gdsc "git diff --stat --cached -w"
 gdt "git difftool -w --tool=vimdiff"
 gdtc "git difftool -w --cached --tool=vimdiff"
+gdx "git diff -w | xclip -selection clipboard"
 gl "git log -5"
 gl1 "git log --oneline"
 gl1x "git log --oneline -1 | xclip -selection clipboard"
@@ -1087,6 +1088,9 @@ clw "watch npx ts-node src/cli.ts list-nfts -p 5 -t 100"
 vp "vercel --prod"
 
 cr "~/Applications/cursor.AppImage --no-sandbox &"
+
+h ./start.sh
+v ./start.sh voice
 
 # ]]] work  #
 

@@ -1,3 +1,7 @@
+// Cursor model tiers I like:
+// - Low: gpt-5.1-codex-mini-low
+// - High: gpt-5.1-codex-mini-high
+
 {
     "keyboard.dispatch": "keyCode",
     "editor.fontFamily": "'Hack', 'Droid Sans Mono', monospace",

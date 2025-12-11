@@ -3,8 +3,10 @@
 WIDTH=${WIDTH:-200}
 HEIGHT=${HEIGHT:-200}
 #DATEFMT=${DATEFMT:-"+%a %d.%m.%Y %H:%M:%S"}
-DATEFMT=${DATEFMT:-"+ %a %-m/%d %H:%M"}
-SHORTFMT=${SHORTFMT:-"+%H:%M:%S"}
+#DATEFMT=${DATEFMT:-"+ %a %-m/%d %H:%M"}
+#SHORTFMT=${SHORTFMT:-"+%H:%M:%S"}
+DATEFMT=${DATEFMT:-"+%H:%M"}
+SHORTFMT=${SHORTFMT:-"+%H:%M"}
 
 OPTIND=1
 while getopts ":f:W:H:" opt; do

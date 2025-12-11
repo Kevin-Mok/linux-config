@@ -1,0 +1,319 @@
+.
+├── aliases
+│   ├── key_aliases.tmpl
+│   ├── key_dirs.tmpl
+│   └── key_files.tmpl
+├── dot_bashrc
+├── dot_config
+│   ├── chezmoi
+│   │   └── chezmoi-template.toml.tmpl
+│   ├── Code
+│   │   └── User
+│   │       ├── keybindings.json
+│   │       └── settings.json
+│   ├── Cursor
+│   │   └── User
+│   │       ├── keybindings.json
+│   │       └── settings.json
+│   ├── dunst
+│   │   └── dunstrc
+│   ├── fish
+│   │   ├── completions
+│   │   │   ├── buku.fish
+│   │   │   ├── kogito.fish
+│   │   │   ├── kubectl.fish
+│   │   │   ├── minikube.fish
+│   │   │   ├── pass.fish
+│   │   │   ├── timetrace.fish
+│   │   │   └── watson.fish
+│   │   ├── config.fish.tmpl
+│   │   ├── functions
+│   │   │   ├── 369
+│   │   │   │   ├── a2
+│   │   │   │   │   ├── carsim.fish
+│   │   │   │   │   └── gdb-a2.fish
+│   │   │   │   ├── a3
+│   │   │   │   │   ├── gdb-a3-break.fish
+│   │   │   │   │   └── run-a3.fish
+│   │   │   │   ├── a4
+│   │   │   │   │   ├── block-to-line.fish
+│   │   │   │   │   ├── executable_revert-image.fish
+│   │   │   │   │   ├── hex.fish
+│   │   │   │   │   ├── mount-image.fish
+│   │   │   │   │   └── run-a4.fish
+│   │   │   │   ├── grep-c.fish
+│   │   │   │   ├── grep-headers.fish
+│   │   │   │   ├── rgc.fish
+│   │   │   │   └── rg-headers.fish
+│   │   │   ├── aws-attach-volume.fish
+│   │   │   ├── backup-phone-pics.fish
+│   │   │   ├── bc-qalc.fish
+│   │   │   ├── benq-brightness.fish
+│   │   │   ├── cad-to-us.fish
+│   │   │   ├── cd.fish.tmpl
+│   │   │   ├── certbot-ssl.fish
+│   │   │   ├── clip.fish
+│   │   │   ├── conda_activate.fish
+│   │   │   ├── copy.fish
+│   │   │   ├── create-fish-function.fish
+│   │   │   ├── define.fish
+│   │   │   ├── discord-burner.fish
+│   │   │   ├── dump-rarity-check.fish
+│   │   │   ├── enable-site.fish
+│   │   │   ├── evince-silent.fish
+│   │   │   ├── export-pkgs.fish
+│   │   │   ├── find-bg.fish
+│   │   │   ├── find-vim-filetype.fish
+│   │   │   ├── fish_mode_prompt.fish
+│   │   │   ├── fn-progress.fish
+│   │   │   ├── fzf-cd.fish
+│   │   │   ├── fzf-ranger.fish
+│   │   │   ├── fzf-vim.fish
+│   │   │   ├── gen-pass.fish
+│   │   │   ├── git
+│   │   │   │   ├── git-amend-push.fish
+│   │   │   │   ├── git-clone-gitea.fish
+│   │   │   │   ├── git-delete-branch.fish
+│   │   │   │   ├── git-diff-files.fish
+│   │   │   │   ├── git-mult-remotes.fish
+│   │   │   │   ├── git-push-diff-name.fish
+│   │   │   │   ├── git-push-initial.fish
+│   │   │   │   ├── git-push-multiple.fish
+│   │   │   │   ├── git-push-new-gitea.fish
+│   │   │   │   ├── git-replace-origin.fish
+│   │   │   │   └── git-replace-origin-gitea.fish
+│   │   │   ├── git-log-short.fish
+│   │   │   ├── git-submodule-branch.fish
+│   │   │   ├── grep-aliases.fish
+│   │   │   ├── grep-pdf-file.fish
+│   │   │   ├── grep-pdf.fish
+│   │   │   ├── ipad
+│   │   │   │   ├── clip-ipad.fish
+│   │   │   │   ├── mpv-ipad.fish
+│   │   │   │   ├── mpv-ipad-mov.fish
+│   │   │   │   ├── rm-ipad.fish
+│   │   │   │   ├── rsync-ipad-vid.fish
+│   │   │   │   ├── rsync-ipad-vid-mov.fish
+│   │   │   │   └── unmount-ipad.fish
+│   │   │   ├── java-compile-run.fish
+│   │   │   ├── java-compile-test.fish
+│   │   │   ├── libreoffice-silent.fish
+│   │   │   ├── man-vim.fish
+│   │   │   ├── maven-test-method.fish
+│   │   │   ├── mkdir-cd.fish
+│   │   │   ├── mpv-sub.fish
+│   │   │   ├── mute-video.fish
+│   │   │   ├── pastebin.fish
+│   │   │   ├── qalc-history.fish
+│   │   │   ├── qalc-update-amount.fish
+│   │   │   ├── qalc-update.fish
+│   │   │   ├── readlink-cp.fish
+│   │   │   ├── redshift-set.fish
+│   │   │   ├── refresh-config.fish
+│   │   │   ├── refresh-config-task.fish
+│   │   │   ├── reminder.fish
+│   │   │   ├── scan-history.fish
+│   │   │   ├── scp-cdf.fish
+│   │   │   ├── scp-vid.fish
+│   │   │   ├── server-pages.fish
+│   │   │   ├── shred-rm.fish
+│   │   │   ├── smol
+│   │   │   │   ├── smol-add.fish
+│   │   │   │   ├── smol-delete.fish
+│   │   │   │   ├── smol-replace.fish
+│   │   │   │   └── smol-slist.fish
+│   │   │   ├── ssh-bandit.fish
+│   │   │   ├── sudo.fish
+│   │   │   ├── sxiv-silent.fish
+│   │   │   ├── sync-alt-cal.fish
+│   │   │   ├── systemctl-restart.fish
+│   │   │   ├── task
+│   │   │   │   ├── task-anno.fish
+│   │   │   │   ├── task-context.fish
+│   │   │   │   ├── task-delete.fish
+│   │   │   │   ├── task-done.fish
+│   │   │   │   ├── task-due.fish
+│   │   │   │   ├── task-due-rm.fish
+│   │   │   │   ├── task-edit.fish
+│   │   │   │   ├── task-mod-pri.fish
+│   │   │   │   ├── task-mod-proj.fish
+│   │   │   │   ├── task-mod-tag.fish
+│   │   │   │   ├── task-next.fish
+│   │   │   │   ├── task-next-rm.fish
+│   │   │   │   ├── task-notes.fish
+│   │   │   │   ├── task-start.fish
+│   │   │   │   └── task-wait.fish
+│   │   │   ├── taskopen-new.fish
+│   │   │   ├── test_output.txt
+│   │   │   ├── thesaurus.fish
+│   │   │   ├── timetrace-list.fish
+│   │   │   ├── tmux-attach.fish
+│   │   │   ├── unix-timestamp.fish
+│   │   │   ├── unzip-rm.fish
+│   │   │   ├── us-to-cad.fish
+│   │   │   ├── video-to-gif.fish
+│   │   │   ├── vim-snippet.fish
+│   │   │   ├── vpn-red-hat.fish
+│   │   │   ├── watson-add-fortnite.fish
+│   │   │   ├── watson-add-game.fish
+│   │   │   ├── wc-pdf.fish
+│   │   │   ├── wget-all.fish
+│   │   │   └── wget-name.fish
+│   │   └── spotifyvis.bak\012abbr sv serve
+│   ├── i3
+│   │   └── config.tmpl
+│   ├── i3blocks
+│   │   ├── i3blocks.conf.tmpl
+│   │   ├── i3blocks-display.conf
+│   │   ├── i3blocks-secondary.conf.tmpl
+│   │   └── scripts
+│   │       ├── executable_backlight
+│   │       ├── executable_battery
+│   │       ├── executable_calendar
+│   │       ├── executable_cpu_usage
+│   │       ├── executable_dexscreener
+│   │       ├── executable_dexscreener-fdv
+│   │       ├── executable_dexscreener-mc
+│   │       ├── executable_fn_level
+│   │       ├── executable_kraken
+│   │       ├── executable_load_average
+│   │       ├── executable_memory
+│   │       ├── executable_name
+│   │       ├── executable_spotify
+│   │       ├── executable_temperature
+│   │       ├── executable_ticker
+│   │       ├── executable_time
+│   │       ├── executable_volume
+│   │       └── executable_wifi
+│   ├── kitty
+│   │   └── kitty.conf
+│   ├── mgba
+│   │   ├── config-tmpl.ini
+│   │   ├── qt-tmpl.ini
+│   │   └── update-mgba-config.fish
+│   ├── mimeapps-ffox.list
+│   ├── mimeapps.list
+│   ├── mpv
+│   │   ├── input.conf
+│   │   └── mpv.conf
+│   ├── msmtp
+│   │   └── config
+│   ├── neofetch
+│   │   └── config.conf
+│   ├── neomutt
+│   │   └── neomuttrc
+│   ├── nvim
+│   │   └── init.vim
+│   ├── picom
+│   │   └── picom.conf
+│   ├── ranger
+│   │   ├── commands.py
+│   │   ├── executable_scope.sh
+│   │   ├── plugins
+│   │   │   ├── executable_devicons_linemode.py
+│   │   │   ├── executable_devicons.py
+│   │   │   └── __pycache__
+│   │   │       ├── devicons.cpython-37.opt-1.pyc
+│   │   │       ├── devicons_linemode.cpython-37.opt-1.pyc
+│   │   │       └── __init__.cpython-37.opt-1.pyc
+│   │   ├── rc.conf.tmpl
+│   │   └── rifle.conf
+│   ├── st
+│   │   └── config.def.h.tmpl
+│   └── zathura
+│       └── zathurarc
+├── dot_gdbinit
+├── dot_gitconfig.tmpl
+├── dot_imwheelrc
+├── dot_inputrc
+├── dot_minikube
+│   └── config
+│       └── config.json
+├── dot_qalcrc
+├── dot_ssh
+│   ├── authorized_keys-all
+│   └── known_hosts-all
+├── dot_taskopenrc
+├── dot_taskrc
+├── dot_tmux.conf
+├── dot_vimrc.tmpl
+├── dot_xinitrc.tmpl
+├── dot_Xmodmap
+├── dot_Xmodmap-laptop
+├── dot_Xmodmap-laptop-old
+├── dot_Xmodmap-old
+├── dot_Xmodmap-ubuntu
+├── dot_Xmodmap-vm
+├── dot_Xresources.tmpl
+├── dot_zshrc
+├── private_dot_calcurse
+│   ├── caldav
+│   │   └── config
+│   ├── conf
+│   └── keys
+├── private_dot_gnupg
+│   ├── gpg-agent.conf
+│   ├── gpg-agent-template.conf
+│   └── gpg.conf
+├── README.md
+├── scripts
+│   ├── colors
+│   │   ├── executable_arch
+│   │   ├── executable_blocks
+│   │   ├── executable_panes
+│   │   ├── executable_rupees
+│   │   ├── executable_space-invaders
+│   │   └── executable_unowns
+│   ├── executable_backup-pc
+│   ├── executable_bg-chooser
+│   ├── executable_burn-iso.sh
+│   ├── executable_change-sink
+│   ├── executable_currency
+│   ├── executable_dexscreener
+│   ├── executable_dexscreener-fdv
+│   ├── executable_dexscreener-mc
+│   ├── executable_dmenu-history
+│   ├── executable_dmenu-twitch
+│   ├── executable_dual-monitor-slideshow
+│   ├── executable_glhf-metadata
+│   ├── executable_install-arch-pkgs.sh
+│   ├── executable_kraken
+│   ├── executable_passmenu
+│   ├── executable_qr-gif.sh
+│   ├── executable_rick-roll
+│   ├── executable_shuffler
+│   ├── executable_spotify-clean
+│   ├── executable_spotify-now
+│   ├── executable_sync-shortcuts
+│   ├── executable_tex-clean
+│   ├── executable_ticker
+│   ├── executable_twem
+│   ├── executable_twitchy-game
+│   ├── executable_ubuntu-start
+│   ├── executable_vim-man
+│   └── executable_xmodmap-custom.tmpl
+├── tree.txt
+└── txt
+    ├── arch-2-aur.txt
+    ├── arch-2-pkgs.txt
+    ├── exclude-dirs-backup-full.txt
+    ├── exclude-dirs-backup.txt.tmpl
+    ├── gtk-themes.txt
+    ├── nzxt-all.txt
+    ├── nzxt-aur.txt
+    ├── nzxt-new.txt
+    ├── nzxt-pkgs.txt
+    ├── terminal-art.txt
+    ├── termux-pkgs.txt
+    ├── tex-build-files.txt
+    ├── todo.md
+    ├── ubuntu
+    │   ├── apt-packages.txt
+    │   ├── npm-packages.txt
+    │   ├── pip-packages.txt
+    │   └── snap-packages.txt
+    ├── usbs.md
+    ├── x1-carbon-aur.txt
+    └── x1-carbon-pkgs.txt
+
+46 directories, 271 files

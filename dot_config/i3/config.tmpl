@@ -40,8 +40,10 @@ set $browser "google-chrome"
 #set $browser_secondary "chromium"
 #set $browser_secondary "google-chrome-stable"
 # set $browser "chromium"
- set $browser_secondary "firefox"
+set $browser_secondary "firefox"
 set $scripts_path "/home/kevin/scripts"
+# Path to the hands-free voice tooling repo (contains voice.sh).
+set $hands_free_tools "$HOME/coding/hands-free-tools"
 set $sch_dir "$HOME/Documents/School"
 
 #  app shortcuts [[[ # 
@@ -364,7 +366,7 @@ bindsym $mod+Shift+F2 workspace $ws2; exec $term -e mosh kmok@$work_laptop_ip --
 #  ws3 [[[ # 
 
 #set $ws3 "3  "
- set $ws3 "3 "
+ set $ws3 "3          "
 # workspace $ws3 output $main
 # bindsym $mod+F3 workspace $ws3; exec $browser
 # bindsym $mod+F3 exec $browser; move container to workspace $ws3; workspace $ws3
@@ -594,7 +596,8 @@ bar {
   {{ else }}
   # font pango:$sb_font 17
   #font pango:$sb_font 16:pixelsize=5
-  font pango:$sb_font 16
+  #font pango:$sb_font 16
+  font pango:$sb_font 30
   {{ end }}
   colors {
     # 0 (transparent) -> 255 (opaque) in hex
@@ -626,8 +629,8 @@ bar {
   font pango:$sb_font 18
   {{ else }}
   # font pango:$sb_font 21
-  #font pango:$sb_font 20
-   font pango:$sb_font 18
+  font pango:$sb_font 30
+   #font pango:$sb_font 18
   {{ end }}
   # output $main
   i3bar_command i3bar -t
@@ -683,6 +686,17 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
 
 #  ]]] fn key # 
+
+#  voice dictation [[[ #
+# One-tap toggle for voice dictation using Scroll Lock.
+bindsym Scroll_Lock exec "$hands_free_tools/voice.sh toggle"
+
+# (Optional panic kill, only if you still want it)
+# bindsym Control+Scroll_Lock exec "$hands_free_tools/voice.sh quit"
+
+# (Optional Vim-safe stop, only if stop-vim exists and you actually use it)
+# bindsym $mod+Shift+v exec "$hands_free_tools/voice.sh stop-vim"
+
 
 #  ]]] media keys # 
 
