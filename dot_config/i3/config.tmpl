@@ -43,7 +43,7 @@ set $browser "google-chrome"
 set $browser_secondary "firefox"
 set $scripts_path "/home/kevin/scripts"
 # Path to the hands-free voice tooling repo (contains voice.sh).
-set $hands_free_tools "$HOME/coding/hands-free-tools"
+set $hands_free_tools "/home/kevin/coding/hands-free-tools"
 set $sch_dir "$HOME/Documents/School"
 
 #  app shortcuts [[[ # 
@@ -110,7 +110,7 @@ bindsym Control+Mod4+w exec $term -e nvim /home/kevin/.config/watson/state.tmp
 # bindsym Mod4+x exec $swex
 bindsym Control+$mod+x exec $type_delay_cmd && xdotool type 'http://codm.ataraxy.tk/'
 bindsym Mod4+z exec cliqz
-bindsym Pause exec ~/scripts/twem
+#bindsym Pause exec ~/scripts/twem
 
 #  screenshot [[[ # 
 
@@ -676,6 +676,7 @@ bindsym Control+d exec ~/linux-config/scripts/change-sink dac
 bindsym Control+o exec ~/linux-config/scripts/change-sink line-out
 
 # media
+
 #  fn key [[[ # 
 
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
@@ -687,15 +688,16 @@ bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 
 #  ]]] fn key # 
 
+
+# Pause was previously bound to twem. Move twem to Mod4+Pause so we
+# can use bare Pause as an ergonomic one-tap voice toggle.
+# bindsym Pause exec ~/scripts/twem
+bindsym Mod4+Pause exec ~/scripts/twem
+
 #  voice dictation [[[ #
-# One-tap toggle for voice dictation using Scroll Lock.
-bindsym Scroll_Lock exec "$hands_free_tools/voice.sh toggle"
-
-# (Optional panic kill, only if you still want it)
-# bindsym Control+Scroll_Lock exec "$hands_free_tools/voice.sh quit"
-
-# (Optional Vim-safe stop, only if stop-vim exists and you actually use it)
-# bindsym $mod+Shift+v exec "$hands_free_tools/voice.sh stop-vim"
+# Pause toggles nerd-dictation via voice.sh.
+# Log any issues but never trigger i3's nagbar.
+bindsym Pause exec --no-startup-id sh -c '$hands_free_tools/voice.sh toggle >>"$XDG_RUNTIME_DIR/voice-toggle.log" 2>&1 || true'
 
 
 #  ]]] media keys # 

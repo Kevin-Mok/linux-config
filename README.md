@@ -23,6 +23,7 @@ environment, shell tooling, and workflows that drive it.
 - [Shells & Aliases](#shells--aliases)
 - [Terminal & Editor Stack](#terminal--editor-stack)
 - [Window Manager & Display](#window-manager--display)
+- [Hands-Free Voice & Head Mouse Integration](#hands-free-voice--head-mouse-integration)
 - [Productivity Apps & 
   Services](#productivity-apps--services)
 - [Scripts, Packages & Assets](#scripts-packages--assets)
@@ -146,19 +147,20 @@ values for conditional logic in templates.
   variable and the helper 
   `scripts/executable_xmodmap-custom.tmpl`.
 - `dot_config/i3/config.tmpl` wires up: Mod1/Mod4 split, 
-  `kitty`/`urxvt` terminals, i3 startup apps (notification 
-  daemon, picom, imwheel, `wal`, `xbacklight`), screenshot 
-  bindings, workspace assignments (1/2/3 etc), 
-  Slack/Signal/Chromium/Steam assignments, workspace 
-  navigation, `passmenu`, `dmenu-history`, `ticker/fx` 
-  shortcuts, `redshift` hotkeys, `wal` shuffle hotkeys, 
-  `change-sink`, and `mod`-based layout resizing. It also 
-  defines stacked/tabbed/floating rules, gap toggles, and 
-  bar outputs for both main and secondary monitors. The 
-  status command is `i3blocks -vvv -c 
-  ~/.config/i3blocks/i3blocks.conf` (primary) and 
-  `i3blocks-secondary.conf` (secondary) with i3blocks piping 
-  through `~/scripts/shuffler`/`pywal` colors.
+- `kitty`/`urxvt` terminals, i3 startup apps (notification 
+- daemon, picom, imwheel, `wal`, `xbacklight`), screenshot 
+- bindings, workspace assignments (1/2/3 etc), 
+- Slack/Signal/Chromium/Steam assignments, workspace 
+- navigation, `passmenu`, `dmenu-history`, `ticker/fx` 
+- shortcuts, `redshift` hotkeys, `wal` shuffle hotkeys, 
+- `change-sink`, and `mod`-based layout resizing. It also 
+- defines stacked/tabbed/floating rules, gap toggles, and 
+- bar outputs for both main and secondary monitors. The 
+- status command is `i3blocks -vvv -c 
+- ~/.config/i3blocks/i3blocks.conf` (primary) and 
+- `i3blocks-secondary.conf` (secondary) with i3blocks piping 
+- through `~/scripts/shuffler`/`pywal` colors.
+- It also binds the Pause key to the hands-free voice toggle (see the Hands-Free Voice & Head Mouse Integration section below).
 - `dot_config/i3blocks/i3blocks.conf.tmpl` defines blocks 
   for `kraken` (ETH), Spotify controls, volume, and 
   conditional blocks for laptop (`battery`, `wifi`, 
@@ -183,6 +185,39 @@ values for conditional logic in templates.
   info streamlined to kernel, terminal,font, shell, 
   packages, WM, CPU/GPU, memory, disks, and resolution, with 
   ASCII color blocks and shorthanded kernel/distro strings.
+
+## Hands-Free Voice & Head Mouse Integration
+
+The actual head-mouse and voice tooling lives in my separate `hands-free-tools` repo; this dotfiles repo simply wires that tooling into i3 so the keyboard can reach it.
+
+This repo uses `dot_config/i3/config.tmpl` to template the `$hands_free_tools` variable and to bind Pause to the ergonomic one-tap voice toggle. The relevant bindings are:
+
+```i3
+set $hands_free_tools "$HOME/coding/hands-free-tools"
+
+bindsym Pause exec "$hands_free_tools/voice.sh toggle"
+
+bindsym Mod4+Pause exec ~/scripts/twem
+```
+
+The actual `start.sh`, `voice.sh`, `head_mouse.py`, and installation instructions live in `hands-free-tools/README.md`; this README just explains how the desktop wiring points into that repo.
+
+### Using Pause as the Voice On/Off Toggle
+
+1. Clone `hands-free-tools` into `~/coding/hands-free-tools` and follow its README to install dependencies.
+2. Run `chezmoi apply` so the i3 config template renders `$hands_free_tools` and adds the Pause binding.
+3. Restart or reload i3 (e.g. `Mod+Shift+c`) so the new bindings take effect.
+4. In a terminal run:
+
+   ```bash
+   cd ~/coding/hands-free-tools
+   ./start.sh voice        # or ./start.sh both for head mouse + voice
+   ```
+
+5. With i3 running, tap **Pause** to call `voice.sh toggle`:
+   - First tap → nerd-dictation switches to **listening** and starts typing wherever the cursor is.
+   - Second tap → `voice.sh` toggles back to **paused/stopped**, keeping the model warmed up without typing.
+6. When done for the day, run `./voice.sh quit` inside `hands-free-tools` to shut down the daemon.
 
 ## Productivity Apps & Services
 - `dot_taskrc` configures `taskwarrior` (data location 
