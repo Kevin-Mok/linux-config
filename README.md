@@ -1,5 +1,11 @@
 # KM's Linux Desktop Config (chezmoi dotfiles)
 
+<p align="center">
+  <img src="desktop-preview.png"
+       alt="Preview of KM's cyberpunk i3/fish/Neovim desktop"
+       width="100%">
+</p>
+
 This is my **chezmoi-managed toolkit** for keeping a 
 consistent i3/terminal-focused Linux desktop across 
 machines: i3 + i3blocks + i3bar, fish/Zsh/Bash shells, 
