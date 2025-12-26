@@ -1,0 +1,46 @@
+:root {
+  --font-primary: "Hack", monospace;
+  --font-display: "Hack", monospace;
+  --font-headline: "Hack", monospace;
+  --font-code: "Hack", monospace;
+
+  /* === BLAZE / ORANGE ACCENTS === */
+  --main-color: #ef4d0a;
+  --hover-color: #9d1d0d;
+  --success-color: #fbca10;
+  --danger-color: #9d1d0d;
+  --url-color: #fbca10;
+
+  /* === BACKGROUND IMAGE === */
+  --background-image: url("https://i.imgur.com/vae4ZjD.jpeg");
+  --background-position: center;
+  --background-size: cover;
+  --background-attachment: fixed;
+
+  /* Darken the image itself */
+  --background-filter: brightness(0.55) contrast(1.15)
+    saturate(calc(var(--saturation-factor, 1) * 1.05));
+
+  /* === MAKE EVERYTHING DARKER (ClearVision shading layers) === */
+  --background-shading-percent: 100%;
+  --background-shading: rgba(0, 0, 0, 0.82);
+  --card-shading: rgba(0, 0, 0, 0.60);
+  --popout-shading: rgba(0, 0, 0, 0.88);
+  --modal-shading: rgba(0, 0, 0, 0.84);
+  --input-shading: rgba(0, 0, 0, 0.70);
+
+  /* Text */
+  --normal-text: #f2f2f2;
+  --muted-text: #b8b8b8;
+
+  /* === FORCE DARK BASE SURFACES (catches leftover grey panels) === */
+  --background-primary: #0b0b0b;
+  --background-secondary: #090909;
+  --background-secondary-alt: #0d0d0d;
+  --background-tertiary: #060606;
+  --background-floating: #0d0d0d;
+  --channeltextarea-background: #0c0c0c;
+
+  --text-normal: #f2f2f2;
+  --text-muted: #b8b8b8;
+}

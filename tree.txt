@@ -3,6 +3,7 @@
 │   ├── key_aliases.tmpl
 │   ├── key_dirs.tmpl
 │   └── key_files.tmpl
+├── desktop-preview.png
 ├── dot_bashrc
 ├── dot_config
 │   ├── chezmoi
@@ -187,6 +188,8 @@
 │   │       └── executable_wifi
 │   ├── kitty
 │   │   └── kitty.conf
+│   ├── MangoHud
+│   │   └── MangoHud.conf
 │   ├── mgba
 │   │   ├── config-tmpl.ini
 │   │   ├── qt-tmpl.ini
@@ -316,4 +319,4 @@
     ├── x1-carbon-aur.txt
     └── x1-carbon-pkgs.txt
 
-46 directories, 271 files
+47 directories, 273 files
