@@ -1,3 +1,9 @@
+/* Force font for the actual message bodies (rendered chat text) */
+#app-mount [class*="messageContent"],
+#app-mount [class*="markup"] {
+  font-family: "Hack", monospace !important;
+}
+
 :root {
   --font-primary: "Hack", monospace;
   --font-display: "Hack", monospace;
