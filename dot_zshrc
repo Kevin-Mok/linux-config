@@ -177,3 +177,5 @@ export PASSWORD_STORE_CLIP_TIME=120
 
 #exec fish
 source /home/kevin/aliases/.key_aliases
+
+alias claude-mem='/home/kevin/.bun/bin/bun "/home/kevin/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'

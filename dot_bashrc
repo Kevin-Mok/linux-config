@@ -205,3 +205,5 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source /home/kevin/aliases/.key_aliases
+
+alias claude-mem='/home/kevin/.bun/bin/bun "/home/kevin/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'

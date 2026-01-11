@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(redbot-launcher info:*)",
+      "Bash(xargs cat:*)",
+      "WebSearch",
+      "Bash(paste:*)",
+      "Bash(python:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(xargs:*)",
+      "Bash(git push:*)",
+      "Bash(cat:*)",
+      "Bash(git log:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run build:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(du:*)",
+      "Bash(lsof:*)",
+      "Bash(convert:*)",
+      "Bash(for img in night-sky.webp circuit-board-city.webp motorcycle-night.webp aurora-lights.webp dashboard-futuristic.webp)",
+      "Bash(do)",
+      "Bash(done)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "model": "haiku",
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true
+  }
+}
