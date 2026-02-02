@@ -383,7 +383,48 @@ The actual `start.sh`, `voice.sh`, `head_mouse.py`, and installation instruction
   `txt/pacman-pkgs/*.txt`. Keep that tree up to date before 
   running the script.
 
-Feel free to browse the scripts, `dot_config/*`, and `txt/*` 
-files when you need to understand how a feature works — they 
-are the single source of truth for this desktop’s 
+Feel free to browse the scripts, `dot_config/*`, and `txt/*`
+files when you need to understand how a feature works — they
+are the single source of truth for this desktop's
 automation.
+
+## Why This Repo is Interesting
+
+### Technical Highlights
+
+1. **Chezmoi Templating System**
+   - Go templates for host-specific configurations
+   - Conditional logic based on machine type, display, keyboard
+   - Encrypted private files for secrets (GPG, CalDAV, SSH)
+
+2. **Multi-Shell Synchronization**
+   - Canonical alias definitions shared across Fish, Bash, Zsh
+   - Automated sync script regenerates shell aliases and Ranger mappings
+   - Consistent keybindings across terminals
+
+3. **i3 Desktop Environment**
+   - Custom i3blocks status bar with crypto tickers, Spotify, system monitors
+   - pywal color scheme integration across all applications
+   - Multi-monitor support with separate i3blocks configs
+
+4. **Neovim/Vim Configuration**
+   - 20+ plugins via vim-plug (YouCompleteMe, UltiSnips, vim-fugitive, etc.)
+   - Language-specific configs for Go, LaTeX, React, Markdown
+   - tmux-navigator integration for seamless pane switching
+
+5. **Productivity Integrations**
+   - Taskwarrior with contexts, urgency coefficients, server sync
+   - Neomutt email with msmtp/mbsync
+   - Ranger file manager with custom commands and fzf integration
+
+### Skills Demonstrated
+
+- **Linux Administration**: Desktop environment configuration, system customization
+- **Shell Scripting**: Fish, Bash, Zsh functions and automation
+- **Dotfile Management**: Chezmoi templating, multi-machine sync
+- **Window Manager Configuration**: i3, i3blocks, picom, dunst
+- **DevOps Practices**: Version-controlled infrastructure, reproducible environments
+
+## Author
+
+[Kevin Mok](https://github.com/Kevin-Mok)
