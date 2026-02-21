@@ -1,0 +1,31 @@
+personality = "pragmatic"
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+
+[projects."/home/kevin/coding/quit-weed"]
+trust_level = "trusted"
+
+[projects."/home/kevin/linux-config"]
+trust_level = "trusted"
+
+[projects."/home/kevin/coding/portfolio-site"]
+trust_level = "trusted"
+
+[projects."/home/kevin/.timetrace"]
+trust_level = "trusted"
+
+[projects."/home/kevin/coding/kanban-calendar"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.2-codex" = "gpt-5.3-codex"
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[mcp_servers.memora]
+  command = "memora-server"  # or full path: /path/to/bin/memora-server
+  args = ["--no-graph"]
+
+[tui]
+status_line = ["model-with-reasoning", "five-hour-limit", "context-remaining", "used-tokens"]

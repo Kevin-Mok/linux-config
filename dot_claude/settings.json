@@ -1,6 +1,13 @@
 {
   "permissions": {
     "allow": [
+      "Read(**)",
+      "Edit(*)",
+      "WebFetch",
+      "Bash(maestro:*)",
+      "Bash(eas:*)",
+      "Bash(npx:*)",
+      "Bash(adb:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
       "Bash(python3:*)",
@@ -26,9 +33,10 @@
       "Bash(do)",
       "Bash(done)"
     ],
+    "additionalDirectories": ["~/"],
     "defaultMode": "acceptEdits"
   },
-  "model": "haiku",
+  "model": "opus",
   "enabledPlugins": {
     "claude-mem@thedotmack": true,
     "typescript-lsp@claude-plugins-official": true,

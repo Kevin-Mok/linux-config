@@ -71,12 +71,16 @@ set -x HASTE_SERVER https://pste.gq
 set -x LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/lib /usr/local/lib64
 set -x GOPATH ~/go
 # set -x PATH $GRAALVM_BIN $PATH ~/.local/bin ~/scripts ~/scripts/colors ~/go/bin ~/.minetest/minetest/bin ~/.gem/ruby/2.6.0/bin
-set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin ~/.linuxbrew/bin ~/.fnm/current/bin ~/.nimble/bin ~/miniconda3/bin
+set -Ux ANDROID_HOME $HOME/Android/Sdk
+set --export BUN_INSTALL "$HOME/.bun"
+set -x PATH $PATH ~/.local/bin ~/scripts ~/scripts/colors $GOPATH/bin ~/.minetest/minetest/bin ~/.gem/ruby/*/bin ~/.yarn/bin ~/.linuxbrew/bin ~/.fnm/current/bin ~/.nimble/bin ~/miniconda3/bin $ANDROID_HOME/platform-tools $ANDROID_HOME/emulator $BUN_INSTALL/bin ~/.maestro/bin
 set -x PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/lib/pkgconfig
+set -Ux PATH $PATH 
 
 # Java [[[ #
 
-set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-21.1.0
+#set -x GRAALVM_HOME /usr/lib/jvm/graalvm-ce-java11-21.1.0
+set -x GRAALVM_HOME /usr/lib/jvm/java-17-openjdk-amd64
 set -x GRAALVM_BIN $GRAALVM_HOME/bin
 set -x JAVA_HOME $GRAALVM_HOME
 

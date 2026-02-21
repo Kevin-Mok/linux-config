@@ -5,7 +5,7 @@
 # basic [[[ #
 
 # clear screen
-c "printf '\033c'"
+cs "printf '\033c'"
 d "cd ~/Downloads && printf '\033c'"
 # dn "cd ~/Downloads && printf '\033c'"
 # e "echo \$"
@@ -135,6 +135,8 @@ ssaw "ssh -t kevin@3.147.85.36 tmux a"
 sdt "ssh kevin@165.22.239.234 -L 5433:localhost:5432"
 
 ssu "ssh -p 399 kevin@192.168.0.100"
+
+sso "ssh kevin@51.222.111.61"
 
 # ]]] ssh #
 
@@ -481,7 +483,7 @@ mra "man ranger"
 # mt "minetest"
 n "nvim"
 nl "nload devices wlp4s0 -u M"
-nm "nomacs . &"
+#nm "nomacs . &"
 noti "/usr/lib/notification-daemon-1.0/notification-daemon &"
 np "nvim --"
 ndu "ncdu"
@@ -1097,7 +1099,12 @@ cr "~/Applications/cursor.AppImage --no-sandbox &"
 h ./start.sh
 v ./start.sh voice
 
-cu claude
+c codex
+#csp "claude --dangerously-skip-permissions" 
+#cu "curl -fsSL https://claude.ai/install.sh | bash"
+
+npd "npm run dev"
+npb "npm run build"
 
 # ]]] work  #
 
