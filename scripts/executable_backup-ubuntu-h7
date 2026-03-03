@@ -1,0 +1,191 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_TAR_DIR="/mnt/linux-files-3/ubuntu-h7/tar"
+HOME_BACKUP_DIR="/mnt/linux-files-3/ubuntu-h7/home"
+BACKUP_MOUNT="/mnt/linux-files-3"
+
+ROOT_TAR_EXCLUDES=(
+	"/backup"
+	"/dev"
+	"/lost+found"
+	"/media"
+	"/mnt"
+	"/opt"
+	"/proc"
+	"/run"
+	"/swapfile"
+	"/sys"
+	"/tmp"
+	"/usr/src"
+	"/var/cache"
+	"/var/crash"
+	"/var/lib/apt/lists"
+	"/var/lib/containers"
+	"/var/lib/docker"
+	"/var/lib/snapd"
+	"/var/lib/systemd/coredump"
+	"/var/log"
+	"/var/tmp"
+)
+
+HOME_RSYNC_EXCLUDES=(
+	"/home/kevin/.cache/*"
+)
+
+usage() {
+	cat <<'EOF'
+Usage: executable_backup-ubuntu-h7 <subcommand>
+
+Subcommands:
+  tar-root      Create compressed root filesystem tarball
+  home          Sync /home backup with rsync
+  all           Run tar-root then home
+  restore-help  Print root restore steps for live USB recovery
+EOF
+}
+
+die() {
+	echo "Error: $*" >&2
+	exit 1
+}
+
+require_path() {
+	local path="$1"
+
+	[ -e "$path" ] || die "required path is missing: $path"
+}
+
+require_backup_mount() {
+	mountpoint -q "$BACKUP_MOUNT" || die "$BACKUP_MOUNT is not mounted; mount the backup drive first"
+}
+
+require_backup_dirs() {
+	require_path "$ROOT_TAR_DIR"
+	require_path "$HOME_BACKUP_DIR"
+}
+
+backup_tar_root() {
+	local datetime backup_file
+	local pattern
+	local -a tar_exclude_args
+
+	datetime="$(date '+%Y-%m-%d_%H-%M-%S')"
+	backup_file="$ROOT_TAR_DIR/${datetime}-ubuntu-h7-root.tar.gz"
+	tar_exclude_args=()
+
+	for pattern in "${ROOT_TAR_EXCLUDES[@]}"; do
+		tar_exclude_args+=( "--exclude=$pattern" )
+	done
+
+	echo "Creating root tarball: $backup_file"
+	sudo tar -cpzvf "$backup_file" \
+		--numeric-owner \
+		--acls \
+		--xattrs \
+		--xattrs-include='*' \
+		"${tar_exclude_args[@]}" \
+		--exclude=/home \
+		/
+
+	echo "Root tarball created: $backup_file"
+}
+
+backup_home() {
+	local pattern
+	local -a rsync_exclude_args
+
+	rsync_exclude_args=()
+	for pattern in "${HOME_RSYNC_EXCLUDES[@]}"; do
+		rsync_exclude_args+=( "--exclude=$pattern" )
+	done
+
+	echo "Syncing /home to $HOME_BACKUP_DIR"
+	sudo rsync -PraAX "${rsync_exclude_args[@]}" /home "$HOME_BACKUP_DIR/"
+	echo "Home sync complete: $HOME_BACKUP_DIR"
+}
+
+restore_help() {
+	cat <<'EOF'
+Root restore (live USB, clean root restore):
+1) Verify devices:
+   lsblk -f
+
+2) Unmount old mounts if present:
+   sudo umount -R /mnt 2>/dev/null || true
+
+3) Format root partition (clean restore):
+   sudo mkfs.ext4 -F /dev/nvme0n1p2
+   # Do NOT format /dev/nvme0n1p1 (EFI) or /dev/nvme0n1p3 (/home).
+
+4) Mount target system partitions:
+   sudo mount /dev/nvme0n1p2 /mnt
+   sudo mkdir -p /mnt/boot/efi /mnt/home
+   sudo mount /dev/nvme0n1p1 /mnt/boot/efi
+   sudo mount /dev/nvme0n1p3 /mnt/home
+   
+5) Mount backup drive (linux-files-3):
+   sudo mkdir -p /mnt/linux-files-3
+   sudo mount /dev/sdc1 /mnt/linux-files-3
+
+6) Extract root tarball:
+   sudo tar -xpzvf /mnt/linux-files-3/ubuntu-h7/tar/<backup>.tar.gz -C /mnt
+
+7) (Optional) restore /home from rsync backup:
+   sudo rsync -PraAX /mnt/linux-files-3/ubuntu-h7/home/ /mnt/home/
+
+8) Bind mount runtime filesystems:
+   sudo mount --bind /dev /mnt/dev
+   sudo mount --bind /proc /mnt/proc
+   sudo mount --bind /sys /mnt/sys
+   sudo mount --bind /run /mnt/run
+
+9) Chroot and reinstall boot files:
+   sudo chroot /mnt /bin/bash
+   grub-install /dev/nvme0n1
+   update-initramfs -u -k all
+   update-grub
+   exit
+
+10) Unmount and reboot:
+   sudo umount -R /mnt
+   sudo reboot
+
+Always confirm devices with lsblk -f before running restore commands.
+EOF
+}
+
+main() {
+	local cmd="${1:-}"
+
+	case "$cmd" in
+		tar-root)
+			require_backup_mount
+			require_backup_dirs
+			backup_tar_root
+			;;
+		home)
+			require_backup_mount
+			require_backup_dirs
+			backup_home
+			;;
+		all)
+			require_backup_mount
+			require_backup_dirs
+			backup_tar_root
+			backup_home
+			;;
+		restore-help)
+			restore_help
+			;;
+		-h|--help|help|"")
+			usage
+			;;
+		*)
+			usage
+			die "unknown subcommand: $cmd"
+			;;
+	esac
+}
+
+main "$@"

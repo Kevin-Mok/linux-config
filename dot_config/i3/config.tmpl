@@ -339,12 +339,12 @@ set $ws1 "1  "
 set $secondary "HDMI2"
 set $main "eDP1"
 {{ else if eq .chezmoi.hostname "nzxt" }}
-set $secondary "DVI-I-1"
-set $main "HDMI-0"
+set $secondary "DVI-D-1"
+set $main "HDMI-1"
 {{ end }}
 
-set $secondary "DVI-D-0"
-set $main "HDMI-0"
+set $secondary "DVI-D-1"
+set $main "HDMI-1"
 
 # workspace $ws1 output $main
 workspace $ws1 output $secondary
