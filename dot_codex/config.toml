@@ -1,5 +1,5 @@
 personality = "pragmatic"
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
 
@@ -75,6 +75,15 @@ trust_level = "trusted"
 [projects."/home/kevin/Documents/emails"]
 trust_level = "trusted"
 
+[projects."/home/kevin/Documents/chess"]
+trust_level = "trusted"
+
+[projects."/home/kevin/coding/spotify-library-intelligence-dashboard"]
+trust_level = "trusted"
+
+[projects."/home/kevin/coding/upwork"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.2-codex" = "gpt-5.3-codex"
 
@@ -86,4 +95,6 @@ url = "https://developers.openai.com/mcp"
   args = ["--no-graph"]
 
 [tui]
+notifications = true
+notification_method = "osc9"
 status_line = ["model-with-reasoning", "five-hour-limit", "context-remaining", "used-tokens", "current-dir"]
