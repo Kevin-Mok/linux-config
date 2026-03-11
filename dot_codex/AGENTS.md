@@ -4,6 +4,18 @@ Combined repo-agnostic agent guidance generated from the 10 latest `/home/kevin/
 
 Project-specific rules, commands, paths, and feature guidance were excluded from the generated output. Retained text is copied verbatim from the selected source fragments.
 
+## Repo-Local Addendum
+
+These repo-local instructions apply in addition to the aggregated guidance below.
+
+### Bug Reports
+
+- Start bug work by reproducing the issue with a failing test or other executable reproducer.
+- Do not implement a fix until the reproducer fails for the expected reason.
+- If an automated test is not practical, explain why and create the closest reliable reproducer.
+- For non-trivial bugs, use subagents to investigate root cause or try candidate fixes in parallel.
+- Do not consider the bug fixed until the reproducer passes and relevant regression checks remain green.
+
 ## Source Order
 
 1. `upwork`
