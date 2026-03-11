@@ -43,6 +43,11 @@ These repo-local instructions apply in addition to the merged guidance below.
 - For non-trivial bugs, use subagents to investigate root cause or try candidate fixes in parallel.
 - Do not consider the bug fixed until the reproducer passes and relevant regression checks remain green.
 
+### Prompt Requests
+
+- When the user asks Codex to create a prompt, write it to a Markdown file in `prompts/` instead of returning only inline prompt text.
+- Use a concise kebab-case filename that matches the prompt purpose unless the user specifies a filename.
+
 ## Source Order
 
 1. `upwork`
