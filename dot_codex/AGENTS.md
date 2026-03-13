@@ -91,6 +91,7 @@ These repo-local instructions apply in addition to the merged guidance below.
 ### 1.3 Self-Improvement Loop
 
 - After ANY correction from the user: update `tasks/lessons.md` with the pattern.
+- If `tasks/lessons.md` does not exist in the repo, create it before recording the lesson.
 - Write rules for yourself that prevent the same mistake.
 - Ruthlessly iterate on these lessons until mistake rate drops.
 - Review lessons at session start for relevant project.
@@ -125,7 +126,7 @@ These repo-local instructions apply in addition to the merged guidance below.
 3. **Track Progress**: Mark items complete as you go.
 4. **Explain Changes**: High-level summary at each step.
 5. **Document Results**: Add a review section to the active ExecPlan or final task summary.
-6. **Capture Lessons**: If the project uses `tasks/lessons.md`, update it after corrections.
+6. **Capture Lessons**: After corrections, update `tasks/lessons.md`; create it first if it does not exist.
 
 > **Note:** These are guidelines - adapt to project structure and active repository conventions.
 

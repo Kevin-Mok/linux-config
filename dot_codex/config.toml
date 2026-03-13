@@ -2,6 +2,9 @@ personality = "pragmatic"
 model = "gpt-5.4"
 model_reasoning_effort = "xhigh"
 plan_mode_reasoning_effort = "xhigh"
+developer_instructions = """
+When a task uses an ExecPlan or updates documentation under `plans/`, keep those plan document changes in the same commit(s) as the related implementation or documentation work. Do not leave relevant plan files out of the commit unless the user explicitly asks.
+"""
 
 [projects."/home/kevin/coding/quit-weed"]
 trust_level = "trusted"
