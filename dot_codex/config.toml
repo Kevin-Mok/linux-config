@@ -90,6 +90,12 @@ trust_level = "trusted"
 [projects."/home/kevin/coding/openclaw"]
 trust_level = "trusted"
 
+[projects."/home/kevin/Documents/twitter"]
+trust_level = "trusted"
+
+[projects."/home/kevin/Documents/journal"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.2-codex" = "gpt-5.3-codex"
 
@@ -103,4 +109,4 @@ url = "https://developers.openai.com/mcp"
 [tui]
 notifications = true
 notification_method = "osc9"
-status_line = ["model-with-reasoning", "five-hour-limit", "context-remaining", "used-tokens", "current-dir"]
+status_line = ["model-with-reasoning", "five-hour-limit", "context-remaining", "used-tokens", "current-dir", "total-input-tokens", "total-output-tokens", "context-window-size", "session-id"]
